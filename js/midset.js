@@ -185,3 +185,9 @@ function getStepSize(start, end, counts) {
     }
     return "Step Size: " + computedStepSize + " to 5";
 }
+
+function getMidSetCoordinate(start, end) {
+    var leftToRightMiddle = (start.getLeftToRight() + end.getLeftToRight()) / 2;
+    var frontToBackMiddle = (start.getFrontToBack() + end.getFrontToBack()) / 2;
+    return new Coordinate(leftToRightMiddle, frontToBackMiddle);
+}

@@ -1,3 +1,5 @@
+'use strict';
+
 // Consider adding Set number and counts...
 
 function Coordinate(leftToRight, frontToBack) {
