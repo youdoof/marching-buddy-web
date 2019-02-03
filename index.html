@@ -1,23 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Marching Buddy</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    </head>
-    <body>
-        <!-- Here we go -->
-        <h1>Marching Buddy JS</h1>
 
-        <p></p>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Marching Buddy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        <script src="js/coordinate.js"></script>
-        <script src="js/field.js"></script>
-        <script src="js/midset.js"></script>
-        <script src="js/marching-buddy.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    </body>
+<body>
+    <!-- Here we go -->
+    <h1>Marching Buddy JS</h1>
+
+    <form>
+        <div class="row">
+            <div class="col">
+                <h3>Left to Right</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Steps</span>
+            </div>
+            <div class="col">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">On</button>
+                    <button type="button" class="btn btn-secondary">In</button>
+                    <button type="button" class="btn btn-secondary">Out</button>
+                </div>
+            </div>
+            <div class="col">
+                <span>Yard Line</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="range" min="0" max="4" step="0.25" class="form-control-range" id="rangeLeftRightSteps">
+            </div>
+            <div class="col">
+                <input type="range" min="0" max="50" step="5" class="form-control-range" id="rangeYardLine">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary">Side One</button>
+                    <button type="button" class="btn btn-secondary">Side Two</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Front to Back</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Steps</span>
+            </div>
+            <div class="col">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary">On</button>
+                    <button type="button" class="btn btn-secondary">In Front</button>
+                    <button type="button" class="btn btn-secondary">Behind</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="range" min="0" max="16" step="0.25" class="form-control-range" id="rangeFrontBackSteps">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary">Front</button>
+                    <button type="button" class="btn btn-secondary">Back</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary">Hash</button>
+                    <button type="button" class="btn btn-secondary">Sideline</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Practice container for filling info -->
+    <p></p>
+
+    <script src="js/coordinate.js"></script>
+    <script src="js/field.js"></script>
+    <script src="js/midset.js"></script>
+    <script src="js/marching-buddy.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -77,7 +77,7 @@ function outputFrontToBack(frontToBack, field) {
     }
     // Front half of the field
     else if (frontToBack < 0) {
-        if (frontToBack > frontHash){
+        if (frontToBack > frontHash) {
             output = (-frontHash + frontToBack) + " behind " + frontHashName + " Hash";
         } else if (frontToBack == frontHash) {
             output = "On " + frontHashName + " Hash";

@@ -6,14 +6,14 @@ function Field(fieldType, sideType, hashType) {
     this.hashType = hashType;
 }
 
-Field.prototype.getFieldType = function() {
+Field.prototype.getFieldType = function () {
     return this.fieldType;
 }
 
-Field.prototype.getSideType = function() {
+Field.prototype.getSideType = function () {
     return this.sideType;
 }
 
-Field.prototype.getHashType = function() {
+Field.prototype.getHashType = function () {
     return this.hashType;
 }
