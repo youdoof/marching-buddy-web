@@ -11,87 +11,99 @@
 </head>
 
 <body>
-    <!-- Here we go -->
-    <h1>Marching Buddy JS</h1>
+    <div class="container">
+        <!-- Here we go -->
+        <h1>Marching Buddy JS</h1>
 
-    <form>
-        <div class="row">
-            <div class="col">
-                <h3>Left to Right</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <span>Steps</span>
-            </div>
-            <div class="col">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary">On</button>
-                    <button type="button" class="btn btn-secondary">In</button>
-                    <button type="button" class="btn btn-secondary">Out</button>
+        <form>
+            <!-- Left to Right Container -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Left to Right</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>Steps</span>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary">On</button>
+                                <button type="button" class="btn btn-secondary">In</button>
+                                <button type="button" class="btn btn-secondary">Out</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <span>Yard Line</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="range" min="0" max="4" step="0.25" class="form-control-range" id="rangeLeftRightSteps">
+                        </div>
+                        <div class="col">
+                            <input type="range" min="0" max="50" step="5" class="form-control-range" id="rangeYardLine">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary">Side One</button>
+                                <button type="button" class="btn btn-secondary">Side Two</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <span>Yard Line</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <input type="range" min="0" max="4" step="0.25" class="form-control-range" id="rangeLeftRightSteps">
-            </div>
-            <div class="col">
-                <input type="range" min="0" max="50" step="5" class="form-control-range" id="rangeYardLine">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary">Side One</button>
-                    <button type="button" class="btn btn-secondary">Side Two</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h3>Front to Back</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <span>Steps</span>
-            </div>
-            <div class="col">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary">On</button>
-                    <button type="button" class="btn btn-secondary">In Front</button>
-                    <button type="button" class="btn btn-secondary">Behind</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <input type="range" min="0" max="16" step="0.25" class="form-control-range" id="rangeFrontBackSteps">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary">Front</button>
-                    <button type="button" class="btn btn-secondary">Back</button>
-                </div>
-            </div>
-            <div class="col">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary">Hash</button>
-                    <button type="button" class="btn btn-secondary">Sideline</button>
-                </div>
-            </div>
-        </div>
-    </form>
 
-    <!-- Practice container for filling info -->
-    <p></p>
+            <!-- Front to Back Container -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Front to Back</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span>Steps</span>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary">On</button>
+                                <button type="button" class="btn btn-secondary">In Front</button>
+                                <button type="button" class="btn btn-secondary">Behind</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="range" min="0" max="16" step="0.25" class="form-control-range" id="rangeFrontBackSteps">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary">Front</button>
+                                <button type="button" class="btn btn-secondary">Back</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary">Hash</button>
+                                <button type="button" class="btn btn-secondary">Sideline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </form>
+
+        <!-- Practice container for filling info -->
+        <p></p>
+
+    </div>
     <script src="js/coordinate.js"></script>
     <script src="js/field.js"></script>
     <script src="js/midset.js"></script>
