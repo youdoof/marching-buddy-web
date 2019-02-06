@@ -19,7 +19,3 @@ Coordinate.prototype.printCoordinate = function (field) {
     return outputLeftToRight(this.getLeftToRight(), field) + " \n" +
         outputFrontToBack(this.getFrontToBack(), field);
 }
-
-// Coordinate.prototype.getMidSetTo(target, counts) {
-//
-// }
