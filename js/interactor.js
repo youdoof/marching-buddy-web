@@ -19,12 +19,7 @@ function init() {
         spans[2].innerHTML = ranges[2].value;
     }, false);
 
-    // for (var i = 0; i < spans.length; i++) {
-    //     spans[i].innerHTML = ranges[i].value;
-    //     ranges[i].addEventListener('input', function() {
-    //         spans[i].innerHTML = ranges[i].value;
-    //     }, false);
-    // }
+    
 }
 
 init();

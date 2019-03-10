@@ -41,6 +41,57 @@ function findYardLine(value) {
     return counter * 8;
 }
 
+function inputFrontToBack(steps, onFrontBehindButton, hashSidelineButton, field) {
+    var result = 0;
+    var frontHashReference;
+    var backHashReference;
+
+    if (f.getFieldType() == 0) {
+        frontHashReference = HS_FRONT_HASH;
+        backHashReference = HS_BACK_HASH;
+    } else {
+        frontHashReference = NCAA_FRONT_HASH;
+        backHashReference = NCAA_BACK_HASH;
+    }
+
+    switch (onFrontBehindButton) {
+        // Front Sideline
+        case 0:
+            result = onFrontBehindHelper(steps, onFrontBehindButton, FRONT_SIDELINE);
+            break;
+        // Front Hash
+        case 1:
+            result = onFrontBehindHelper(steps, onFrontBehindButton, frontHashReference);
+            break;
+        // Back Hash
+        case 2:
+            result = onFrontBehindHelper(steps, onFrontBehindButton, backHashReference);
+            break;
+        case 3:
+            result = onFrontBehindHelper(steps, onFrontBehindButton, BACK_SIDELINE);
+            break;
+        default:
+            result = 0;
+            break;
+    }
+    return result;
+}
+
+
+function onFrontBehindHelper (steps, onFrontBehindButton, hashSidelineReference) {
+    if (onFrontBehindButton == 0) {
+        return hashSidelineReference;
+    } else if (onFrontBehindButton == 1) {
+        return hashSidelineReference - steps;
+    } else {
+        return hashSidelineReference + steps;
+    }
+}
+
+function inputLeftToRight() {
+
+}
+
 // frontToBack - input double representing the Front-To-Back on the field
 // field - Field object holding field and hash types
 function outputFrontToBack(frontToBack, field) {

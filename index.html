@@ -30,16 +30,16 @@
                             <span>Steps</span>
                         </div>
                         <!-- Radio buttons selecting reference to yard line -->
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="leftToRightRadio" id="onRadio" value="0"> On
+                                    <input type="radio" name="onInOutRadio" id="onRadio" value="0"> On
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="leftToRightRadio" id="inRadio" value="1"> In
+                                    <input type="radio" name="onInOutRadio" id="inRadio" value="1"> In
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="leftToRightRadio" id="outRadio" value="2"> Out
+                                    <input type="radio" name="onInOutRadio" id="outRadio" value="2"> Out
                                 </label>
                             </div>
                         </div>
@@ -86,13 +86,13 @@
                         <div class="col">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="frontToBackRadio" id="onFBRadio" value="0"> On
+                                    <input type="radio" name="onFrontBehindRadio" id="onFBRadio" value="0"> On
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="frontToBackRadio" id="inFrontFBRadio" value="1"> In Front
+                                    <input type="radio" name="onFrontBehindRadio" id="inFrontFBRadio" value="1"> In Front
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="frontToBackRadio" id="behindFBRadio" value="2"> Behind
+                                    <input type="radio" name="onFrontBehindRadio" id="behindFBRadio" value="2"> Behind
                                 </label>
                             </div>
                         </div>
@@ -106,20 +106,20 @@
                         <div class="col">
                             <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="Radio" id="sideOneRadio" value="0"> Front
+                                    <input type="radio" name="frontBackRadio" id="sideOneRadio" value="0"> Front
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="Radio" id="sideTwoRadio" value="1"> Back
+                                    <input type="radio" name="frontBackRadio" id="sideTwoRadio" value="1"> Back
                                 </label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="sideRadio" id="sideOneRadio" value="0"> Hash
+                                    <input type="radio" name="hashSidelineRadio" id="sideOneRadio" value="0"> Hash
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="sideRadio" id="sideTwoRadio" value="1"> Sideline
+                                    <input type="radio" name="hashSidelineRadio" id="sideTwoRadio" value="1"> Sideline
                                 </label>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
 
         </form>
 
