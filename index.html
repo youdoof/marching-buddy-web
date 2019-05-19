@@ -12,133 +12,274 @@
 
 <body>
     <div class="container">
-        <!-- Here we go -->
         <h1>Marching Buddy JS</h1>
 
         <form>
+            <!-- Starting Coordinate -->
+            <h2>Starting Coordinate:</h2>
             <div class="row">
                 <!-- Left to Right Container -->
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col">
-                            <h2>Left to Right</h2>
+                            <h3>Left to Right</h3>
                         </div>
-                    </div>
+                    </div> <!-- END 1st Row -->
+
                     <div class="row">
-                        <!-- Zone for Slider to update steps from yard line -->
+                        <!-- Display for reference distance to Yard Line -->
                         <div class="col">
-                            <span>Steps</span>
+                            <p><span></span> Steps</p>
                         </div>
                         <!-- Radio buttons selecting reference to yard line -->
                         <div class="col-4">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="onInOutRadio" id="onRadio" value="0"> On
+                                    <input type="radio" name="sOnInOutRadio" id="sOnLR" value="0"> On
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="onInOutRadio" id="inRadio" value="1"> In
+                                    <input type="radio" name="sOnInOutRadio" id="sInLR" value="1"> In
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="onInOutRadio" id="outRadio" value="2"> Out
+                                    <input type="radio" name="sOnInOutRadio" id="sOutLR" value="2"> Out
                                 </label>
                             </div>
                         </div>
-                        <!-- Zone for slider to update selected yard line -->
+                        <!-- Display for Selected Yard Line -->
                         <div class="col">
-                            <span>Yard Line</span>
+                            <p><span></span> Yard Line</p>
                         </div>
-                    </div>
+                    </div> <!-- END 2nd Row -->
 
-                    <!-- Sliders for getting step sizes and yardlines -->
+                    <!-- Sliders for selecting reference yard line and steps from it -->
                     <div class="row">
                         <div class="col-8">
-                            <input type="range" min="0" max="4" step="0.25" class="custom-range" id="rangeLeftRightSteps">
+                            <input type="range" min="0" max="4" step="0.25" class="custom-range" id="sLRSteps">
                         </div>
                         <div class="col">
-                            <input type="range" min="0" max="50" step="5" class="custom-range" id="rangeYardLine">
+                            <input type="range" min="0" max="50" step="5" class="custom-range" id="sYardLine">
                         </div>
-                    </div>
+                    </div> <!-- END 3rd Row -->
 
                     <!-- Button Group selecting side of field -->
                     <div class="row">
                         <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" name="sideRadio" id="sideOneRadio" value="0"> Side One
+                                <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0"> Side One
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" name="sideRadio" id="sideTwoRadio" value="1"> Side Two
+                                <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1"> Side Two
                             </label>
                         </div>
-                    </div>
-                </div>
+                    </div> <!-- END 4th Row -->
 
-            <!-- Front to Back Container -->
+                </div> <!-- END Left to Right Container -->
+
+                <!-- Front to Back Container -->
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col">
-                            <h2>Front to Back</h2>
+                            <h3>Front to Back</h3>
                         </div>
-                    </div>
+                    </div> <!-- END 1st Row -->
+
                     <div class="row">
                         <div class="col">
-                            <span>Steps</span>
+                            <p><span></span> Steps</p>
                         </div>
                         <div class="col">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="onFrontBehindRadio" id="onFBRadio" value="0"> On
+                                    <input type="radio" name="sOnInFrontBehindRadio" id="sOnFB" value="0"> On
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="onFrontBehindRadio" id="inFrontFBRadio" value="1"> In Front
+                                    <input type="radio" name="sOnInFrontBehindRadio" id="sInFrontFB" value="1"> In Front
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="onFrontBehindRadio" id="behindFBRadio" value="2"> Behind
+                                    <input type="radio" name="sOnInFrontBehindRadio" id="sBehindFB" value="2"> Behind
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- END 2nd Row -->
+
                     <div class="row">
                         <div class="col">
-                            <input type="range" min="0" max="16" step="0.25" class="custom-range" id="rangeFrontBackSteps">
+                            <input type="range" min="0" max="16" step="0.25" class="custom-range" id="sFBSteps">
                         </div>
-                    </div>
+                    </div> <!-- END 3rd Row -->
+
                     <div class="row">
                         <div class="col">
                             <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="frontBackRadio" id="sideOneRadio" value="0"> Front
+                                    <input type="radio" name="sFrontBackRadio" id="sFrontHome" value="0"> Front
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="frontBackRadio" id="sideTwoRadio" value="1"> Back
+                                    <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1"> Back
                                 </label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="hashSidelineRadio" id="sideOneRadio" value="0"> Hash
+                                    <input type="radio" name="sHashSidelineRadio" id="sHash" value="0"> Hash
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="hashSidelineRadio" id="sideTwoRadio" value="1"> Sideline
+                                    <input type="radio" name="sHashSidelineRadio" id="sSideline" value="1"> Sideline
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> <!-- END 4th Row -->
+                </div> <!-- END Front to Back Container -->
+            </div> <!-- END Starting Coordinate Container -->
+
+
+
+            <!-- Ending Coordinate -->
+            <h2>Ending Coordinate:</h2>
+            <div class="row">
+                <!-- Left to Right Container -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Left to Right</h3>
+                        </div>
+                    </div> <!-- END 1st Row -->
+
+                    <div class="row">
+                        <!-- Display for reference distance to Yard Line -->
+                        <div class="col">
+                            <p><span></span> Steps</p>
+                        </div>
+                        <!-- Radio buttons selecting reference to yard line -->
+                        <div class="col-4">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="eOnInOutRadio" id="eOnLR" value="0"> On
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="eOnInOutRadio" id="eInLR" value="1"> In
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="eOnInOutRadio" id="eOutLR" value="2"> Out
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Display for Selected Yard Line -->
+                        <div class="col">
+                            <p><span></span> Yard Line</p>
+                        </div>
+                    </div> <!-- END 2nd Row -->
+
+                    <!-- Sliders for selecting reference yard line and steps from it -->
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="range" min="0" max="4" step="0.25" class="custom-range" id="eLRSteps">
+                        </div>
+                        <div class="col">
+                            <input type="range" min="0" max="50" step="5" class="custom-range" id="eYardLine">
+                        </div>
+                    </div> <!-- END 3rd Row -->
+
+                    <!-- Button Group selecting side of field -->
+                    <div class="row">
+                        <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0"> Side One
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> Side Two
+                            </label>
+                        </div>
+                    </div> <!-- END 4th Row -->
+
+                </div> <!-- END Left to Right Container -->
+
+                <!-- Front to Back Container -->
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Front to Back</h3>
+                        </div>
+                    </div> <!-- END 1st Row -->
+
+                    <div class="row">
+                        <div class="col">
+                            <p><span></span> Steps</p>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="eOnInFrontBehindRadio" id="eOnFB" value="0"> On
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1"> In Front
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="eOnInFrontBehindRadio" id="eBehindFB" value="2"> Behind
+                                </label>
+                            </div>
+                        </div>
+                    </div> <!-- END 2nd Row -->
+
+                    <div class="row">
+                        <div class="col">
+                            <input type="range" min="0" max="16" step="0.25" class="custom-range" id="eFBSteps">
+                        </div>
+                    </div> <!-- END 3rd Row -->
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0"> Front
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> Back
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="eHashSidelineRadio" id="eHash" value="0"> Hash
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="eHashSidelineRadio" id="eSideline" value="1"> Sideline
+                                </label>
+                            </div>
+                        </div>
+                    </div> <!-- END 4th Row -->
+                </div> <!-- END  Front to Back Container -->
+            </div> <!-- END Ending Coordinate Container -->
+
+
+
+            <!-- Counts -->
+            <h2>Counts:</h2>
+            <div class="row">
+                <div class="col">
+                    <p><span></span> Counts</p>
                 </div>
-            </div>
+                <div class="col-8">
+                    <input type="range" min="1" max="64" step="1" class="custom-range" id="counts">
+                </div>
+            </div> <!-- END Counts Container -->
 
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-
+            <button type="button" class="btn btn-primary btn-block" onclick="getMidset()">Get Midset</button>
         </form>
 
+        <h2>Results:</h2>
+
         <!-- Practice container for filling info -->
-        <p></p>
+        <p class="foo"></p>
 
     </div>
     <script src="js/interactor.js"></script>
     <script src="js/coordinate.js"></script>
     <script src="js/field.js"></script>
     <script src="js/midset.js"></script>
+    <script src="js/input.js"></script>
     <script src="js/marching-buddy.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

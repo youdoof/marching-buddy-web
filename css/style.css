@@ -5,5 +5,10 @@ body {
 }
 
 h2 {
+    text-align: left;
+    padding-top: 0.5em;
+}
+
+h3 {
     padding-top: 0.5em;
 }

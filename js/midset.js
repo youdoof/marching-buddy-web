@@ -2,6 +2,7 @@
 
 // Yard Line Constant
 let YARD_LINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, "Goal Line"];
+let YARDLINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0]; // Getting messy, works for now.
 // Hash Type Constants
 let FRONT_HASH = "Front";
 let BACK_HASH = "Back";
@@ -23,12 +24,6 @@ let NCAA_BACK_HASH = 10.0;
 // High School Hash distances
 let HS_FRONT_HASH = -14.0;
 let HS_BACK_HASH = 14.0;
-// Rounding constants
-// let NEAREST_HALF_STEP = 2f;
-// let NEAREST_QUARTER_STEP = 4f;
-// let NEAREST_EIGHTH_STEP = 8f;
-// let NEAREST_SIXTEENTH_STEP = 16f;
-// let NEAREST_THIRTY_SECOND_STEP = 32f;
 
 function findYardLine(value) {
     var counter = 0;
@@ -41,7 +36,51 @@ function findYardLine(value) {
     return counter * 8;
 }
 
-function inputFrontToBack(steps, onFrontBehindButton, hashSidelineButton, field) {
+function inputLeftToRight(stepsLR, onInOutBtn, sideBtn, yardline) {
+    var result = 0;
+
+    switch (onInOutBtn) {
+        // On yard line
+        case 0:
+            if (sideBtn == 0) {
+                result = -findYardLine(yardline);
+            } else {
+                result = findYardLine(yardline);
+            }
+            break;
+        case 1:
+            if (yardline == 50) {
+                if (sideBtn == 0) {
+                    result = -stepsLR;
+                } else {
+                    result = stepsLR;
+                }
+            } else if (sideBtn == 0) {
+                result = -findYardLine(yardline) + stepsLR;
+            } else {
+                result = findYardLine(yardline) - stepsLR;
+            }
+            break;
+        case 2:
+            if (yardline == 50) {
+                if (sideBtn == 0) {
+                    result = -stepsLR;
+                } else {
+                    result = stepsLR;
+                }
+            } else if (sideBtn == 0) {
+                result = -findYardLine(yardline) - stepsLR;
+            } else {
+                result = findYardLine(yardline) + stepsLR;
+            }
+            break;
+        default:
+            break;
+    }
+    return result;
+}
+
+function inputFrontToBack(stepsFB, onInFrontBehind, hashSideline, field) {
     var result = 0;
     var frontHashReference;
     var backHashReference;
@@ -54,21 +93,22 @@ function inputFrontToBack(steps, onFrontBehindButton, hashSidelineButton, field)
         backHashReference = NCAA_BACK_HASH;
     }
 
-    switch (onFrontBehindButton) {
+    switch (hashSideline) {
         // Front Sideline
         case 0:
-            result = onFrontBehindHelper(steps, onFrontBehindButton, FRONT_SIDELINE);
+            result = onFrontBehindHelper(stepsFB, onInFrontBehind, FRONT_SIDELINE);
             break;
         // Front Hash
         case 1:
-            result = onFrontBehindHelper(steps, onFrontBehindButton, frontHashReference);
+            result = onFrontBehindHelper(stepsFB, onInFrontBehind, frontHashReference);
             break;
         // Back Hash
         case 2:
-            result = onFrontBehindHelper(steps, onFrontBehindButton, backHashReference);
+            result = onFrontBehindHelper(stepsFB, onInFrontBehind, backHashReference);
             break;
+        // Back Sideline
         case 3:
-            result = onFrontBehindHelper(steps, onFrontBehindButton, BACK_SIDELINE);
+            result = onFrontBehindHelper(stepsFB, onInFrontBehind, BACK_SIDELINE);
             break;
         default:
             result = 0;
@@ -78,18 +118,14 @@ function inputFrontToBack(steps, onFrontBehindButton, hashSidelineButton, field)
 }
 
 
-function onFrontBehindHelper (steps, onFrontBehindButton, hashSidelineReference) {
-    if (onFrontBehindButton == 0) {
+function onFrontBehindHelper (stepsFB, onInFrontBehind, hashSidelineReference) {
+    if (onInFrontBehind == 0) {
         return hashSidelineReference;
-    } else if (onFrontBehindButton == 1) {
-        return hashSidelineReference - steps;
+    } else if (onInFrontBehind == 1) {
+        return hashSidelineReference - stepsFB;
     } else {
-        return hashSidelineReference + steps;
+        return hashSidelineReference + stepsFB;
     }
-}
-
-function inputLeftToRight() {
-
 }
 
 // frontToBack - input double representing the Front-To-Back on the field
