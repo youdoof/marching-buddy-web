@@ -11,9 +11,13 @@ paragraph.innerHTML = e.printCoordinate(f);
 
 // -----------------------------
 
-// Get Start Input
-var startLR = inputLeftToRight(2,2,1,0); // stepsLR, onInOut, side, yardline
+function getMidset() {
+    var startInput = new Input(START);
+    var endInput = new Input(END);
+    var f = new Field(0,0,0);
 
-var startFB = inputFrontToBack(16, 2,0,0);
-
-var g = new Coordinate(startLR, startFB);
+    var startCoordinate = new Coordinate(inputLeftToRight(startInput), inputFrontToBack(startInput,f));
+    var endCoordinate = new Coordinate(inputLeftToRight(endInput), inputFrontToBack(endInput,f));
+    var paragraph = document.querySelector(".foo");
+    paragraph.innerHTML = startCoordinate.printCoordinate(f);
+}

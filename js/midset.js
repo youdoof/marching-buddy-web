@@ -36,42 +36,42 @@ function findYardLine(value) {
     return counter * 8;
 }
 
-function inputLeftToRight(stepsLR, onInOutBtn, sideBtn, yardline) {
+function inputLeftToRight(input) {
     var result = 0;
 
-    switch (onInOutBtn) {
+    switch (input.onInOut) {
         // On yard line
         case 0:
-            if (sideBtn == 0) {
-                result = -findYardLine(yardline);
+            if (input.side == 0) {
+                result = -findYardLine(input.yardLine);
             } else {
-                result = findYardLine(yardline);
+                result = findYardLine(input.yardLine);
             }
             break;
         case 1:
-            if (yardline == 50) {
-                if (sideBtn == 0) {
-                    result = -stepsLR;
+            if (input.yardLine == 50) {
+                if (input.side == 0) {
+                    result = -input.stepsLR;
                 } else {
-                    result = stepsLR;
+                    result = input.stepsLR;
                 }
-            } else if (sideBtn == 0) {
-                result = -findYardLine(yardline) + stepsLR;
+            } else if (input.side == 0) {
+                result = -findYardLine(input.yardLine) + input.stepsLR;
             } else {
-                result = findYardLine(yardline) - stepsLR;
+                result = findYardLine(input.yardLine) - input.stepsLR;
             }
             break;
         case 2:
-            if (yardline == 50) {
-                if (sideBtn == 0) {
-                    result = -stepsLR;
+            if (input.yardLine == 50) {
+                if (input.side == 0) {
+                    result = -input.stepsLR;
                 } else {
-                    result = stepsLR;
+                    result = input.stepsLR;
                 }
-            } else if (sideBtn == 0) {
-                result = -findYardLine(yardline) - stepsLR;
+            } else if (input.side == 0) {
+                result = -findYardLine(input.yardLine) - input.stepsLR;
             } else {
-                result = findYardLine(yardline) + stepsLR;
+                result = findYardLine(input.yardLine) + input.stepsLR;
             }
             break;
         default:
@@ -80,12 +80,13 @@ function inputLeftToRight(stepsLR, onInOutBtn, sideBtn, yardline) {
     return result;
 }
 
-function inputFrontToBack(stepsFB, onInFrontBehind, hashSideline, field) {
+function inputFrontToBack(input, field) {
     var result = 0;
     var frontHashReference;
     var backHashReference;
+    var processedReferencePoint = getProcessedFrontBackReferencePoint(input);
 
-    if (f.getFieldType() == 0) {
+    if (field.getFieldType() == 0) {
         frontHashReference = HS_FRONT_HASH;
         backHashReference = HS_BACK_HASH;
     } else {
@@ -93,22 +94,22 @@ function inputFrontToBack(stepsFB, onInFrontBehind, hashSideline, field) {
         backHashReference = NCAA_BACK_HASH;
     }
 
-    switch (hashSideline) {
+    switch (processedReferencePoint) {
         // Front Sideline
         case 0:
-            result = onFrontBehindHelper(stepsFB, onInFrontBehind, FRONT_SIDELINE);
+            result = onFrontBehindHelper(input, FRONT_SIDELINE);
             break;
         // Front Hash
         case 1:
-            result = onFrontBehindHelper(stepsFB, onInFrontBehind, frontHashReference);
+            result = onFrontBehindHelper(input, frontHashReference);
             break;
         // Back Hash
         case 2:
-            result = onFrontBehindHelper(stepsFB, onInFrontBehind, backHashReference);
+            result = onFrontBehindHelper(input, backHashReference);
             break;
         // Back Sideline
         case 3:
-            result = onFrontBehindHelper(stepsFB, onInFrontBehind, BACK_SIDELINE);
+            result = onFrontBehindHelper(input, BACK_SIDELINE);
             break;
         default:
             result = 0;
@@ -117,14 +118,27 @@ function inputFrontToBack(stepsFB, onInFrontBehind, hashSideline, field) {
     return result;
 }
 
-
-function onFrontBehindHelper (stepsFB, onInFrontBehind, hashSidelineReference) {
-    if (onInFrontBehind == 0) {
-        return hashSidelineReference;
-    } else if (onInFrontBehind == 1) {
-        return hashSidelineReference - stepsFB;
+function onFrontBehindHelper(input, hashSidelineReference) {
+    if (input.onInFrontBehind == 0) {
+        return hashSidelineReference; // On
+    } else if (input.onInFrontBehind == 1) {
+        return hashSidelineReference - input.stepsFB; // In Front
     } else {
-        return hashSidelineReference + stepsFB;
+        return hashSidelineReference + input.stepsFB; // Behind
+    }
+}
+
+function getProcessedFrontBackReferencePoint(input) {
+    if (input.frontBack == 0 && input.hashSideline == 1) {
+        return 0; // Front Sideline
+    } else if (input.frontBack == 0 && input.hashSideline == 0) {
+        return 1; // Front Hash
+    } else if (input.frontBack == 1 && input.hashSideline == 0) {
+        return 2; // Back Hash
+    } else if (input.frontBack == 1 && input.hashSideline == 1) {
+        return 3; // Back Sideline
+    } else {
+        return -1;
     }
 }
 
