@@ -2,8 +2,7 @@
 
 function init() {
     setupSliderInteractivity();
-    // startListening();
-
+    startListening();
 }
 
 // Temporary solution, needs to be cleaned up
@@ -51,12 +50,44 @@ function setupSliderInteractivity() {
 
 // Work in progress
 function startListening() {
-    document.addEventListener('input', function (event) {
-        if (event.target.matches('.custom-range')) {
-            // Modularize the input events for each unique slider/span combo.
-            // Maybe use a css class for each pair?
+    // document.addEventListener('input', function (event) {
+    //     if (event.target.matches('.custom-range')) {
+    //         // Modularize the input events for each unique slider/span combo.
+    //         // Maybe use a css class for each pair?
+    //         console.log("slider");
+    //     }
+    // }, false);
+
+    document.addEventListener('click', function (event) {
+        if (event.target.matches('.hashFrontBack')) {
+            updateTerminology(FRONT_BACK, HASH);
+        }
+        if (event.target.matches('.hashHomeVisitor')) {
+            updateTerminology(HOME_VISITOR, HASH);
+        }
+        if (event.target.matches('.sideOneTwo')) {
+            updateTerminology(SIDE_ONE_TWO, SIDE);
+        }
+        if (event.target.matches('.sideLeftRight')) {
+            updateTerminology(LEFT_RIGHT, SIDE);
         }
     }, false);
+}
+
+let FRONT_BACK = ["Front", "Back"];
+let HOME_VISITOR = ["Home", "Visitor"];
+let SIDE_ONE_TWO = ["Side One", "Side Two"];
+let LEFT_RIGHT = ["Left", "Right"];
+
+let HASH = "hash";
+let SIDE = "side";
+
+function updateTerminology(terms, hashSide) {
+    // Goes through document and updates terminology
+    var targetTerms = document.querySelectorAll(`.${hashSide}Term`);
+    for (var i = 0; i < targetTerms.length; i++) {
+        targetTerms[i].innerHTML = terms[i % 2];
+    }
 }
 
 init();

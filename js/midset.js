@@ -152,7 +152,7 @@ function outputFrontToBack(frontToBack, field) {
     var backHashName;
 
     // Set Field Type from Settings
-    if (f.getFieldType() === 0) {
+    if (field.getFieldType() === 0) {
         frontHash = HS_FRONT_HASH;
         backHash = HS_BACK_HASH;
     } else {
@@ -161,7 +161,7 @@ function outputFrontToBack(frontToBack, field) {
     }
 
     // Set Hash Type from Settings
-    if (f.getHashType() === 0) {
+    if (field.getHashType() === 0) {
         frontHashName = FRONT_HASH;
         backHashName = BACK_HASH;
     } else {

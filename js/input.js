@@ -2,15 +2,20 @@
 
 // startEnd : either START or END constant, builds object of information gathered from the form
 // a starting point until I know how I want to process the information
-function Input(startEnd) {
-    this.stepsLR = setStepsLR(startEnd);
-    this.onInOut = setOnInOut(startEnd);
-    this.side = setSide(startEnd);
-    this.yardLine = setYardLine(startEnd);
-    this.stepsFB = setStepsFB(startEnd);
-    this.onInFrontBehind = setOnInFrontBehind(startEnd);
-    this.frontBack = setFrontBack(startEnd);
-    this.hashSideline = setHashSideline(startEnd);
+class Input {
+    constructor(startEnd) {
+        this.stepsLR = setStepsLR(startEnd);
+        this.onInOut = setOnInOut(startEnd);
+        this.side = setSide(startEnd);
+        this.yardLine = setYardLine(startEnd);
+        this.stepsFB = setStepsFB(startEnd);
+        this.onInFrontBehind = setOnInFrontBehind(startEnd);
+        this.frontBack = setFrontBack(startEnd);
+        this.hashSideline = setHashSideline(startEnd);
+        if (startEnd === END) {
+            this.counts = setCounts();
+        }
+    }
 }
 
 // Constants to modify the name of the selected input
@@ -47,4 +52,8 @@ function setFrontBack(startEnd) {
 
 function setHashSideline(startEnd) {
     return parseFloat(document.querySelector(`input[name=${startEnd}HashSidelineRadio]:checked`).value);
+}
+
+function setCounts() {
+    return parseInt(document.querySelector('#counts').value);
 }

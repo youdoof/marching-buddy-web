@@ -12,9 +12,53 @@
 
 <body>
     <div class="container">
-        <h1>Marching Buddy JS</h1>
+        <h1>Marching Buddy Web</h1>
+        <!-- <h2>Calculate your midsets here!</h2> -->
 
         <form>
+            <!-- Settings -->
+            <h2>Settings:</h2>
+            <div class="row">
+                <!-- High School or College -->
+                <div class="col-lg-4">
+                    <h3>Field Type</h3>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="fieldTypeRadio" id="fieldHighSchool" value="0" checked> High
+                            School
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="fieldTypeRadio" id="fieldCollege" value="1"> College / NCAA
+                        </label>
+                    </div>
+                </div>
+                <!-- Front / Back Hashes or Home / Visitor Hashes -->
+                <div class="col-lg-4">
+                    <h3>Hash Name</h3>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary hashFrontBack active">
+                            <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked> Front / Back
+                        </label>
+                        <label class="btn btn-primary hashHomeVisitor">
+                            <input type="radio" name="hashNameRadio" id="hashHomeVisitor" value="1"> Home / Visitor
+                        </label>
+                    </div>
+                </div>
+                <!-- Side One / Side Two or Left / Right -->
+                <div class="col-lg-4">
+                    <h3>Side Name</h3>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary sideOneTwo active">
+                            <input type="radio" name="sideNameRadio" id="sideOneTwo" value="0" checked> Side One / Side
+                            Two
+                        </label>
+                        <label class="btn btn-primary sideLeftRight">
+                            <input type="radio" name="sideNameRadio" id="sideLeftRight" value="1"> Left / Right
+                        </label>
+                    </div>
+                </div>
+            </div> <!-- END Settings Container -->
+
             <!-- Starting Coordinate -->
             <h2>Starting Coordinate:</h2>
             <div class="row">
@@ -65,10 +109,12 @@
                     <div class="row">
                         <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0" checked> Side One
+                                <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0" checked> <span
+                                    class="sideTerm">Side One</span>
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1"> Side Two
+                                <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1"> <span
+                                    class="sideTerm">Side Two</span>
                             </label>
                         </div>
                     </div> <!-- END 4th Row -->
@@ -112,10 +158,12 @@
                         <div class="col">
                             <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="sFrontBackRadio" id="sFrontHome" value="0" checked> Front
+                                    <input type="radio" name="sFrontBackRadio" id="sFrontHome" value="0" checked> <span
+                                        class="hashTerm">Front</span>
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1"> Back
+                                    <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1"> <span
+                                        class="hashTerm">Back</span>
                                 </label>
                             </div>
                         </div>
@@ -148,7 +196,7 @@
 
                     <div class="row">
                         <!-- Display for reference distance to Yard Line -->
-                        <div class="col">
+                        <div class="col-3">
                             <p><span></span> Steps</p>
                         </div>
                         <!-- Radio buttons selecting reference to yard line -->
@@ -185,10 +233,12 @@
                     <div class="row">
                         <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked> Side One
+                                <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked> <span
+                                    class="sideTerm">Side One</span>
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> Side Two
+                                <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> <span
+                                    class="sideTerm">Side Two</span>
                             </label>
                         </div>
                     </div> <!-- END 4th Row -->
@@ -232,10 +282,12 @@
                         <div class="col">
                             <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                 <label class="btn btn-primary active">
-                                    <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0" checked> Front
+                                    <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0" checked> <span
+                                        class="hashTerm">Front</span>
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> Back
+                                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> <span
+                                        class="hashTerm">Back</span>
                                 </label>
                             </div>
                         </div>
