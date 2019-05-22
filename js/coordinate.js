@@ -13,7 +13,7 @@ class Coordinate {
         return this.frontToBack;
     }
     printCoordinate(field) {
-        return outputLeftToRight(this.getLeftToRight(), field) + " \n" +
+        return outputLeftToRight(this.getLeftToRight(), field) + ", " +
             outputFrontToBack(this.getFrontToBack(), field);
     }
 }
