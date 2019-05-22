@@ -13,5 +13,5 @@ function getMidset() {
     var midsetTextHolder = document.querySelector(".midset");
     midsetTextHolder.innerHTML = midCoordinate.printCoordinate(f);
     var stepsizeTextHolder = document.querySelector('.stepsize');
-    stepsizeTextHolder.innerHTML = getStepSize(startCoordinate,endCoordinate, 8);
+    stepsizeTextHolder.innerHTML = getStepSize(startCoordinate,endCoordinate, endInput.counts);
 }
