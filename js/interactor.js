@@ -90,4 +90,8 @@ function updateTerminology(terms, hashSide) {
     }
 }
 
+function copyEndToStart() {
+    // Walk through and update each input area to be the same as the end coordinates.
+}
+
 init();

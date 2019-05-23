@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Marching Buddy</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
-        integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -109,12 +109,12 @@
                     <div class="row">
                         <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0" checked> <span
-                                    class="sideTerm">Side One</span>
+                                <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0" checked> <span class="sideTerm">Side
+                                    One</span>
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1"> <span
-                                    class="sideTerm">Side Two</span>
+                                <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1"> <span class="sideTerm">Side
+                                    Two</span>
                             </label>
                         </div>
                     </div> <!-- END 4th Row -->
@@ -139,7 +139,8 @@
                                     <input type="radio" name="sOnInFrontBehindRadio" id="sOnFB" value="0" checked> On
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="sOnInFrontBehindRadio" id="sInFrontFB" value="1"> In Front
+                                    <input type="radio" name="sOnInFrontBehindRadio" id="sInFrontFB" value="1"> In
+                                    Front
                                 </label>
                                 <label class="btn btn-primary">
                                     <input type="radio" name="sOnInFrontBehindRadio" id="sBehindFB" value="2"> Behind
@@ -162,8 +163,7 @@
                                         class="hashTerm">Front</span>
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1"> <span
-                                        class="hashTerm">Back</span>
+                                    <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1"> <span class="hashTerm">Back</span>
                                 </label>
                             </div>
                         </div>
@@ -233,12 +233,12 @@
                     <div class="row">
                         <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked> <span
-                                    class="sideTerm">Side One</span>
+                                <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked> <span class="sideTerm">Side
+                                    One</span>
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> <span
-                                    class="sideTerm">Side Two</span>
+                                <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> <span class="sideTerm">Side
+                                    Two</span>
                             </label>
                         </div>
                     </div> <!-- END 4th Row -->
@@ -263,7 +263,8 @@
                                     <input type="radio" name="eOnInFrontBehindRadio" id="eOnFB" value="0" checked> On
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1"> In Front
+                                    <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1"> In
+                                    Front
                                 </label>
                                 <label class="btn btn-primary">
                                     <input type="radio" name="eOnInFrontBehindRadio" id="eBehindFB" value="2"> Behind
@@ -286,8 +287,7 @@
                                         class="hashTerm">Front</span>
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> <span
-                                        class="hashTerm">Back</span>
+                                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> <span class="hashTerm">Back</span>
                                 </label>
                             </div>
                         </div>
@@ -321,11 +321,14 @@
             <button type="button" class="btn btn-primary btn-block" onclick="getMidset()">Get Midset</button>
         </form>
 
+        <!-- Results -->
         <h2>Results:</h2>
 
-        <!-- Practice container for filling info -->
-        <h4>Midset: <span class="midset"></span></h4>
-        <h4>Stepsize: <span class="stepsize"></span></h4>
+        <h4>Midset:</h4>
+        <h5><span class="midset"></span></h5>
+        <h4>Stepsize:</h4>
+        <h5><span class="stepsize"></span></h5>
+        <button type="button" class="btn btn-primary btn-block" onclick="copyEndToStart()">Copy Ending Coordinate to Start</button>
 
     </div>
     <script src="js/interactor.js"></script>
@@ -335,14 +338,11 @@
     <script src="js/input.js"></script>
     <script src="js/output.js"></script>
     <script src="js/marching-buddy.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
-        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
 </body>
 

@@ -1,6 +1,8 @@
 'use strict';
 
-// -----------------------------
+function init() {
+    getMidset();
+}
 
 function getMidset() {
     var startInput = new Input(START);
@@ -15,3 +17,5 @@ function getMidset() {
     var stepsizeTextHolder = document.querySelector('.stepsize');
     stepsizeTextHolder.innerHTML = getStepSize(startCoordinate,endCoordinate, endInput.counts);
 }
+
+init();
