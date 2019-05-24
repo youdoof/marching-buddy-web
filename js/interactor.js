@@ -59,6 +59,12 @@ function startListening() {
     // }, false);
 
     document.addEventListener('click', function (event) {
+        if (event.target.matches('.nightRadio')) {
+            updateTheme();
+        }
+        if (event.target.matches('.dayRadio')) {
+            updateTheme();
+        }
         if (event.target.matches('.hashFrontBack')) {
             updateTerminology(FRONT_BACK, HASH);
         }
@@ -66,7 +72,7 @@ function startListening() {
             updateTerminology(HOME_VISITOR, HASH);
         }
         if (event.target.matches('.sideOneTwo')) {
-            updateTerminology(SIDE_ONE_TWO, SIDE);
+            updateTerminology(SIDE_ONE_SIDE_TWO, SIDE);
         }
         if (event.target.matches('.sideLeftRight')) {
             updateTerminology(LEFT_RIGHT, SIDE);
@@ -74,9 +80,15 @@ function startListening() {
     }, false);
 }
 
+function updateTheme() {
+    var body = document.querySelector('body');
+    body.classList.toggle('night');
+    body.classList.toggle('day');
+}
+
 let FRONT_BACK = ["Front", "Back"];
 let HOME_VISITOR = ["Home", "Visitor"];
-let SIDE_ONE_TWO = ["Side One", "Side Two"];
+let SIDE_ONE_SIDE_TWO = ["Side One", "Side Two"];
 let LEFT_RIGHT = ["Left", "Right"];
 
 let HASH = "hash";
@@ -91,7 +103,22 @@ function updateTerminology(terms, hashSide) {
 }
 
 function copyEndToStart() {
-    // Walk through and update each input area to be the same as the end coordinates.
+    // OnInOutRadio
+    
+    // LRSteps
+
+    // YardLine
+
+    // SideRadio
+
+    // OnInFrontBehindRadio
+
+    // FBSteps
+
+    // FrontBackRadio
+
+    // HashSidelineRadio
+
 }
 
 init();

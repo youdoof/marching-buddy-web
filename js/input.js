@@ -27,11 +27,11 @@ function setStepsLR(startEnd) {
 }
 
 function setOnInOut(startEnd) {
-    return parseFloat(document.querySelector(`input[name=${startEnd}OnInOutRadio]:checked`).value);
+    return parseInt(document.querySelector(`input[name=${startEnd}OnInOutRadio]:checked`).value);
 }
 
 function setSide(startEnd) {
-    return parseFloat(document.querySelector(`input[name=${startEnd}SideRadio]:checked`).value);
+    return parseInt(document.querySelector(`input[name=${startEnd}SideRadio]:checked`).value);
 }
 
 function setYardLine(startEnd) {
@@ -43,15 +43,15 @@ function setStepsFB(startEnd) {
 }
 
 function setOnInFrontBehind(startEnd) {
-    return parseFloat(document.querySelector(`input[name=${startEnd}OnInFrontBehindRadio]:checked`).value);
+    return parseInt(document.querySelector(`input[name=${startEnd}OnInFrontBehindRadio]:checked`).value);
 }
 
 function setFrontBack(startEnd) {
-    return parseFloat(document.querySelector(`input[name=${startEnd}FrontBackRadio]:checked`).value);
+    return parseInt(document.querySelector(`input[name=${startEnd}FrontBackRadio]:checked`).value);
 }
 
 function setHashSideline(startEnd) {
-    return parseFloat(document.querySelector(`input[name=${startEnd}HashSidelineRadio]:checked`).value);
+    return parseInt(document.querySelector(`input[name=${startEnd}HashSidelineRadio]:checked`).value);
 }
 
 function setCounts() {

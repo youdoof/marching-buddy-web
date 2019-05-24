@@ -1,6 +1,4 @@
 body {
-    background-color: black;
-    color: lightgray;
     text-align: center;
 }
 
@@ -15,4 +13,14 @@ h3 {
 
 h4 {
     text-align: left;
+}
+
+.night {
+    background-color: black;
+    color: lightgray;
+}
+
+.day {
+    background-color: white;
+    color: black;
 }
