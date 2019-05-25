@@ -1,62 +1,55 @@
 'use strict';
 
 function init() {
-    setupSliderInteractivity();
+    initializeSliderLabelValues();
+    // setupSliderInteractivity();
     startListening();
 }
 
-// Temporary solution, needs to be cleaned up
-// Makes the sliders interact and update values on the webpage
-function setupSliderInteractivity() {
+function initializeSliderLabelValues() {
     var spans = document.querySelectorAll('p span');
     var ranges = document.querySelectorAll('.custom-range');
-
-    spans[0].innerHTML = ranges[0].value;
-    spans[1].innerHTML = ranges[1].value;
-    spans[2].innerHTML = ranges[2].value;
-    spans[3].innerHTML = ranges[3].value;
-    spans[4].innerHTML = ranges[4].value;
-    spans[5].innerHTML = ranges[5].value;
-    spans[6].innerHTML = ranges[6].value;
-
-    ranges[0].addEventListener('input', function () {
-        spans[0].innerHTML = ranges[0].value;
-    }, false);
-
-    ranges[1].addEventListener('input', function () {
-        spans[1].innerHTML = ranges[1].value;
-    }, false);
-
-    ranges[2].addEventListener('input', function () {
-        spans[2].innerHTML = ranges[2].value;
-    }, false);
-
-    ranges[3].addEventListener('input', function () {
-        spans[3].innerHTML = ranges[3].value;
-    }, false);
-
-    ranges[4].addEventListener('input', function () {
-        spans[4].innerHTML = ranges[4].value;
-    }, false);
-
-    ranges[5].addEventListener('input', function () {
-        spans[5].innerHTML = ranges[5].value;
-    }, false);
-
-    ranges[6].addEventListener('input', function () {
-        spans[6].innerHTML = ranges[6].value;
-    }, false);
+    for (var i = 0; i < spans.length; i++) {
+        spans[i].innerHTML = ranges[i].value;
+    }
 }
 
-// Work in progress
+let RANGE_START_LRSTEPS = ".startLRSteps";
+let RANGE_START_YARDLINE = ".startYardLine";
+let RANGE_START_FBSTEPS = ".startFBSteps";
+
+let RANGE_END_LRSTEPS = ".endLRSteps";
+let RANGE_END_YARDLINE = ".endYardLine";
+let RANGE_END_FBSTEPS = ".endFBSteps";
+
+let RANGE_COUNTS_SLIDER = ".countsSlider";
+
 function startListening() {
-    // document.addEventListener('input', function (event) {
-    //     if (event.target.matches('.custom-range')) {
-    //         // Modularize the input events for each unique slider/span combo.
-    //         // Maybe use a css class for each pair?
-    //         console.log("slider");
-    //     }
-    // }, false);
+    document.addEventListener('input', function (event) {
+        if (event.target.matches('.custom-range')) {
+            if (event.target.matches(RANGE_START_LRSTEPS)) {
+                document.querySelector(RANGE_START_LRSTEPS).innerHTML = event.target.value;
+            }
+            if (event.target.matches(RANGE_START_YARDLINE)) {
+                document.querySelector(RANGE_START_YARDLINE).innerHTML = event.target.value;
+            }
+            if (event.target.matches(RANGE_START_FBSTEPS)) {
+                document.querySelector(RANGE_START_FBSTEPS).innerHTML = event.target.value;
+            }
+            if (event.target.matches(RANGE_END_LRSTEPS)) {
+                document.querySelector(RANGE_END_LRSTEPS).innerHTML = event.target.value;
+            }
+            if (event.target.matches(RANGE_END_YARDLINE)) {
+                document.querySelector(RANGE_END_YARDLINE).innerHTML = event.target.value;
+            }
+            if (event.target.matches(RANGE_END_FBSTEPS)) {
+                document.querySelector(RANGE_END_FBSTEPS).innerHTML = event.target.value;
+            }
+            if (event.target.matches(RANGE_COUNTS_SLIDER)) {
+                document.querySelector(RANGE_COUNTS_SLIDER).innerHTML = event.target.value;
+            }
+        }
+    }, false);
 
     document.addEventListener('click', function (event) {
         if (event.target.matches('.nightRadio')) {
@@ -95,7 +88,6 @@ let HASH = "hash";
 let SIDE = "side";
 
 function updateTerminology(terms, hashSide) {
-    // Goes through document and updates terminology
     var targetTerms = document.querySelectorAll(`.${hashSide}Term`);
     for (var i = 0; i < targetTerms.length; i++) {
         targetTerms[i].innerHTML = terms[i % 2];

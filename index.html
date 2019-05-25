@@ -85,7 +85,7 @@
                     <div class="row no-gutters">
                         <!-- Display for reference distance to Yard Line -->
                         <div class="col">
-                            <p><span></span> Steps</p>
+                            <p><span class="startLRSteps"></span> Steps</p>
                         </div>
                         <!-- Radio buttons selecting reference to yard line -->
                         <div class="col">
@@ -103,17 +103,17 @@
                         </div>
                         <!-- Display for Selected Yard Line -->
                         <div class="col">
-                            <p><span></span> Yard Line</p>
+                            <p><span class="startYardLine"></span> Yard Line</p>
                         </div>
                     </div> <!-- END 2nd Row -->
 
                     <!-- Sliders for selecting reference yard line and steps from it -->
                     <div class="row">
                         <div class="col-8">
-                            <input type="range" min="0" max="4" step="0.25" class="custom-range" id="sLRSteps">
+                            <input type="range" min="0" max="4" step="0.25" class="custom-range startLRSteps" id="sLRSteps">
                         </div>
                         <div class="col">
-                            <input type="range" min="0" max="50" step="5" class="custom-range" id="sYardLine">
+                            <input type="range" min="0" max="50" step="5" class="custom-range startYardLine" id="sYardLine">
                         </div>
                     </div> <!-- END 3rd Row -->
 
@@ -143,7 +143,7 @@
 
                     <div class="row no-gutters">
                         <div class="col">
-                            <p><span></span> Steps</p>
+                            <p><span class="startFBSteps"></span> Steps</p>
                         </div>
                         <div class="col">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -163,7 +163,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <input type="range" min="0" max="16" step="0.25" class="custom-range" id="sFBSteps">
+                            <input type="range" min="0" max="16" step="0.25" class="custom-range startFBSteps" id="sFBSteps">
                         </div>
                     </div> <!-- END 3rd Row -->
 
@@ -209,7 +209,7 @@
                     <div class="row no-gutters">
                         <!-- Display for reference distance to Yard Line -->
                         <div class="col">
-                            <p><span></span> Steps</p>
+                            <p><span class="endLRSteps"></span> Steps</p>
                         </div>
                         <!-- Radio buttons selecting reference to yard line -->
                         <div class="col">
@@ -227,17 +227,17 @@
                         </div>
                         <!-- Display for Selected Yard Line -->
                         <div class="col">
-                            <p><span></span> Yard Line</p>
+                            <p><span class="endYardLine"></span> Yard Line</p>
                         </div>
                     </div> <!-- END 2nd Row -->
 
                     <!-- Sliders for selecting reference yard line and steps from it -->
                     <div class="row">
                         <div class="col-8">
-                            <input type="range" min="0" max="4" step="0.25" class="custom-range" id="eLRSteps">
+                            <input type="range" min="0" max="4" step="0.25" class="custom-range endLRSteps" id="eLRSteps">
                         </div>
                         <div class="col">
-                            <input type="range" min="0" max="50" step="5" class="custom-range" id="eYardLine">
+                            <input type="range" min="0" max="50" step="5" class="custom-range endYardLine" id="eYardLine">
                         </div>
                     </div> <!-- END 3rd Row -->
 
@@ -267,7 +267,7 @@
 
                     <div class="row no-gutters">
                         <div class="col">
-                            <p><span></span> Steps</p>
+                            <p><span class="endFBSteps"></span> Steps</p>
                         </div>
                         <div class="col">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -287,7 +287,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <input type="range" min="0" max="16" step="0.25" class="custom-range" id="eFBSteps">
+                            <input type="range" min="0" max="16" step="0.25" class="custom-range endFBSteps" id="eFBSteps">
                         </div>
                     </div> <!-- END 3rd Row -->
 
@@ -323,10 +323,10 @@
             <h2>Counts:</h2>
             <div class="row">
                 <div class="col">
-                    <p><span></span> Counts</p>
+                    <p><span class="countsSlider"></span> Counts</p>
                 </div>
                 <div class="col-8">
-                    <input type="range" min="1" max="64" step="1" class="custom-range" id="counts">
+                    <input type="range" min="1" max="64" step="1" class="custom-range countsSlider" id="counts">
                 </div>
             </div> <!-- END Counts Container -->
 
