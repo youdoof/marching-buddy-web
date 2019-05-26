@@ -55,7 +55,6 @@ function startListening() {
         if (event.target.matches(RANGE_COUNTS_SLIDER)) {
             document.querySelector(RANGE_COUNTS_SLIDER).innerHTML = event.target.value;
         }
-        updatePreview();
     }, false);
 
     document.addEventListener('click', function (event) {
@@ -77,15 +76,8 @@ function startListening() {
         if (event.target.matches('.sideLeftRight')) {
             updateTerminology(LEFT_RIGHT, SIDE);
         }
-        if (event.target.matches('label') || event.target.matches('input')) {
-            updatePreview();
-        }
+        
     }, false);
-    // document.addEventListener('mouseup', function (event) {
-    //     if (event.target.matches('label')) {
-    //         updatePreview();
-    //     }
-    // }, false);
 }
 
 function updatePreview() {
@@ -129,8 +121,6 @@ function getMidset() {
 
     var startCoordinate = new Coordinate(inputLeftToRight(startInput), inputFrontToBack(startInput,f));
     var endCoordinate = new Coordinate(inputLeftToRight(endInput), inputFrontToBack(endInput,f));
-    console.log(startCoordinate.printCoordinate(f));
-    console.log(endCoordinate.printCoordinate(f));
     var midCoordinate = getMidSetCoordinate(startCoordinate, endCoordinate);
     var midsetTextHolder = document.querySelector(".midset");
     midsetTextHolder.innerHTML = midCoordinate.printCoordinate(f);
@@ -139,17 +129,8 @@ function getMidset() {
 }
 
 function copyEndToStart() {
-    /*
-        Radio Buttons:
-        Old set buttons need:
-            label needs class 'active' removed.
-            input needs attribute 'checked' removed.
-        New set buttons need:
-            label needs class 'active' added.
-            input needs attribute 'checked' added.
-    */
-
     var end = new Input(END);
+    
     // OnInOutRadio
     copyRadioValue('sOnInOutRadio', end.onInOut);
     // LRSteps
@@ -166,7 +147,6 @@ function copyEndToStart() {
     copyRadioValue('sFrontBackRadio', end.frontBack);
     // HashSidelineRadio
     copyRadioValue('sHashSidelineRadio', end.hashSideline);
-
 }
 
 function copySliderValue(sliderFamily, desiredValue) {
@@ -175,46 +155,21 @@ function copySliderValue(sliderFamily, desiredValue) {
     fam[1].value = desiredValue;
 }
 
-function clearAndSetRadioButton(radioFamily, desiredValue) {
-    var fam = document.querySelectorAll(`input[name=${radioFamily}`);
-    for (var i = 0; i < fam.length; i++) {
-        if (fam[i].hasAttribute('checked')) {
-            fam[i].removeAttribute('checked');
-            break;
-        }
-    }
-    fam[desiredValue].setAttribute('checked', '');
-}
-
-function clearAndSetLabel(radioFamily, desiredValue) {
-    var fam = document.querySelectorAll(`.${radioFamily}`);
-    for (var i = 0; i < fam.length; i++) {
-        if (fam[i].classList.contains('active')) {
-            fam[i].classList.remove('active');
-            break;
-        }
-    }
-    fam[desiredValue].classList.add('active');
-}
-
 function copyRadioValue(radioFamily, desiredValue) {
-    var inputFam = document.querySelectorAll(`input[name=${radioFamily}`);
-    var labelFam = document.querySelectorAll(`.${radioFamily}`);
+    var inputs = document.querySelectorAll(`input[name=${radioFamily}]`);
+    var labels = document.querySelectorAll(`.${radioFamily}`);
 
-    for (var i = 0; i < inputFam.length; i++) {
-        if (inputFam[i].hasAttribute('checked')) {
-            inputFam[i].removeAttribute('checked');
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].hasAttribute('checked')) {
+            inputs[i].removeAttribute('checked');
         }
-        if (labelFam[i].classList.contains('active')) {
-            labelFam[i].classList.remove('active');
-        }
-        if (labelFam[i].classList.contains('focus')) {
-            labelFam[i].classList.remove('focus');
+        if (labels[i].classList.contains('active')) {
+            labels[i].classList.remove('active');
         }
     }
-    inputFam[desiredValue].setAttribute('checked','');
-    labelFam[desiredValue].classList.add('focus');
-    labelFam[desiredValue].classList.add('active');
+
+    inputs[desiredValue].setAttribute('checked','');
+    labels[desiredValue].classList.add('active');
 }
 
 init();

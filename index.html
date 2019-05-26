@@ -13,7 +13,7 @@
 <body class="night">
     <div class="container">
         <h1>Marching Buddy Web</h1>
-        <!-- <h2>Calculate your midsets here!</h2> -->
+        <p>Calculate your midsets here!</p>
 
         <form>
             <!-- Settings -->
@@ -194,10 +194,6 @@
                         </div>
                     </div> <!-- END 4th Row -->
                 </div> <!-- END Front to Back Container -->
-                <!-- Preview Container -->
-                <div class="col">
-                    <p class="preview"></p>
-                </div> <!-- END Preview Container-->
             </div> <!-- END Starting Coordinate Container -->
 
 
@@ -325,10 +321,6 @@
                         </div>
                     </div> <!-- END 4th Row -->
                 </div> <!-- END  Front to Back Container -->
-                <!-- Preview Container -->
-                <div class="col">
-                    <p class="preview"></p>
-                </div> <!-- END Preview Container-->
             </div> <!-- END Ending Coordinate Container -->
 
 
@@ -354,7 +346,9 @@
         <h5><span class="midset"></span></h5>
         <h4>Stepsize:</h4>
         <h5><span class="stepsize"></span></h5>
-        <button type="button" class="btn btn-primary btn-block" onclick="copyEndToStart()">Copy Ending Coordinate to Start</button>
+
+        <!-- Copy End Coordinate to Start -->
+        <button type="button" class="btn btn-primary btn-block" onclick="copyEndToStart()">Copy End Coordinate to Start</button>
 
     </div>
     <script src="js/coordinate.js"></script>
