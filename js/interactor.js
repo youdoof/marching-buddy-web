@@ -76,21 +76,8 @@ function startListening() {
         if (event.target.matches('.sideLeftRight')) {
             updateTerminology(LEFT_RIGHT, SIDE);
         }
-        
+
     }, false);
-}
-
-function updatePreview() {
-    var startInput = new Input(START);
-    var endInput = new Input(END);
-    var f = new Field();
-
-    var startCoordinate = new Coordinate(inputLeftToRight(startInput), inputFrontToBack(startInput,f));
-    var endCoordinate = new Coordinate(inputLeftToRight(endInput), inputFrontToBack(endInput,f));
-
-    var previews = document.querySelectorAll('.preview');
-    previews[0].innerHTML = startCoordinate.printCoordinate(f);
-    previews[1].innerHTML = endCoordinate.printCoordinate(f);
 }
 
 function updateTheme() {
@@ -119,18 +106,17 @@ function getMidset() {
     var endInput = new Input(END);
     var f = new Field();
 
-    var startCoordinate = new Coordinate(inputLeftToRight(startInput), inputFrontToBack(startInput,f));
-    var endCoordinate = new Coordinate(inputLeftToRight(endInput), inputFrontToBack(endInput,f));
+    var startCoordinate = new Coordinate(inputLeftToRight(startInput), inputFrontToBack(startInput, f));
+    var endCoordinate = new Coordinate(inputLeftToRight(endInput), inputFrontToBack(endInput, f));
     var midCoordinate = getMidSetCoordinate(startCoordinate, endCoordinate);
     var midsetTextHolder = document.querySelector(".midset");
     midsetTextHolder.innerHTML = midCoordinate.printCoordinate(f);
     var stepsizeTextHolder = document.querySelector('.stepsize');
-    stepsizeTextHolder.innerHTML = getStepSize(startCoordinate,endCoordinate, endInput.counts);
+    stepsizeTextHolder.innerHTML = getStepSize(startCoordinate, endCoordinate, getCounts());
 }
 
 function copyEndToStart() {
     var end = new Input(END);
-    
     // OnInOutRadio
     copyRadioValue('sOnInOutRadio', end.onInOut);
     // LRSteps
@@ -155,21 +141,10 @@ function copySliderValue(sliderFamily, desiredValue) {
     fam[1].value = desiredValue;
 }
 
+// Find the labels for the radio buttons and click them
 function copyRadioValue(radioFamily, desiredValue) {
-    var inputs = document.querySelectorAll(`input[name=${radioFamily}]`);
     var labels = document.querySelectorAll(`.${radioFamily}`);
-
-    for (var i = 0; i < inputs.length; i++) {
-        if (inputs[i].hasAttribute('checked')) {
-            inputs[i].removeAttribute('checked');
-        }
-        if (labels[i].classList.contains('active')) {
-            labels[i].classList.remove('active');
-        }
-    }
-
-    inputs[desiredValue].setAttribute('checked','');
-    labels[desiredValue].classList.add('active');
+    labels[desiredValue].click();
 }
 
 init();

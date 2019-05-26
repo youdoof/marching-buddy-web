@@ -4,17 +4,14 @@
 // a starting point until I know how I want to process the information
 class Input {
     constructor(startEnd) {
-        this.stepsLR = setStepsLR(startEnd);
-        this.onInOut = setOnInOut(startEnd);
-        this.side = setSide(startEnd);
-        this.yardLine = setYardLine(startEnd);
-        this.stepsFB = setStepsFB(startEnd);
-        this.onInFrontBehind = setOnInFrontBehind(startEnd);
-        this.frontBack = setFrontBack(startEnd);
-        this.hashSideline = setHashSideline(startEnd);
-        if (startEnd === END) {
-            this.counts = setCounts();
-        }
+        this.stepsLR = getStepsLR(startEnd);
+        this.onInOut = getOnInOut(startEnd);
+        this.side = getSide(startEnd);
+        this.yardLine = getYardLine(startEnd);
+        this.stepsFB = getStepsFB(startEnd);
+        this.onInFrontBehind = getOnInFrontBehind(startEnd);
+        this.frontBack = getFrontBack(startEnd);
+        this.hashSideline = getHashSideline(startEnd);
     }
 }
 
@@ -22,39 +19,39 @@ class Input {
 let END = "e";
 let START = "s";
 
-function setStepsLR(startEnd) {
+function getStepsLR(startEnd) {
     return parseFloat(document.querySelector(`#${startEnd}LRSteps`).value);
 }
 
-function setOnInOut(startEnd) {
+function getOnInOut(startEnd) {
     return parseInt(document.querySelector(`input[name=${startEnd}OnInOutRadio]:checked`).value);
 }
 
-function setSide(startEnd) {
+function getSide(startEnd) {
     return parseInt(document.querySelector(`input[name=${startEnd}SideRadio]:checked`).value);
 }
 
-function setYardLine(startEnd) {
+function getYardLine(startEnd) {
     return parseFloat(document.querySelector(`#${startEnd}YardLine`).value);
 }
 
-function setStepsFB(startEnd) {
+function getStepsFB(startEnd) {
     return parseFloat(document.querySelector(`#${startEnd}FBSteps`).value);
 }
 
-function setOnInFrontBehind(startEnd) {
+function getOnInFrontBehind(startEnd) {
     return parseInt(document.querySelector(`input[name=${startEnd}OnInFrontBehindRadio]:checked`).value);
 }
 
-function setFrontBack(startEnd) {
+function getFrontBack(startEnd) {
     return parseInt(document.querySelector(`input[name=${startEnd}FrontBackRadio]:checked`).value);
 }
 
-function setHashSideline(startEnd) {
+function getHashSideline(startEnd) {
     return parseInt(document.querySelector(`input[name=${startEnd}HashSidelineRadio]:checked`).value);
 }
 
-function setCounts() {
+function getCounts() {
     return parseInt(document.querySelector('#counts').value);
 }
 
