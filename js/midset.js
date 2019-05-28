@@ -26,12 +26,13 @@ function getStepSize(start, end, counts) {
     var computedStepSize;
     var distance = getDistanceBetweenCoordinates(start, end);
     var stepSizeMultiplier = distance / counts;
-    if (stepSizeMultiplier === 0) {
-        computedStepSize = 0;
+    if (stepSizeMultiplier == 0) {
+        return "Hold";
     } else {
         computedStepSize = STEP_SIZE_REFERENCE / stepSizeMultiplier;
+        return rounder(computedStepSize) + " to 5";
     }
-    return rounder(computedStepSize) + " to 5";
+    
 }
 
 function getMidSetCoordinate(start, end) {
