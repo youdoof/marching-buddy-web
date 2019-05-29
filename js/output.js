@@ -1,17 +1,17 @@
 'use strict';
 
 // Yard Line Constant
-let YARD_LINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, "Goal Line"];
+const YARD_LINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, "Goal Line"];
 // Hash Type Constants
-let FRONT_HASH = "Front";
-let BACK_HASH = "Back";
-let HOME_HASH = "Home";
-let VISITOR_HASH = "Visitor";
+const FRONT_HASH = "Front";
+const BACK_HASH = "Back";
+const HOME_HASH = "Home";
+const VISITOR_HASH = "Visitor";
 // Side Type Constants
-let ONE_SIDE = "Side 1 ";
-let TWO_SIDE = "Side 2 ";
-let LEFT_SIDE = "Left ";
-let RIGHT_SIDE = "Right ";
+const ONE_SIDE = "Side 1 ";
+const TWO_SIDE = "Side 2 ";
+const LEFT_SIDE = "Left ";
+const RIGHT_SIDE = "Right ";
 
 // frontToBack - input double representing the Front-To-Back on the field
 // field - Field object holding field and hash types

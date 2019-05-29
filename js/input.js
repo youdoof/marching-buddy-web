@@ -16,8 +16,8 @@ class Input {
 }
 
 // Constants to modify the name of the selected input
-let END = "e";
-let START = "s";
+const END = "e";
+const START = "s";
 
 function getStepsLR(startEnd) {
     return parseFloat(document.querySelector(`#${startEnd}LRSteps`).value);
@@ -57,16 +57,16 @@ function getCounts() {
 
 // Relocated from Midset.js
 
-let YARDLINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0];
+const YARDLINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0];
 // Sideline distance constants
-let FRONT_SIDELINE = -42.0;
-let BACK_SIDELINE = 42.0;
+const FRONT_SIDELINE = -42.0;
+const BACK_SIDELINE = 42.0;
 // NCAA Hash distances
-let NCAA_FRONT_HASH = -10.0;
-let NCAA_BACK_HASH = 10.0;
+const NCAA_FRONT_HASH = -10.0;
+const NCAA_BACK_HASH = 10.0;
 // High School Hash distances
-let HS_FRONT_HASH = -14.0;
-let HS_BACK_HASH = 14.0;
+const HS_FRONT_HASH = -14.0;
+const HS_BACK_HASH = 14.0;
 
 function findYardLine(value) {
     var counter = 0;

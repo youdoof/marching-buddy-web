@@ -13,7 +13,11 @@ class Coordinate {
         return this.frontToBack;
     }
     printCoordinate(field) {
-        return outputLeftToRight(this.getLeftToRight(), field) + `<br>`  +
+        return outputLeftToRight(this.getLeftToRight(), field) + "<br>" +
             outputFrontToBack(this.getFrontToBack(), field);
     }
+}
+
+function createCoordinateFromInput(input, field) {
+    return new Coordinate(inputLeftToRight(input), inputFrontToBack(input, field));
 }
