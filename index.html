@@ -44,18 +44,6 @@
                         </label>
                     </div>
                 </div>
-                <!-- Front / Back Hashes or Home / Visitor Hashes -->
-                <div class="col-sm-6 col-xl-3">
-                    <h3>Hash Name</h3>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary hashFrontBack active">
-                            <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked> Front / Back
-                        </label>
-                        <label class="btn btn-primary hashHomeVisitor">
-                            <input type="radio" name="hashNameRadio" id="hashHomeVisitor" value="1"> Home / Visitor
-                        </label>
-                    </div>
-                </div>
                 <!-- Side One / Side Two or Left / Right -->
                 <div class="col-sm-6 col-xl-3">
                     <h3>Side Name</h3>
@@ -65,6 +53,18 @@
                         </label>
                         <label class="btn btn-primary sideLeftRight">
                             <input type="radio" name="sideNameRadio" id="sideLeftRight" value="1"> Left / Right
+                        </label>
+                    </div>
+                </div>
+                <!-- Front / Back Hashes or Home / Visitor Hashes -->
+                <div class="col-sm-6 col-xl-3">
+                    <h3>Hash Name</h3>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary hashFrontBack active">
+                            <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked> Front / Back
+                        </label>
+                        <label class="btn btn-primary hashHomeVisitor">
+                            <input type="radio" name="hashNameRadio" id="hashHomeVisitor" value="1"> Home / Visitor
                         </label>
                     </div>
                 </div>
@@ -331,7 +331,7 @@
                 </div>
             </div> <!-- END Counts Container -->
 
-            <button type="button" class="btn btn-primary btn-block" onclick="getMidset()">Get Midset</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="calculateMidsetInformation()">Get Midset</button>
         </form>
 
         <!-- Results -->
@@ -340,7 +340,9 @@
         <h4>Midset:</h4>
         <h5><span class="midset"></span></h5>
         <h4>Stepsize:</h4>
-        <h5><span class="stepsize"></span></h5>
+        <h5><span class="step-size"></span></h5>
+        <h4>Cross Counts:</h4>
+        <h5><span class="cross-count"></span></h5>
 
         <!-- Copy End Coordinate to Start -->
         <button type="button" class="btn btn-primary btn-block" onclick="copyEndToStart()">Copy End Coordinate to Start</button>

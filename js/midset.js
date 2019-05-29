@@ -48,33 +48,6 @@ function getMidSetCoordinate(start, end) {
     Operation: Find and Print Yard Lines
 ------------------------------------------*/
 
-/*
-function checkWithinRange(target, min, max) {
-    return ((target - min) * (target - max) <= 0);
-}
-
-function determineIfCrossingYardLine(start, end) {
-    var sLR = start.getLeftToRight();
-    var eLR = end.getLeftToRight();
-    if (sLR == eLR) { // Not Crossing Yard Line, same left to right start and end.
-        return [false, 0];
-    } else if (sLR < eLR) { // Left to Right
-        return [checkWithinRange((Math.ceil(sLR / 8)) * 8, sLR, eLR), YARDLINES[Math.abs(Math.ceil(sLR / 8))], "Left to Right"];
-    } else if (sLR > eLR) { // Right to Left
-        if (sLR < 0) {
-            return [checkWithinRange((Math.ceil(sLR / 8) * 8), sLR, eLR), YARDLINES[Math.abs(Math.ceil(sLR / 8))], "Right to Left"];
-        } else {
-            return [checkWithinRange((Math.floor(eLR / 8) * 8), sLR, eLR), YARDLINES[Math.abs(Math.floor(eLR / 8))], "Right to Left"];
-        }
-    }
-}
-
-// 8 because every 8 is a yardline.
-function findNumberOfDivisors(start, end) {
-    return Math.floor(Math.abs((end / YARD_LINE_DISTANCE) - ((start - 1) / YARD_LINE_DISTANCE)));
-}
-*/
-
 function cleanUp(x) {
     if (x < 0) {
         return Math.ceil(x);
@@ -152,10 +125,32 @@ function findCrossCount(start, end, target, counts) {
     return counts / distanceRatio;
 }
 
-// target is passed in yardline intersection coordinate
-function printYardLineCrossInfo(start, end, counts) {
+function printSide(point, field) {
+    if (point == 0) {
+        // The 50 Yard line
+        return "";
+    } else if (field.getSideType() == 0) {
+        // Side Term 0, Side 1 Side 2
+        if (point < 0) {
+            return SIDE_TERM_0_SIDE_1_SIDE_2[0];
+        } else {
+            return SIDE_TERM_0_SIDE_1_SIDE_2[1];
+        }
+    } else if (field.getSideType() == 1) {
+        // Side Term 1, Left Right
+        if (point < 0) {
+            return SIDE_TERM_1_LEFT_RIGHT[0];
+        } else {
+            return SIDE_TERM_1_LEFT_RIGHT[1];
+        }
+    } else {
+        return "";
+    }
+}
+
+function printYardLineCrossInfo(start, end, counts, field) {
     var intersections = findYardLineIntersections(start, end);
-    var crosses = [];
+    var crossString = "";
     if (intersections[0] == NO_INTERSECTIONS) {
         // Did not cross a yard line, return message.
         return intersections[0];
@@ -163,12 +158,8 @@ function printYardLineCrossInfo(start, end, counts) {
         for (var i = 0; i < intersections.length; i++) {
             var tempCoord = findYardLineIntersectionCoordinate(start, end, intersections[i] * YARD_LINE_DISTANCE);
             var tempCrossCount = findCrossCount(start, end, tempCoord, counts);
-            console.log(`Cross the ${YARDLINES[Math.abs(intersections[i])]} Yard Line on count ${tempCrossCount}.`);
+            crossString += (`Cross the ${printSide(intersections[i], field)} ${YARDLINES[Math.abs(intersections[i])]} Yard Line on count ${rounder(tempCrossCount)}<br>`);
         }
+        return crossString;
     }
 }
-
-/*
-    Would like to print something like this:
-    Cross the (side) (yardline #) Yard Line on count (count)
-*/
