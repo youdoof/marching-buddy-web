@@ -1,8 +1,10 @@
 'use strict';
 
-// startEnd : either START or END constant, builds object of information gathered from the form
-// a starting point until I know how I want to process the information
 class Input {
+    /**
+     * Builds object of information gathered from the input form
+     * @param {string} startEnd either START or END constant
+     */
     constructor(startEnd) {
         this.stepsLR = getStepsLR(startEnd);
         this.onInOut = getOnInOut(startEnd);
@@ -68,6 +70,11 @@ const NCAA_BACK_HASH = 10.0;
 const HS_FRONT_HASH = -14.0;
 const HS_BACK_HASH = 14.0;
 
+/**
+ * Takes a given yard line and converts it into a number useful in the coordinate system the project is using
+ * @param {number} value yard line to find in internal coordinate system
+ * @returns {number} yard line converted into internal coordinate system
+ */
 function findYardLine(value) {
     var counter = 0;
     for (var i = 0; i < YARDLINES.length; i++) {
@@ -79,6 +86,11 @@ function findYardLine(value) {
     return counter * 8;
 }
 
+/**
+ * Takes a given Input object and produces a number representing the left to right location, or x coordinate
+ * @param {Input} input Input object
+ * @returns {number} number representing the left to right
+ */
 function inputLeftToRight(input) {
     var result = 0;
 
@@ -120,6 +132,12 @@ function inputLeftToRight(input) {
     return result;
 }
 
+/**
+ * Takes a given Input and Field to produce a number representing the front to back location, or y coordinate
+ * @param {Input} input Input object
+ * @param {Field} field Field object
+ * @returns {number} number representing the front to back
+ */
 function inputFrontToBack(input, field) {
     var result = 0;
     var frontHashReference;

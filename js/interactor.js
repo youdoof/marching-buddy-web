@@ -7,19 +7,55 @@ function init() {
 }
 
 function initializeSliderLabelValues() {
-    var spans = document.querySelectorAll('p span');
-    var ranges = document.querySelectorAll('.custom-range');
-    for (var i = 0; i < spans.length; i++) {
-        if (i == spans.length - 1) {
-            // Counts Slider set to 1
-            ranges[i].value = 1;
-            spans[i].innerHTML = 1;
-        } else {
-            // All other Sliders set to 0
-            ranges[i].value = 0;
-            spans[i].innerHTML = 0;
-        }
-    }
+    resetStartSliders();
+    resetEndSliders();
+    resetCountSlider();
+}
+
+const RANGE_YARDLINE_DEFAULT_VALUE = 50;
+const RANGE_STEPS_DEFAULT_VALUE = 0;
+const RANGE_COUNTS_DEFAULT_VALUE = 8;
+
+/**
+ * Resets sliders to their default values
+ * @param {string} LRSteps class name for LRSteps slider
+ * @param {string} YardLine class name for YardLine slider
+ * @param {string} FBSteps class name for FBSteps slider
+ */
+function resetInputSliders(LRSteps, YardLine, FBSteps) {
+    var rangeLRSteps = document.querySelectorAll(LRSteps);
+    var rangeYardLine = document.querySelectorAll(YardLine);
+    var rangeFBSteps = document.querySelectorAll(FBSteps);
+
+    setInnerHTMLAndValue(rangeLRSteps, RANGE_STEPS_DEFAULT_VALUE);
+    setInnerHTMLAndValue(rangeYardLine, RANGE_YARDLINE_DEFAULT_VALUE);
+    setInnerHTMLAndValue(rangeFBSteps, RANGE_STEPS_DEFAULT_VALUE);
+}
+
+function resetStartSliders() {
+    resetInputSliders(RANGE_START_LRSTEPS, RANGE_START_YARDLINE, RANGE_START_FBSTEPS);
+}
+
+function resetEndSliders() {
+    resetInputSliders(RANGE_END_LRSTEPS, RANGE_END_YARDLINE, RANGE_END_FBSTEPS);
+}
+
+/**
+ * Resets the Count slider to its default value of RANGE_COUNTS_DEFAULT_VALUE
+ */
+function resetCountSlider() {
+    var rangeCounts = document.querySelectorAll(RANGE_COUNTS_SLIDER);
+    setInnerHTMLAndValue(rangeCounts, RANGE_COUNTS_DEFAULT_VALUE);
+}
+
+/**
+ * Sets the innerHTML and Value of a range family to a specified value
+ * @param {Array} targetRangeFamily querySelectorAll array of the range family whose value needs to be set
+ * @param {Integer} number value to set the range and span to display
+ */
+function setInnerHTMLAndValue(targetRangeFamily, number) {
+    targetRangeFamily[0].innerHTML = number;
+    targetRangeFamily[1].value = number;
 }
 
 let RANGE_START_LRSTEPS = ".startLRSteps";
@@ -40,6 +76,9 @@ let SIDE_TERM_1_LEFT_RIGHT = ["Left", "Right"];
 let HASH = "hash";
 let SIDE = "side";
 
+/**
+ * Listens for input and click events in the DOM
+ */
 function startListening() {
     document.addEventListener('input', function (event) {
         if (event.target.matches(RANGE_START_LRSTEPS)) {
@@ -67,10 +106,10 @@ function startListening() {
 
     document.addEventListener('click', function (event) {
         if (event.target.matches('.nightRadio')) {
-            updateTheme();
+            lightsOff();
         }
         if (event.target.matches('.dayRadio')) {
-            updateTheme();
+            lightsOn();
         }
         if (event.target.matches('.hashFrontBack')) {
             updateTerminology(HASH_TERM_0_FRONT_BACK, HASH);
@@ -84,16 +123,36 @@ function startListening() {
         if (event.target.matches('.sideLeftRight')) {
             updateTerminology(SIDE_TERM_1_LEFT_RIGHT, SIDE);
         }
-
     }, false);
 }
 
-function updateTheme() {
+/**
+ * Changes theme from Night to Day
+ */
+function lightsOn() {
     var body = document.querySelector('body');
-    body.classList.toggle('night');
-    body.classList.toggle('day');
+    if (body.classList.contains('night')) {
+        body.classList.remove('night');
+        body.classList.add('day');
+    }
 }
 
+/**
+ * Changes theme from Day to Night
+ */
+function lightsOff() {
+    var body = document.querySelector('body');
+    if (body.classList.contains('day')) {
+        body.classList.remove('day');
+        body.classList.add('night');
+    }
+}
+
+/**
+ * Updates terminology in GUI from settings
+ * @param {array} terms array of terminology to be updated
+ * @param {string} hashSide selector either HASH or SIDE
+ */
 function updateTerminology(terms, hashSide) {
     var targetTerms = document.querySelectorAll(`.${hashSide}Term`);
     for (var i = 0; i < targetTerms.length; i++) {
@@ -101,6 +160,10 @@ function updateTerminology(terms, hashSide) {
     }
 }
 
+/**
+ * Main method of the project. Presents all calculated information to the user in 
+ * the proper elements of the webpage.
+ */
 function calculateMidsetInformation() {
     var startInput = new Input(START);
     var endInput = new Input(END);
@@ -118,34 +181,48 @@ function calculateMidsetInformation() {
     crossCountHolder.innerHTML = printYardLineCrossInfo(startCoordinate, endCoordinate, getCounts(), f);
 }
 
+/**
+ * Copies the values of the Ending Coordinate to the Starting Coordinate
+ */
 function copyEndToStart() {
     var end = new Input(END);
     // OnInOutRadio
-    copyRadioValue('sOnInOutRadio', end.onInOut);
+    setRadioValue('sOnInOutRadio', end.onInOut);
     // LRSteps
     copySliderValue(RANGE_START_LRSTEPS, end.stepsLR);
     // YardLine
     copySliderValue(RANGE_START_YARDLINE, end.yardLine);
     // SideRadio
-    copyRadioValue('sSideRadio', end.side);
+    setRadioValue('sSideRadio', end.side);
     // OnInFrontBehindRadio
-    copyRadioValue('sOnInFrontBehindRadio', end.onInFrontBehind);
+    setRadioValue('sOnInFrontBehindRadio', end.onInFrontBehind);
     // FBSteps
     copySliderValue(RANGE_START_FBSTEPS, end.stepsFB);
     // FrontBackRadio
-    copyRadioValue('sFrontBackRadio', end.frontBack);
+    setRadioValue('sFrontBackRadio', end.frontBack);
     // HashSidelineRadio
-    copyRadioValue('sHashSidelineRadio', end.hashSideline);
+    setRadioValue('sHashSidelineRadio', end.hashSideline);
+
+    // Might reset the values for the end set after copying.
 }
 
+/**
+ * Sets the given slider family's value to the desired value given
+ * @param {string} sliderFamily selector name of the family of sliders to be copied
+ * @param {number} desiredValue value to set the slider family to
+ */
 function copySliderValue(sliderFamily, desiredValue) {
     var fam = document.querySelectorAll(sliderFamily);
     fam[0].innerHTML = desiredValue;
     fam[1].value = desiredValue;
 }
 
-// Find the labels for the radio buttons and click them
-function copyRadioValue(radioFamily, desiredValue) {
+/**
+ * Activates the radio button in the given radio button family to the desired value given
+ * @param {string} radioFamily selector name of the family of radio buttons to be copied
+ * @param {number} desiredValue radio button to be activated
+ */
+function setRadioValue(radioFamily, desiredValue) {
     var labels = document.querySelectorAll(`.${radioFamily}`);
     labels[desiredValue].click();
 }
