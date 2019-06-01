@@ -3,7 +3,7 @@
 class Input {
     /**
      * Builds object of information gathered from the input form
-     * @param {string} startEnd either START or END constant
+     * @param {String} startEnd either START or END constant
      */
     constructor(startEnd) {
         this.stepsLR = getStepsLR(startEnd);
