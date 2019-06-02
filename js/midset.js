@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * Step Size Constant -- 8 to 5 
  * @const {Number}

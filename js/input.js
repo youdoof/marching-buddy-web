@@ -1,9 +1,21 @@
 'use strict';
 
+/**
+ * Input object for processing user information on one coordinate
+ * @typedef {Object} Input
+ * @property {Number} stepsLR - Steps Left to Right from yard line
+ * @property {Number} onInOut - 0, 1, or 2, representing On, Inside, or Outside the yard line
+ * @property {Number} side - 0 or 1, representing Side 1 or Side 2 (and other common names)
+ * @property {Number} yardLine - The yard line to be referenced for left to right information
+ * @property {Number} stepsFB - Steps Front to Back from nearest front to back reference point (hash or sideline)
+ * @property {Number} onInFrontBehind - 0, 1, or 2, representing On, In Front, or Behind the front to back reference point
+ * @property {Number} frontBack - 0 or 1, representing either the Front or Back front to back reference point
+ * @property {Number} hashSideline - 0 or 1, representing either the Hash or Sideline being the front to back reference point
+ */
 class Input {
     /**
-     * Builds object of information gathered from the input form
-     * @param {String} startEnd either START or END constant
+     * Builds object of information gathered from the input form for one coordinate based on the string passed in
+     * @param {String} startEnd either START or END constant to select the starting or ending coordinate
      */
     constructor(startEnd) {
         this.stepsLR = getStepsLR(startEnd);
@@ -18,7 +30,19 @@ class Input {
 }
 
 // Constants to modify the name of the selected input
+
+/**
+ * Used to get the Ending Coordinate input information
+ * @const {String}
+ * @see Input.constructor
+ */
 const END = "e";
+
+/**
+ * Used to get the Starting Coordinate input information
+ * @const {String}
+ * @see Input.constructor
+ */
 const START = "s";
 
 function getStepsLR(startEnd) {
@@ -59,6 +83,10 @@ function getCounts() {
 
 // Relocated from Midset.js
 
+/**
+ * Array containing the yard line references, in a convenient order for calculating valuable information
+ * @const {Array<Number>}
+ */
 const YARDLINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0];
 // Sideline distance constants
 const FRONT_SIDELINE = -42.0;
@@ -72,8 +100,9 @@ const HS_BACK_HASH = 14.0;
 
 /**
  * Takes a given yard line and converts it into a number useful in the coordinate system the project is using
- * @param {number} value yard line to find in internal coordinate system
- * @returns {number} yard line converted into internal coordinate system
+ * @function findYardLine
+ * @param {Number} value yard line to find in internal coordinate system
+ * @returns {Number} yard line converted into internal coordinate system
  */
 function findYardLine(value) {
     var counter = 0;
@@ -87,9 +116,10 @@ function findYardLine(value) {
 }
 
 /**
- * Takes a given Input object and produces a number representing the left to right location, or x coordinate
+ * Takes a given Input object and produces a number representing the left to right location, or X coordinate
+ * @function inputLeftToRight
  * @param {Input} input Input object
- * @returns {number} number representing the left to right
+ * @returns {Number} Number representing the left to right, or X coordinate
  */
 function inputLeftToRight(input) {
     var result = 0;
@@ -133,10 +163,11 @@ function inputLeftToRight(input) {
 }
 
 /**
- * Takes a given Input and Field to produce a number representing the front to back location, or y coordinate
+ * Takes a given Input and Field to produce a number representing the front to back location, or Y coordinate
+ * @function inputFrontToBack
  * @param {Input} input Input object
  * @param {Field} field Field object
- * @returns {number} number representing the front to back
+ * @returns {Number} Number representing the front to back, or Y coordinate
  */
 function inputFrontToBack(input, field) {
     var result = 0;
@@ -169,6 +200,12 @@ function inputFrontToBack(input, field) {
     return result;
 }
 
+/**
+ * Processes the input to determine which front to back reference point was chosen by the user
+ * @function getProcessedFrontBackReferencePoint
+ * @param  {Input} input Input object
+ * @return {Number} - 0: Front Sideline - 1: Front Hash - 2: Back Hash - 3: Back Sideline
+ */
 function getProcessedFrontBackReferencePoint(input) {
     if (input.frontBack == 0 && input.hashSideline == 1) {
         return 0; // Front Sideline
@@ -183,6 +220,13 @@ function getProcessedFrontBackReferencePoint(input) {
     }
 }
 
+/**
+ * Processes and returns the distance from the front to back reference point 
+ * @function processDistanceRelativeToReferencePoint
+ * @param  {Input} input                  Input object
+ * @param  {Number} hashSidelineReference Determined and passed in by calling getProcessedFrontBackReferencePoint
+ * @return {Number} Number representing the front to back, or Y coordinate
+ */
 function processDistanceRelativeToReferencePoint(input, hashSidelineReference) {
     if (input.onInFrontBehind == 0) {
         return hashSidelineReference; // On

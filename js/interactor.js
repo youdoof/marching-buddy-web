@@ -6,6 +6,13 @@ function init() {
     calculateMidsetInformation();
 }
 
+/**
+ * Calls methods to set the starting values for sliders on the web page
+ * @function initializeSliderLabelValues
+ * @see resetStartSliders
+ * @see resetEndSliders
+ * @see resetCountSlider
+ */
 function initializeSliderLabelValues() {
     resetStartSliders();
     resetEndSliders();
@@ -84,29 +91,31 @@ function setInnerHTMLAndValue(targetRangeFamily, number) {
     targetRangeFamily[1].value = number;
 }
 
-let RANGE_START_LRSTEPS = ".startLRSteps";
-let RANGE_START_YARDLINE = ".startYardLine";
-let RANGE_START_FBSTEPS = ".startFBSteps";
+// Selectors for Range/Slider families, finds the span and custom range input
+const RANGE_START_LRSTEPS = ".startLRSteps";
+const RANGE_START_YARDLINE = ".startYardLine";
+const RANGE_START_FBSTEPS = ".startFBSteps";
+const RANGE_END_LRSTEPS = ".endLRSteps";
+const RANGE_END_YARDLINE = ".endYardLine";
+const RANGE_END_FBSTEPS = ".endFBSteps";
+const RANGE_COUNTS_SLIDER = ".countsSlider";
 
-let RANGE_END_LRSTEPS = ".endLRSteps";
-let RANGE_END_YARDLINE = ".endYardLine";
-let RANGE_END_FBSTEPS = ".endFBSteps";
+// Terminology for updating the GUI and output
+const HASH_TERM_0_FRONT_BACK = ["Front", "Back"];
+const HASH_TERM_1_HOME_VISITOR = ["Home", "Visitor"];
+const SIDE_TERM_0_SIDE_1_SIDE_2 = ["Side 1", "Side 2"];
+const SIDE_TERM_1_LEFT_RIGHT = ["Left", "Right"];
 
-let RANGE_COUNTS_SLIDER = ".countsSlider";
-
-let HASH_TERM_0_FRONT_BACK = ["Front", "Back"];
-let HASH_TERM_1_HOME_VISITOR = ["Home", "Visitor"];
-let SIDE_TERM_0_SIDE_1_SIDE_2 = ["Side 1", "Side 2"];
-let SIDE_TERM_1_LEFT_RIGHT = ["Left", "Right"];
-
-let HASH = "hash";
-let SIDE = "side";
+// Used in updateTerminology, pass in the name of what you want to update
+const HASH = "hash";
+const SIDE = "side";
 
 /**
- * Listens for input and click events in the DOM
+ * Listens for input and click events in the DOM, used in updating GUI and input settings
  * @function startListening
  */
 function startListening() {
+    // Listen for input events and update the HTML to display the value of each slider on the screen
     document.addEventListener('input', function (event) {
         if (event.target.matches(RANGE_START_LRSTEPS)) {
             document.querySelector(RANGE_START_LRSTEPS).innerHTML = event.target.value;
@@ -131,6 +140,7 @@ function startListening() {
         }
     }, false);
 
+    // Listen for click events matching different radio button families and update GUI elements accordingly
     document.addEventListener('click', function (event) {
         if (event.target.matches('.nightRadio')) {
             lightsOff();
@@ -156,6 +166,7 @@ function startListening() {
 /**
  * Changes theme from Night to Day
  * @function lightsOn
+ * @see startListening
  */
 function lightsOn() {
     var body = document.querySelector('body');
@@ -168,6 +179,7 @@ function lightsOn() {
 /**
  * Changes theme from Day to Night
  * @function lightsOff
+ * @see startListening
  */
 function lightsOff() {
     var body = document.querySelector('body');
@@ -179,6 +191,8 @@ function lightsOff() {
 
 /**
  * Updates terminology in GUI from settings
+ * @function updateTerminology
+ * @see startListening
  * @param {Array<Number>} terms array of terminology to be updated
  * @param {String} hashSide selector either HASH or SIDE
  */
@@ -189,26 +203,32 @@ function updateTerminology(terms, hashSide) {
     }
 }
 
+// Spans for displaying the calculated information to the user
+var midsetTextDisplay = document.querySelector('.midset');
+var stepSizeDisplay = document.querySelector('.step-size');
+var crossCountDisplay = document.querySelector('.cross-count');
+
 /**
  * Main method of the project. Presents all calculated information to the user in 
- * the proper elements of the webpage.
+ * the proper elements of the webpage. Method called when user presses the
+ * calculate midset button.
  * @function calculateMidsetInformation
  */
 function calculateMidsetInformation() {
+    // Get input and field information
     var startInput = new Input(START);
     var endInput = new Input(END);
     var f = new Field();
 
+    // Create start, end, and middle coordinates
     var startCoordinate = createCoordinateFromInput(startInput, f);
     var endCoordinate = createCoordinateFromInput(endInput, f);
     var midCoordinate = getMidSetCoordinate(startCoordinate, endCoordinate);
 
-    var midsetTextHolder = document.querySelector('.midset');
-    midsetTextHolder.innerHTML = midCoordinate.printCoordinate(f);
-    var stepsizeTextHolder = document.querySelector('.step-size');
-    stepsizeTextHolder.innerHTML = getStepSize(startCoordinate, endCoordinate, getCounts());
-    var crossCountHolder = document.querySelector('.cross-count');
-    crossCountHolder.innerHTML = printYardLineCrossInfo(startCoordinate, endCoordinate, getCounts(), f);
+    // Dispaly calculated information throughout the page
+    midsetTextDisplay.innerHTML = midCoordinate.printCoordinate(f);
+    stepSizeDisplay.innerHTML = getStepSize(startCoordinate, endCoordinate, getCounts());
+    crossCountDisplay.innerHTML = printYardLineCrossInfo(startCoordinate, endCoordinate, getCounts(), f);
 }
 
 /**
@@ -233,12 +253,11 @@ function copyEndToStart() {
     setRadioValue('sFrontBackRadio', end.frontBack);
     // HashSidelineRadio
     setRadioValue('sHashSidelineRadio', end.hashSideline);
-
-    // Might reset the values for the end set after copying.
 }
 
 /**
  * Sets the given slider family's value to the desired value given
+ * @function copySliderValue
  * @param {String} sliderFamily selector name of the family of sliders to be copied
  * @param {Number} desiredValue value to set the slider family to
  */
@@ -249,7 +268,8 @@ function copySliderValue(sliderFamily, desiredValue) {
 }
 
 /**
- * Activates the radio button in the given radio button family to the desired value given
+ * Activates the radio button in the given radio button family determined by the desired value given
+ * @function setRadioValue
  * @param {String} radioFamily selector name of the family of radio buttons to be copied
  * @param {Number} desiredValue radio button to be activated
  */
@@ -258,4 +278,5 @@ function setRadioValue(radioFamily, desiredValue) {
     labels[desiredValue].click();
 }
 
+// Run init to get the page initialized with information
 init();
