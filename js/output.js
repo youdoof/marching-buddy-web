@@ -1,20 +1,30 @@
 'use strict';
 
-// Yard Line Constant
-const YARD_LINES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, "Goal Line"];
-// Hash Type Constants
-const FRONT_HASH = "Front";
-const BACK_HASH = "Back";
-const HOME_HASH = "Home";
-const VISITOR_HASH = "Visitor";
-// Side Type Constants
-const ONE_SIDE = "Side 1 ";
-const TWO_SIDE = "Side 2 ";
-const LEFT_SIDE = "Left ";
-const RIGHT_SIDE = "Right ";
+/**
+ * @author Andrew Brogan
+ * @
+ */
 
-// frontToBack - input double representing the Front-To-Back on the field
-// field - Field object holding field and hash types
+// Yard Line Constant
+const OUTPUT_STRING_YARD_LINE_NAMES = [50, 45, 40, 35, 30, 25, 20, 15, 10, 5, "Goal Line"];
+// Hash Type Constants
+const OUTPUT_STRING_FRONT_HASH = "Front";
+const OUTPUT_STRING_BACK_HASH = "Back";
+const OUTPUT_STRING_HOME_HASH = "Home";
+const OUTPUT_STRING_VISITOR_HASH = "Visitor";
+// Side Type Constants
+const OUTPUT_STRING_SIDE_ONE = "Side 1 ";
+const OUTPUT_STRING_SIDE_TWO = "Side 2 ";
+const OUTPUT_STRING_SIDE_LEFT = "Left ";
+const OUTPUT_STRING_SIDE_RIGHT = "Right ";
+
+/**
+ * Takes the coordinate's front to back property and returns a string representing the front to back location in marching band terms
+ * @function outputFrontToBack
+ * @param  {Number} frontToBack Number representing the front to back location on the field
+ * @param  {Field} field       Field object containing the field type and hash type
+ * @return {String} Formatted string representing the front to back location in marching band terms
+ */
 function outputFrontToBack(frontToBack, field) {
     var output;
     var frontHash;
@@ -32,12 +42,12 @@ function outputFrontToBack(frontToBack, field) {
     }
     // Set Hash Type from Settings
     if (field.getHashType() === 0) {
-        frontHashName = FRONT_HASH;
-        backHashName = BACK_HASH;
+        frontHashName = OUTPUT_STRING_FRONT_HASH;
+        backHashName = OUTPUT_STRING_BACK_HASH;
     }
     else {
-        frontHashName = HOME_HASH;
-        backHashName = VISITOR_HASH;
+        frontHashName = OUTPUT_STRING_HOME_HASH;
+        backHashName = OUTPUT_STRING_VISITOR_HASH;
     }
     // Building Output String
     // Middle of the field
@@ -90,8 +100,13 @@ function outputFrontToBack(frontToBack, field) {
     return output;
 }
 
-// leftToRight - input double representing the Left-To-Right on the field
-// field - Field object holding the side type
+/**
+ * Takes the coordinate's left to right property and returns a string represengint the left to right location in marching band terms
+ * @function outputLeftToRight
+ * @param  {Number} leftToRight Number representing the left to right location on the field
+ * @param  {Field} field       Field object containing the side type
+ * @return {String} Formatted string representing the left to right location in marching band terms
+ */
 function outputLeftToRight(leftToRight, field) {
     var output;
     var leftSideName;
@@ -100,11 +115,11 @@ function outputLeftToRight(leftToRight, field) {
 
     // Set Side Type from Settings
     if (field.getSideType() === 0) {
-        leftSideName = ONE_SIDE;
-        rightSideName = TWO_SIDE;
+        leftSideName = OUTPUT_STRING_SIDE_ONE;
+        rightSideName = OUTPUT_STRING_SIDE_TWO;
     } else {
-        leftSideName = LEFT_SIDE;
-        rightSideName = RIGHT_SIDE;
+        leftSideName = OUTPUT_STRING_SIDE_LEFT;
+        rightSideName = OUTPUT_STRING_SIDE_RIGHT;
     }
 
     // 50 Yard Line (Center of Field)
@@ -116,12 +131,12 @@ function outputLeftToRight(leftToRight, field) {
         var yardLine = Math.floor(leftToRight / 8);
         // var step = leftToRight % 8;
         if (step === 0) {
-            output = "On " + rightSideName + YARD_LINES[yardLine];
+            output = "On " + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine];
         } else if (step <= 4) {
-            output = step + " steps Outside " + rightSideName + YARD_LINES[yardLine];
+            output = step + " steps Outside " + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine];
         } else {
             step = 8 - step;
-            output = step + " steps Inside " + rightSideName + YARD_LINES[yardLine + 1];
+            output = step + " steps Inside " + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine + 1];
         }
     }
     // Side 1, Left Side of Field (Director Perspective)
@@ -129,12 +144,12 @@ function outputLeftToRight(leftToRight, field) {
         var yardLine = Math.ceil(leftToRight / 8);
         // var step = leftToRight % 8;
         if (step === 0) {
-            output = "On " + leftSideName + YARD_LINES[-yardLine];
+            output = "On " + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine];
         } else if (step >= -4) {
-            output = -step + " steps Outside " + leftSideName + YARD_LINES[-yardLine];
+            output = -step + " steps Outside " + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine];
         } else {
             step = 8 + step;
-            output = step + " steps Inside " + leftSideName + YARD_LINES[-yardLine + 1];
+            output = step + " steps Inside " + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine + 1];
         }
     }
     return output;

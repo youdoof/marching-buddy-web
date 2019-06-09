@@ -216,7 +216,7 @@ function getProcessedFrontBackReferencePoint(input) {
     } else if (input.frontBack == 1 && input.hashSideline == 1) {
         return 3; // Back Sideline
     } else {
-        return -1;
+        return -1; // Error, currently not addressed in any form if said error were to occur
     }
 }
 
