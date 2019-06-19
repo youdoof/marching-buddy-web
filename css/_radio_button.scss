@@ -1,0 +1,20 @@
+.radio-button-group input[type="radio"] {
+    display: none;
+}
+
+.radio-button-group label {
+    display: inline-block;
+    background-color: blue;
+    border: 2px solid #606060;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.radio-button-group input[type="radio"]:checked + label {
+    background-color: bisque;
+    border-color: aqua;
+}
+
+.radio-button-group label:hover {
+    background-color: orangered;
+}

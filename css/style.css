@@ -15,6 +15,44 @@ h4 {
     text-align: left;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+    "h"
+    "f"
+    "r"
+}
+
+.heading-area {
+    grid-area: h;
+}
+
+.form-area {
+    grid-area: f;
+}
+
+.results-area {
+    grid-area: r;
+}
+
+.settings-area {
+    grid-area: s;
+}
+
+.start-coordinate {
+    grid-area: b;
+}
+
+.end-coordinate {
+    grid-area: e;
+}
+
+.counts-area {
+    grid-area: c;
+}
+
 .night {
     background-color: black;
     color: lightgray;
@@ -24,3 +62,32 @@ h4 {
     background-color: white;
     color: black;
 }
+
+.radio-button-group input[type="radio"] {
+    display: none;
+}
+
+.radio-button-group label {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    cursor: pointer;
+    background-color: darkblue;
+    margin-left: -1px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/* border-top-left-radius: 0;
+border-bottom-left-radius: 0; */
+
+.radio-button-group input[type="radio"]:checked + label {
+    background-color: rgb(20, 134, 136);
+    border-color: transparent;
+}
+
+.radio-button-group label:hover {
+    background-color: darkcyan;
+}
+
