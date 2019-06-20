@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="Description"
         content="Marching Buddy, a midset calculator. Use this marching band calculator to determine the midpoint between your sets!">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x=icon">
+    <link rel="stylesheet" href="css/nobootstrap.css">
 </head>
 
 <body class="night">
@@ -135,35 +136,30 @@
                 <p><span class="endLRSteps"></span> Steps</p>
                 <!-- End OnInOutRadio -->
                 <div class="radio-button-group">
-                    <label class="eOnInOutRadio">
-                        <input type="radio" name="eOnInOutRadio" id="eOnLR" value="0" checked> On
-                    </label>
-                    <label class="eOnInOutRadio">
-                        <input type="radio" name="eOnInOutRadio" id="eInLR" value="1"> In
-                    </label>
-                    <label class="eOnInOutRadio">
-                        <input type="radio" name="eOnInOutRadio" id="eOutLR" value="2"> Out
-                    </label>
+                    <input type="radio" name="eOnInOutRadio" id="eOnLR" value="0" checked>
+                    <label for="eOnLR" class="eOnInOutRadio">On</label>
+                    <input type="radio" name="eOnInOutRadio" id="eInLR" value="1">
+                    <label for="eInLR" class="eOnInOutRadio">In</label>
+                    <input type="radio" name="eOnInOutRadio" id="eOutLR" value="2">
+                    <label for="eOutLR" class="eOnInOutRadio">Out</label>
                 </div>
                 <!-- Display End YardLine -->
                 <p><span class="endYardLine"></span> Yard Line</p>
 
                 <!-- Sliders End LRSteps, YardLine-->
-                <label><input type="range" min="0" max="4" step="0.25" class="custom-range endLRSteps"
-                        id="eLRSteps"></label>
-                <label><input type="range" min="0" max="50" step="5" class="custom-range endYardLine"
-                        id="eYardLine"></label>
+                <label>
+                    <input type="range" min="0" max="4" step="0.25" class="custom-range endLRSteps" id="eLRSteps">
+                </label>
+                <label>
+                    <input type="range" min="0" max="50" step="5" class="custom-range endYardLine" id="eYardLine">
+                </label>
 
                 <!-- End SideRadio -->
                 <div class="radio-button-group">
-                    <label class="eSideRadio">
-                        <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked> <span
-                            class="sideTerm">Side 1</span>
-                    </label>
-                    <label class="eSideRadio">
-                        <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> <span class="sideTerm">Side
-                            2</span>
-                    </label>
+                    <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked>
+                    <label for="eSideOneLeft" class="eSideRadio"><span class="sideTerm">Side 1</span></label>
+                    <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1">
+                    <label for="eSideTwoRight" class="eSideRadio"><span class="sideTerm">Side 2</span></label>
                 </div>
 
                 <!-- Front to Back Container -->
@@ -172,40 +168,31 @@
                 <p><span class="endFBSteps"></span> Steps</p>
                 <!-- End OnInFrontBehindRadio -->
                 <div class="radio-button-group">
-                    <label class="eOnInFrontBehindRadio">
-                        <input type="radio" name="eOnInFrontBehindRadio" id="eOnFB" value="0" checked> On
-                    </label>
-                    <label class="eOnInFrontBehindRadio">
-                        <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1"> In
-                        Front
-                    </label>
-                    <label class="eOnInFrontBehindRadio">
-                        <input type="radio" name="eOnInFrontBehindRadio" id="eBehindFB" value="2"> Behind
-                    </label>
+                    <input type="radio" name="eOnInFrontBehindRadio" id="eOnFB" value="0" checked>
+                    <label for="eOnFB" class="eOnInFrontBehindRadio">On</label>
+                    <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1">
+                    <label for="eInFrontFB" class="eOnInFrontBehindRadio">In Front</label>
+                    <input type="radio" name="eOnInFrontBehindRadio" id="eBehindFB" value="2">
+                    <label for="eBehindFB" class="eOnInFrontBehindRadio">Behind</label>
                 </div>
 
-                <label><input type="range" min="0" max="16" step="0.25" class="custom-range endFBSteps"
-                        id="eFBSteps"></label>
+                <label>
+                    <input type="range" min="0" max="16" step="0.25" class="custom-range endFBSteps" id="eFBSteps">
+                </label>
 
                 <!-- End FrontBackRadio -->
                 <div class="radio-button-group">
-                    <label class="eFrontBackRadio">
-                        <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0" checked> <span
-                            class="hashTerm">Front</span>
-                    </label>
-                    <label class="eFrontBackRadio">
-                        <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> <span
-                            class="hashTerm">Back</span>
-                    </label>
+                    <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0" checked>
+                    <label for="eFrontHome" class="eFrontBackRadio"><span class="hashTerm">Front</span></label>
+                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1">
+                    <label for="eBackVisitor" class="eFrontBackRadio"><span class="hashTerm">Back</span></label>
                 </div>
                 <!-- End HashSidelineRadio -->
                 <div class="radio-button-group">
-                    <label class="eHashSidelineRadio">
-                        <input type="radio" name="eHashSidelineRadio" id="eHash" value="0" checked> Hash
-                    </label>
-                    <label class="eHashSidelineRadio">
-                        <input type="radio" name="eHashSidelineRadio" id="eSideline" value="1"> Sideline
-                    </label>
+                    <input type="radio" name="eHashSidelineRadio" id="eHash" value="0" checked>
+                    <label for="eHash" class="eHashSidelineRadio">Hash</label>
+                    <input type="radio" name="eHashSidelineRadio" id="eSideline" value="1">
+                    <label for="eSideline" class="eHashSidelineRadio">Sideline</label>
                 </div>
             </div>
 

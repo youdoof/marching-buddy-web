@@ -1,20 +1,38 @@
+// Dream Colors: #005B9F, #1547DC
+$radio-button-base-color: #0033FF;
+$radio-button-checked: #003399;
+$radio-button-hover: #003399;
+$radio-button-border-color: #0033FF;
+$radio-button-text-color: #FFFFFF;
+
 .radio-button-group input[type="radio"] {
     display: none;
 }
 
 .radio-button-group label {
     display: inline-block;
-    background-color: blue;
-    border: 2px solid #606060;
-    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem .675rem;
+    color: $radio-button-text-color;
+    border: 1px solid $radio-button-border-color;
+    border-radius: .25rem;
+    background-color: $radio-button-base-color;
+    margin-left: -.5rem;
     cursor: pointer;
 }
 
 .radio-button-group input[type="radio"]:checked + label {
-    background-color: bisque;
-    border-color: aqua;
+    background-color: $radio-button-checked;
+    border-color: $radio-button-checked;
 }
 
 .radio-button-group label:hover {
-    background-color: orangered;
+    background-color: $radio-button-hover;
+    border-color: $radio-button-hover;
+}
+
+.radio-button-group label + input + label {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }

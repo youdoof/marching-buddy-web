@@ -1,5 +1,10 @@
-body {
+/* body {
     text-align: center;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
 }
 
 h2 {
@@ -13,9 +18,9 @@ h3 {
 
 h4 {
     text-align: left;
-}
+} */
 
-.container {
+/* .container {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
@@ -51,9 +56,9 @@ h4 {
 
 .counts-area {
     grid-area: c;
-}
+} */
 
-.night {
+/* .night {
     background-color: black;
     color: lightgray;
 }
@@ -61,9 +66,9 @@ h4 {
 .day {
     background-color: white;
     color: black;
-}
+} */
 
-.radio-button-group input[type="radio"] {
+/* .radio-button-group input[type="radio"] {
     display: none;
 }
 
@@ -71,23 +76,27 @@ h4 {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    padding: .375rem .75rem;
+    font-size: 1rem;
+    padding: .375rem .675rem;
+    color: #FFFFFF;
+    border: 1px solid #0033FF;
     border-radius: .25rem;
+    background-color: #0033FF;
+    margin-left: -.5rem;
     cursor: pointer;
-    background-color: darkblue;
-    margin-left: -1px;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-/* border-top-left-radius: 0;
-border-bottom-left-radius: 0; */
-
 .radio-button-group input[type="radio"]:checked + label {
-    background-color: rgb(20, 134, 136);
-    border-color: transparent;
+    background-color: #003399;
+    border-color: #003399;
 }
 
 .radio-button-group label:hover {
-    background-color: darkcyan;
+    background-color: #003399;
+    border-color: #003399;
 }
 
+.radio-button-group label + input + label {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+} */

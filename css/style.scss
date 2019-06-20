@@ -1,3 +1,41 @@
 @import 'reset';
-@import 'radio_button';
 @import 'grid_layout';
+@import 'radio_button';
+
+body {
+    margin: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    text-align: left;
+    padding-top: 0.5rem;
+}
+
+h3 {
+    padding-top: 0.5rem;
+}
+
+h4 {
+    text-align: left;
+}
+
+.night {
+    background-color: black;
+    color: lightgray;
+}
+
+.day {
+    background-color: white;
+    color: black;
+}
+
+input[type="range"] {
+    display: block;
+    width: 100%;
+}
