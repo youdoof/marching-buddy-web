@@ -1,9 +1,12 @@
-// Dream Colors: #005B9F, #1547DC
 $radio-button-base-color: #0033FF;
 $radio-button-checked: #003399;
 $radio-button-hover: #003399;
 $radio-button-border-color: #0033FF;
 $radio-button-text-color: #FFFFFF;
+
+.radio-button-group {
+    white-space: nowrap;
+}
 
 .radio-button-group input[type="radio"] {
     display: none;
@@ -13,12 +16,14 @@ $radio-button-text-color: #FFFFFF;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
+    white-space: nowrap;
     padding: .375rem .675rem;
     color: $radio-button-text-color;
     border: 1px solid $radio-button-border-color;
     border-radius: .25rem;
     background-color: $radio-button-base-color;
     margin-left: -.5rem;
+    line-height: 1.5;
     cursor: pointer;
 }
 

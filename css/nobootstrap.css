@@ -6,39 +6,18 @@ ol {
   padding: 0;
 }
 
-.container {
+.results-area, .form-area, .heading-area {
+  padding: 0 0.75rem;
+}
+
+.left-to-right-area {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
-  grid-template-areas: "h" "f" "r";
 }
 
-.heading-area {
-  grid-area: h;
-}
-
-.form-area {
-  grid-area: f;
-}
-
-.results-area {
-  grid-area: r;
-}
-
-.settings-area {
-  grid-area: s;
-}
-
-.start-coordinate {
-  grid-area: b;
-}
-
-.end-coordinate {
-  grid-area: e;
-}
-
-.counts-area {
-  grid-area: c;
+.radio-button-group {
+  white-space: nowrap;
 }
 
 .radio-button-group input[type=radio] {
@@ -49,12 +28,14 @@ ol {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  white-space: nowrap;
   padding: 0.375rem 0.675rem;
   color: #FFFFFF;
   border: 1px solid #0033FF;
   border-radius: 0.25rem;
   background-color: #0033FF;
   margin-left: -0.5rem;
+  line-height: 1.5;
   cursor: pointer;
 }
 
@@ -108,7 +89,7 @@ h4 {
 
 input[type=range] {
   display: block;
-  width: 100%;
+  width: 85%;
 }
 
 /*# sourceMappingURL=nobootstrap.css.map */
