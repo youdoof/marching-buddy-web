@@ -1,16 +1,45 @@
 $custom-range-width: 100%;
-$custom-range-track-width: $custom-range-width * 80%;
-$custom-range-track-height: 0.125rem;
+$custom-range-track-width: 99%; // Display full track bar without being cut off during render (Edge)
+$custom-range-track-height: 0.5rem;
+$track-border-radius: 1rem;
+
+$thumb-color: $radio-button-base-color;
+$thumb-height: 1rem;
+$thumb-width: 1rem;
+$thumb-border-radius: 1rem;
+$thumb-margin-top-chrome: -($thumb-width * 0.25); // Fixes weird default margin in Chrome
+
+$custom-range-track-background-color: $night-theme-color;
 
 @mixin no-appearance {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
+}
+
+@mixin thumb-base {
+    @include no-appearance();
+    border: 0;
+    height: $thumb-height;
+    width: $thumb-width;
+    border-radius: $thumb-border-radius;
+    background: $thumb-color;
+    cursor: pointer;
+}
+
+@mixin track-base {
+    width: $custom-range-track-width;
+    height: $custom-range-track-height;
+    background-color: $custom-range-track-background-color;
+    color: transparent;
+    border-color: transparent;
+    border-radius: $track-border-radius;
+    cursor: pointer;
 }
 
 .custom-range {
     @include no-appearance();
     width: $custom-range-width;
+    background-color: transparent;
 
     &:focus {
         outline: none;
@@ -18,35 +47,38 @@ $custom-range-track-height: 0.125rem;
 
     // Thumbs
     &::-webkit-slider-thumb {
-        @include no-appearance();
+        // Chrome does funny things to the thumb's location if you don't do this margin hack
+        margin-top: $thumb-margin-top-chrome;
+        @include thumb-base();
+    }
+
+    &::-moz-range-thumb {
+        @include thumb-base();
+    }
+
+    &::-ms-thumb {
+        margin: 0;
+        @include thumb-base();
     }
 
     // Tracks
     &::-webkit-slider-runnable-track {
-        width: $custom-range-track-width;
-        height: $custom-range-track-height;
-        cursor: pointer;
-        background-color: transparent;
-        border-color: transparent;
-        color: transparent;
+        @include track-base();
     }
 
     &::-moz-range-track {
-        width: $custom-range-track-width;
-        height: $custom-range-track-height;
-        cursor: pointer;
-        background-color: transparent;
-        border-color: transparent;
-        color: transparent;
+        @include track-base();
     }
 
     &::-ms-track {
-        width: $custom-range-track-width;
-        height: $custom-range-track-height;
-        cursor: pointer;
-        background-color: transparent;
-        border-color: transparent;
-        color: transparent;
+        @include track-base();
     }
 
+    // &::-ms-fill-upper {
+    //     border-radius: $track-border-radius;
+    // }
+
+    // &::-ms-fill-lower {
+    //     border-radius: $track-border-radius;
+    // }
 }

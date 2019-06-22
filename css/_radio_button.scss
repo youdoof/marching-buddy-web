@@ -1,7 +1,7 @@
-$radio-button-base-color: #0033FF;
-$radio-button-checked: #003399;
-$radio-button-hover: #003399;
-$radio-button-border-color: #0033FF;
+$radio-button-base-color: $accent-color;
+$radio-button-checked: $accent-color-dark;
+$radio-button-hover: $accent-color-dark;
+$radio-button-border-color: $accent-color;
 $radio-button-text-color: #FFFFFF;
 
 .radio-button-group {

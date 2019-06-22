@@ -1,4 +1,5 @@
 @import 'reset';
+@import 'color_scheme';
 @import 'grid_layout';
 @import 'radio_button';
 @import 'custom_range';
@@ -27,16 +28,11 @@ h4 {
 }
 
 .night {
-    background-color: black;
-    color: lightgray;
+    background-color: $night-theme-background-color;
+    color: $night-theme-color;
 }
 
 .day {
-    background-color: white;
-    color: black;
-}
-
-input[type="range"] {
-    display: block;
-    width: 85%;
+    background-color: $day-theme-background-color;
+    color: $day-theme-color;
 }

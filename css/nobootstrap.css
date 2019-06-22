@@ -54,6 +54,75 @@ ol {
   border-bottom-left-radius: 0;
 }
 
+.custom-range {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  background-color: transparent;
+}
+.custom-range:focus {
+  outline: none;
+}
+.custom-range::-webkit-slider-thumb {
+  margin-top: -0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 1rem;
+  background: #0033FF;
+  cursor: pointer;
+}
+.custom-range::-moz-range-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 1rem;
+  background: #0033FF;
+  cursor: pointer;
+}
+.custom-range::-ms-thumb {
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 1rem;
+  background: #0033FF;
+  cursor: pointer;
+}
+.custom-range::-webkit-slider-runnable-track {
+  width: 99%;
+  height: 0.5rem;
+  background-color: #999999;
+  color: transparent;
+  border-color: transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.custom-range::-moz-range-track {
+  width: 99%;
+  height: 0.5rem;
+  background-color: #999999;
+  color: transparent;
+  border-color: transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.custom-range::-ms-track {
+  width: 99%;
+  height: 0.5rem;
+  background-color: #999999;
+  color: transparent;
+  border-color: transparent;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
 body {
   margin: 10px;
   text-align: center;
@@ -78,18 +147,13 @@ h4 {
 }
 
 .night {
-  background-color: black;
-  color: lightgray;
+  background-color: #000000;
+  color: #999999;
 }
 
 .day {
-  background-color: white;
-  color: black;
-}
-
-input[type=range] {
-  display: block;
-  width: 85%;
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 /*# sourceMappingURL=nobootstrap.css.map */
