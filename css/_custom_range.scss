@@ -1,0 +1,52 @@
+$custom-range-width: 100%;
+$custom-range-track-width: $custom-range-width * 80%;
+$custom-range-track-height: 0.125rem;
+
+@mixin no-appearance {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.custom-range {
+    @include no-appearance();
+    width: $custom-range-width;
+
+    &:focus {
+        outline: none;
+    }
+
+    // Thumbs
+    &::-webkit-slider-thumb {
+        @include no-appearance();
+    }
+
+    // Tracks
+    &::-webkit-slider-runnable-track {
+        width: $custom-range-track-width;
+        height: $custom-range-track-height;
+        cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    &::-moz-range-track {
+        width: $custom-range-track-width;
+        height: $custom-range-track-height;
+        cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    &::-ms-track {
+        width: $custom-range-track-width;
+        height: $custom-range-track-height;
+        cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+}
