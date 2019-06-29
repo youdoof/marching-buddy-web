@@ -4,358 +4,270 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Marching Buddy</title>
-    <meta name="Description" content="Marching Buddy, midset calculator, helps you find the midset between two sets in marching band">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
-        crossorigin="anonymous">
+    <meta name="Description"
+        content="Marching Buddy, a midset calculator. Use this marching band calculator to determine the midpoint between your sets!">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x=icon">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="night">
     <div class="container">
-        <h1>Marching Buddy Web</h1>
-        <p>Calculate your midsets here!</p>
+        <div class="heading-area">
+            <h1>Marching Buddy Web</h1>
+            <p>Calculate your midsets here!</p>
+        </div>
 
-        <form>
+        <form class="form-area">
             <!-- Settings -->
             <h2>Settings:</h2>
-            <div class="row">
+            <div class="settings-area">
                 <!-- Night or Day Theme -->
-                <div class="col-sm-6 col-xl-3">
+                <div>
                     <h3>Theme</h3>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary nightRadio active">
-                            <input type="radio" name="themeTypeRadio" id="themeNight" value="0" checked> Night
-                        </label>
-                        <label class="btn btn-primary dayRadio">
-                            <input type="radio" name="themeTypeRadio" id="themeDay" value="1"> Day
-                        </label>
+                    <div class="radio-button-group">
+                        <input type="radio" name="themeTypeRadio" id="themeNight" value="0" checked>
+                        <label for="themeNight" class="nightRadio">Night</label>
+                        <input type="radio" name="themeTypeRadio" id="themeDay" value="1">
+                        <label for="themeDay" class="dayRadio">Day</label>
                     </div>
                 </div>
+
                 <!-- High School or College -->
-                <div class="col-sm-6 col-xl-3">
+                <div>
                     <h3>Field Type</h3>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                            <input type="radio" name="fieldTypeRadio" id="fieldHighSchool" value="0" checked> High
-                            School
-                        </label>
-                        <label class="btn btn-primary">
-                            <input type="radio" name="fieldTypeRadio" id="fieldCollege" value="1"> College / NCAA
-                        </label>
+                    <div class="radio-button-group">
+                        <input type="radio" name="fieldTypeRadio" id="fieldHighSchool" value="0" checked>
+                        <label for="fieldHighSchool">High School</label>
+                        <input type="radio" name="fieldTypeRadio" id="fieldCollege" value="1">
+                        <label for="fieldCollege">College / NCAA</label>
                     </div>
                 </div>
+
                 <!-- Side One / Side Two or Left / Right -->
-                <div class="col-sm-6 col-xl-3">
+                <div>
                     <h3>Side Name</h3>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary sideOneTwo active">
-                            <input type="radio" name="sideNameRadio" id="sideOneTwo" value="0" checked> Side 1 / Side 2
-                        </label>
-                        <label class="btn btn-primary sideLeftRight">
-                            <input type="radio" name="sideNameRadio" id="sideLeftRight" value="1"> Left / Right
-                        </label>
+                    <div class="radio-button-group">
+                        <input type="radio" name="sideNameRadio" id="sideOneTwo" value="0" checked>
+                        <label for="sideOneTwo" class="sideOneTwo">Side 1 / Side 2</label>
+                        <input type="radio" name="sideNameRadio" id="sideLeftRight" value="1">
+                        <label for="sideLeftRight" class="sideLeftRight">Left / Right</label>
                     </div>
                 </div>
+
                 <!-- Front / Back Hashes or Home / Visitor Hashes -->
-                <div class="col-sm-6 col-xl-3">
+                <div>
                     <h3>Hash Name</h3>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary hashFrontBack active">
-                            <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked> Front / Back
-                        </label>
-                        <label class="btn btn-primary hashHomeVisitor">
-                            <input type="radio" name="hashNameRadio" id="hashHomeVisitor" value="1"> Home / Visitor
-                        </label>
+                    <div class="radio-button-group">
+                        <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked>
+                        <label for="hashFrontBack" class="hashFrontBack">Front / Back</label>
+                        <input type="radio" name="hashNameRadio" id="hashHomeVisitor" value="1">
+                        <label for="hashHomeVisitor" class="hashHomeVisitor">Home / Visitor</label>
                     </div>
                 </div>
-            </div> <!-- END Settings Container -->
+            </div>
 
             <!-- Starting Coordinate -->
-            <h2>Starting Coordinate:</h2>
-            <div class="row">
-                <!-- Left to Right Container -->
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Left to Right</h3>
-                        </div>
-                    </div> <!-- END 1st Row -->
+            <div class="coordinate-input">
+                <h2 class="title">Starting Coordinate:</h2>
 
-                    <div class="row no-gutters">
+                <!-- Left to Right Container -->
+                <div class="left-to-right-area">
+                    <h3 class="title">Left to Right</h3>
+                    <div class="left-to-right-top">
                         <!-- Display Start LRSteps -->
-                        <div class="col">
-                            <p><span class="startLRSteps"></span> Steps</p>
-                        </div>
+                        <p><span class="startLRSteps"></span> Steps</p>
                         <!-- Start OnInOutRadio -->
-                        <div class="col">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary sOnInOutRadio active">
-                                    <input type="radio" name="sOnInOutRadio" id="sOnLR" value="0" checked> On
-                                </label>
-                                <label class="btn btn-primary sOnInOutRadio">
-                                    <input type="radio" name="sOnInOutRadio" id="sInLR" value="1"> In
-                                </label>
-                                <label class="btn btn-primary sOnInOutRadio">
-                                    <input type="radio" name="sOnInOutRadio" id="sOutLR" value="2"> Out
-                                </label>
-                            </div>
+                        <div class="radio-button-group">
+                            <input type="radio" name="sOnInOutRadio" id="sOnLR" value="0" checked>
+                            <label for="sOnLR" class="sOnInOutRadio">On</label>
+                            <input type="radio" name="sOnInOutRadio" id="sInLR" value="1">
+                            <label for="sInLR" class="sOnInOutRadio">In</label>
+                            <input type="radio" name="sOnInOutRadio" id="sOutLR" value="2">
+                            <label for="sOutLR" class="sOnInOutRadio">Out</label>
                         </div>
                         <!-- Display Start YardLine -->
-                        <div class="col">
-                            <p><span class="startYardLine"></span> Yard Line</p>
-                        </div>
-                    </div> <!-- END 2nd Row -->
+                        <p><span class="startYardLine"></span> Yard Line</p>
+                    </div>
 
                     <!-- Sliders Start LRSteps, YardLine -->
-                    <div class="row">
-                        <div class="col-8">
-                            <input type="range" min="0" max="4" step="0.25" class="custom-range startLRSteps" id="sLRSteps">
-                        </div>
-                        <div class="col">
-                            <input type="range" min="0" max="50" step="5" class="custom-range startYardLine" id="sYardLine">
-                        </div>
-                    </div> <!-- END 3rd Row -->
+                    <div class="left-to-right-mid-left">
+                        <label for="sLRSteps">
+                            <input type="range" min="0" max="4" step="0.25" class="custom-range startLRSteps"
+                                id="sLRSteps">
+                        </label>
+                    </div>
+                    <div class="left-to-right-mid-right">
+                        <label for="sYardLine">
+                            <input type="range" min="0" max="50" step="5" class="custom-range startYardLine"
+                                id="sYardLine">
+                        </label>
+                    </div>
 
                     <!-- Start SideRadio -->
-                    <div class="row">
-                        <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                            <label class="btn btn-primary sSideRadio active">
-                                <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0" checked> <span class="sideTerm">Side 1</span>
-                            </label>
-                            <label class="btn btn-primary sSideRadio">
-                                <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1"> <span class="sideTerm">Side 2</span>
-                            </label>
-                        </div>
-                    </div> <!-- END 4th Row -->
-
-                </div> <!-- END Left to Right Container -->
+                    <div class="radio-button-group left-to-right-bottom">
+                        <input type="radio" name="sSideRadio" id="sSideOneLeft" value="0" checked>
+                        <label for="sSideOneLeft" class="sSideRadio"><span class="sideTerm">Side 1</span></label>
+                        <input type="radio" name="sSideRadio" id="sSideTwoRight" value="1">
+                        <label for="sSideTwoRight" class="sSideRadio"><span class="sideTerm">Side 2</span></label>
+                    </div>
+                </div>
 
                 <!-- Front to Back Container -->
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Front to Back</h3>
-                        </div>
-                    </div> <!-- END 1st Row -->
-
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <p><span class="startFBSteps"></span> Steps</p>
-                        </div>
+                <div class="front-to-back-area">
+                    <h3 class="title">Front to Back</h3>
+                    <div class="front-to-back-top">
+                        <p><span class="startFBSteps"></span> Steps</p>
                         <!-- Start OnInFrontBehindRadio -->
-                        <div class="col">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary sOnInFrontBehindRadio active">
-                                    <input type="radio" name="sOnInFrontBehindRadio" id="sOnFB" value="0" checked> On
-                                </label>
-                                <label class="btn btn-primary sOnInFrontBehindRadio">
-                                    <input type="radio" name="sOnInFrontBehindRadio" id="sInFrontFB" value="1"> In
-                                    Front
-                                </label>
-                                <label class="btn btn-primary sOnInFrontBehindRadio">
-                                    <input type="radio" name="sOnInFrontBehindRadio" id="sBehindFB" value="2"> Behind
-                                </label>
-                            </div>
+                        <div class="radio-button-group">
+                            <input type="radio" name="sOnInFrontBehindRadio" id="sOnFB" value="0" checked>
+                            <label for="sOnFB" class="sOnInFrontBehindRadio">On</label>
+                            <input type="radio" name="sOnInFrontBehindRadio" id="sInFrontFB" value="1">
+                            <label for="sInFrontFB" class="sOnInFrontBehindRadio">In Front</label>
+                            <input type="radio" name="sOnInFrontBehindRadio" id="sBehindFB" value="2">
+                            <label for="sBehindFB" class="sOnInFrontBehindRadio">Behind</label>
                         </div>
-                    </div> <!-- END 2nd Row -->
+                    </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <input type="range" min="0" max="16" step="0.25" class="custom-range startFBSteps" id="sFBSteps">
+                    <div class="front-to-back-mid">
+                        <label for="sFBSteps">
+                            <input type="range" min="0" max="16" step="0.25" class="custom-range startFBSteps"
+                                id="sFBSteps">
+                        </label>
+                    </div>
+
+                    <div class="front-to-back-bottom">
+                        <!-- Start FrontBackRadio -->
+                        <div class="radio-button-group">
+                            <input type="radio" name="sFrontBackRadio" id="sFrontHome" value="0" checked>
+                            <label for="sFrontHome" class="sFrontBackRadio"><span class="hashTerm">Front</span></label>
+                            <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1">
+                            <label for="sBackVisitor" class="sFrontBackRadio"><span class="hashTerm">Back</span></label>
                         </div>
-                    </div> <!-- END 3rd Row -->
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- Start FrontBackRadio -->
-                            <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                                <label class="btn btn-primary sFrontBackRadio active">
-                                    <input type="radio" name="sFrontBackRadio" id="sFrontHome" value="0" checked> <span
-                                        class="hashTerm">Front</span>
-                                </label>
-                                <label class="btn btn-primary sFrontBackRadio">
-                                    <input type="radio" name="sFrontBackRadio" id="sBackVisitor" value="1"> <span class="hashTerm">Back</span>
-                                </label>
-                            </div>
+                        <!-- Start HashSidelineRadio -->
+                        <div class="radio-button-group">
+                            <input type="radio" name="sHashSidelineRadio" id="sHash" value="0" checked>
+                            <label for="sHash" class="sHashSidelineRadio">Hash</label>
+                            <input type="radio" name="sHashSidelineRadio" id="sSideline" value="1">
+                            <label for="sSideline" class="sHashSidelineRadio">Sideline</label>
                         </div>
-                        <div class="col">
-                            <!-- Start HashSidelineRadio -->
-                            <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                                <label class="btn btn-primary sHashSidelineRadio active">
-                                    <input type="radio" name="sHashSidelineRadio" id="sHash" value="0" checked> Hash
-                                </label>
-                                <label class="btn btn-primary sHashSidelineRadio">
-                                    <input type="radio" name="sHashSidelineRadio" id="sSideline" value="1"> Sideline
-                                </label>
-                            </div>
-                        </div>
-                    </div> <!-- END 4th Row -->
-                </div> <!-- END Front to Back Container -->
-            </div> <!-- END Starting Coordinate Container -->
-
-
+                    </div>
+                </div>
+            </div>
 
             <!-- Ending Coordinate -->
-            <h2>Ending Coordinate:</h2>
-            <div class="row">
-                <!-- Left to Right Container -->
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Left to Right</h3>
-                        </div>
-                    </div> <!-- END 1st Row -->
+            <div class="coordinate-input">
+                <h2 class="title">Ending Coordinate:</h2>
 
-                    <div class="row no-gutters">
+                <!-- Left to Right Container -->
+                <div class="left-to-right-area">
+                    <h3 class="title">Left to Right</h3>
+                    <div class="left-to-right-top">
                         <!-- Display End LRSteps -->
-                        <div class="col">
-                            <p><span class="endLRSteps"></span> Steps</p>
-                        </div>
+                        <p><span class="endLRSteps"></span> Steps</p>
                         <!-- End OnInOutRadio -->
-                        <div class="col">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary eOnInOutRadio active">
-                                    <input type="radio" name="eOnInOutRadio" id="eOnLR" value="0" checked> On
-                                </label>
-                                <label class="btn btn-primary eOnInOutRadio">
-                                    <input type="radio" name="eOnInOutRadio" id="eInLR" value="1"> In
-                                </label>
-                                <label class="btn btn-primary eOnInOutRadio">
-                                    <input type="radio" name="eOnInOutRadio" id="eOutLR" value="2"> Out
-                                </label>
-                            </div>
+                        <div class="radio-button-group">
+                            <input type="radio" name="eOnInOutRadio" id="eOnLR" value="0" checked>
+                            <label for="eOnLR" class="eOnInOutRadio">On</label>
+                            <input type="radio" name="eOnInOutRadio" id="eInLR" value="1">
+                            <label for="eInLR" class="eOnInOutRadio">In</label>
+                            <input type="radio" name="eOnInOutRadio" id="eOutLR" value="2">
+                            <label for="eOutLR" class="eOnInOutRadio">Out</label>
                         </div>
                         <!-- Display End YardLine -->
-                        <div class="col">
-                            <p><span class="endYardLine"></span> Yard Line</p>
-                        </div>
-                    </div> <!-- END 2nd Row -->
+                        <p><span class="endYardLine"></span> Yard Line</p>
+                    </div>
 
                     <!-- Sliders End LRSteps, YardLine-->
-                    <div class="row">
-                        <div class="col-8">
-                            <input type="range" min="0" max="4" step="0.25" class="custom-range endLRSteps" id="eLRSteps">
-                        </div>
-                        <div class="col">
-                            <input type="range" min="0" max="50" step="5" class="custom-range endYardLine" id="eYardLine">
-                        </div>
-                    </div> <!-- END 3rd Row -->
+                    <div class="left-to-right-mid-left">
+                        <label>
+                            <input type="range" min="0" max="4" step="0.25" class="custom-range endLRSteps"
+                                id="eLRSteps">
+                        </label>
+                    </div>
+                    <div class="left-to-right-mid-right">
+                        <label>
+                            <input type="range" min="0" max="50" step="5" class="custom-range endYardLine"
+                                id="eYardLine">
+                        </label>
+                    </div>
 
                     <!-- End SideRadio -->
-                    <div class="row">
-                        <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                            <label class="btn btn-primary eSideRadio active">
-                                <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked> <span class="sideTerm">Side 1</span>
-                            </label>
-                            <label class="btn btn-primary eSideRadio">
-                                <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1"> <span class="sideTerm">Side 2</span>
-                            </label>
-                        </div>
-                    </div> <!-- END 4th Row -->
-
-                </div> <!-- END Left to Right Container -->
+                    <div class="radio-button-group left-to-right-bottom">
+                        <input type="radio" name="eSideRadio" id="eSideOneLeft" value="0" checked>
+                        <label for="eSideOneLeft" class="eSideRadio"><span class="sideTerm">Side 1</span></label>
+                        <input type="radio" name="eSideRadio" id="eSideTwoRight" value="1">
+                        <label for="eSideTwoRight" class="eSideRadio"><span class="sideTerm">Side 2</span></label>
+                    </div>
+                </div>
 
                 <!-- Front to Back Container -->
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Front to Back</h3>
-                        </div>
-                    </div> <!-- END 1st Row -->
-
-                    <div class="row no-gutters">
-                        <div class="col">
-                            <p><span class="endFBSteps"></span> Steps</p>
-                        </div>
+                <div class="front-to-back-area">
+                    <h3 class="title">Front to Back</h3>
+                    <div class="front-to-back-top">
+                        <p><span class="endFBSteps"></span> Steps</p>
                         <!-- End OnInFrontBehindRadio -->
-                        <div class="col">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary eOnInFrontBehindRadio active">
-                                    <input type="radio" name="eOnInFrontBehindRadio" id="eOnFB" value="0" checked> On
-                                </label>
-                                <label class="btn btn-primary eOnInFrontBehindRadio">
-                                    <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1"> In
-                                    Front
-                                </label>
-                                <label class="btn btn-primary eOnInFrontBehindRadio">
-                                    <input type="radio" name="eOnInFrontBehindRadio" id="eBehindFB" value="2"> Behind
-                                </label>
-                            </div>
+                        <div class="radio-button-group">
+                            <input type="radio" name="eOnInFrontBehindRadio" id="eOnFB" value="0" checked>
+                            <label for="eOnFB" class="eOnInFrontBehindRadio">On</label>
+                            <input type="radio" name="eOnInFrontBehindRadio" id="eInFrontFB" value="1">
+                            <label for="eInFrontFB" class="eOnInFrontBehindRadio">In Front</label>
+                            <input type="radio" name="eOnInFrontBehindRadio" id="eBehindFB" value="2">
+                            <label for="eBehindFB" class="eOnInFrontBehindRadio">Behind</label>
                         </div>
-                    </div> <!-- END 2nd Row -->
+                    </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <input type="range" min="0" max="16" step="0.25" class="custom-range endFBSteps" id="eFBSteps">
+                    <div class="front-to-back-mid">
+                        <label>
+                            <input type="range" min="0" max="16" step="0.25" class="custom-range endFBSteps"
+                                id="eFBSteps">
+                        </label>
+                    </div>
+
+                    <div class="front-to-back-bottom">
+                        <!-- End FrontBackRadio -->
+                        <div class="radio-button-group">
+                            <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0" checked>
+                            <label for="eFrontHome" class="eFrontBackRadio"><span class="hashTerm">Front</span></label>
+                            <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1">
+                            <label for="eBackVisitor" class="eFrontBackRadio"><span class="hashTerm">Back</span></label>
                         </div>
-                    </div> <!-- END 3rd Row -->
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- End FrontBackRadio -->
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary eFrontBackRadio active">
-                                    <input type="radio" name="eFrontBackRadio" id="eFrontHome" value="0" checked> <span
-                                        class="hashTerm">Front</span>
-                                </label>
-                                <label class="btn btn-primary eFrontBackRadio">
-                                    <input type="radio" name="eFrontBackRadio" id="eBackVisitor" value="1"> <span class="hashTerm">Back</span>
-                                </label>
-                            </div>
+                        <!-- End HashSidelineRadio -->
+                        <div class="radio-button-group">
+                            <input type="radio" name="eHashSidelineRadio" id="eHash" value="0" checked>
+                            <label for="eHash" class="eHashSidelineRadio">Hash</label>
+                            <input type="radio" name="eHashSidelineRadio" id="eSideline" value="1">
+                            <label for="eSideline" class="eHashSidelineRadio">Sideline</label>
                         </div>
-                        <div class="col">
-                            <!-- End HashSidelineRadio -->
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary eHashSidelineRadio active">
-                                    <input type="radio" name="eHashSidelineRadio" id="eHash" value="0" checked> Hash
-                                </label>
-                                <label class="btn btn-primary eHashSidelineRadio">
-                                    <input type="radio" name="eHashSidelineRadio" id="eSideline" value="1"> Sideline
-                                </label>
-                            </div>
-                        </div>
-                    </div> <!-- END 4th Row -->
-                </div> <!-- END  Front to Back Container -->
-            </div> <!-- END Ending Coordinate Container -->
-
-
-
-            <!-- Counts -->
-            <h2>Counts:</h2>
-            <div class="row">
-                <div class="col">
-                    <p><span class="countsSlider"></span> Counts</p>
+                    </div>
                 </div>
-                <div class="col-8">
+            </div>
+
+            <div class="counts-area">
+                <!-- Counts -->
+                <h2 class="title">Counts:</h2>
+                <p class="text"><span class="countsSlider"></span> Counts</p>
+                <label class="slider">
                     <input type="range" min="1" max="64" step="1" class="custom-range countsSlider" id="counts">
-                </div>
-            </div> <!-- END Counts Container -->
-
-            <button type="button" class="btn btn-primary btn-block" onclick="calculateMidsetInformation()">Get Midset</button>
+                </label>
+                <button type="button" class="custom-button counts-button" onclick="calculateMidsetInformation()">Get
+                    Midset</button>
+            </div>
         </form>
-
-        <!-- Results -->
-        <h2>Results:</h2>
-
-        <h4>Midset:</h4>
-        <h5><span class="midset"></span></h5>
-        <h4>Stepsize:</h4>
-        <h5><span class="step-size"></span></h5>
-        <h4>Cross Counts:</h4>
-        <h5><span class="cross-count"></span></h5>
-
-        <!-- Copy End Coordinate to Start -->
-        <button type="button" class="btn btn-primary btn-block" onclick="copyEndToStart()">Copy End Coordinate to Start</button>
-
+        <div class="results-area">
+            <!-- Results -->
+            <h2>Results:</h2>
+            <h4>Midset:</h4>
+            <h5><span class="midset"></span></h5>
+            <h4>Stepsize:</h4>
+            <h5><span class="step-size"></span></h5>
+            <h4>Cross Counts:</h4>
+            <h5><span class="cross-count"></span></h5>
+            <!-- Copy End Coordinate to Start -->
+            <button type="button" class="custom-button" onclick="copyEndToStart()">Copy End Coordinate to
+                Start</button>
+        </div>
     </div>
     <script src="js/marchingbuddy.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

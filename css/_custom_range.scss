@@ -1,6 +1,6 @@
-$custom-range-width: 100%;
-$custom-range-track-width: 99%; // Display full track bar without being cut off during render (Edge)
-$custom-range-track-height: 0.5rem;
+$range-width: 100%;
+$track-width: 99%; // Display full track bar without being cut off during render (Edge)
+$track-height: 0.5rem;
 $track-border-radius: 1rem;
 
 $thumb-color: $accent-color;
@@ -9,7 +9,7 @@ $thumb-width: 1rem;
 $thumb-border-radius: 1rem;
 $thumb-margin-top-chrome: -($thumb-height * 0.25); // Fixes weird default margin in Chrome
 
-$custom-range-track-background-color: $night-theme-color;
+$track-background-color: $night-theme-color;
 
 @mixin no-appearance {
     -webkit-appearance: none;
@@ -27,9 +27,9 @@ $custom-range-track-background-color: $night-theme-color;
 }
 
 @mixin track-base {
-    width: $custom-range-track-width;
-    height: $custom-range-track-height;
-    background-color: $custom-range-track-background-color;
+    width: $track-width;
+    height: $track-height;
+    background-color: $track-background-color;
     color: transparent;
     border-color: transparent;
     border-radius: $track-border-radius;
@@ -38,7 +38,7 @@ $custom-range-track-background-color: $night-theme-color;
 
 .custom-range {
     @include no-appearance();
-    width: $custom-range-width;
+    width: $range-width;
     background-color: transparent;
 
     &:focus {
@@ -73,12 +73,4 @@ $custom-range-track-background-color: $night-theme-color;
     &::-ms-track {
         @include track-base();
     }
-
-    // &::-ms-fill-upper {
-    //     border-radius: $track-border-radius;
-    // }
-
-    // &::-ms-fill-lower {
-    //     border-radius: $track-border-radius;
-    // }
 }

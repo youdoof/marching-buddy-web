@@ -1,13 +1,3 @@
-%shared-padding {
-    padding: 0 .75rem;
-}
-
-@mixin for-phone-only {
-    @media (max-width: 599px) {
-        @content;
-    }
-}
-
 @mixin for-tablet-portrait-up {
     @media (min-width: 600px) {
         @content;
@@ -26,49 +16,130 @@
     }
 }
 
-// .container {
-//     display: grid;
-//     grid-template-columns: 1fr;
-//     grid-template-rows: auto auto auto;
-//     grid-template-areas: 
-//     "h"
-//     "f"
-//     "r";
-// }
+.container {
+    margin: 0 auto;
+    @include for-tablet-portrait-up {
+        max-width: 560px;
+    }
 
-.left-to-right-area {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto;
-}
+    @include for-tablet-landscape-up {
+        max-width: 860px;
+    }
 
-.heading-area {
-    @extend %shared-padding;
-    // grid-area: h;
-}
-
-.form-area {
-    @extend %shared-padding;
-    // grid-area: f;
-}
-
-.results-area {
-    @extend %shared-padding;
-    // grid-area: r;
+    @include for-desktop-up {
+        max-width: 1160px;
+    }
 }
 
 .settings-area {
-    // grid-area: s;
+    // 2 x 2 for tablet-landscape
+    @include for-tablet-portrait-up {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    // 4 x 1 desktop
+    @include for-desktop-up {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-.start-coordinate {
-    // grid-area: b;
+.title {
+    grid-area: title;
 }
 
-.end-coordinate {
-    // grid-area: e;
+.coordinate-input {
+    @include for-tablet-landscape-up {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 1rem;
+        grid-template-areas:
+        "title ."
+        "left-right front-back"
+    }
 }
 
 .counts-area {
-    // grid-area: c;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    grid-template-areas: 
+    "title title"
+    "text slider"
+    "button button";
+}
+
+.counts-text {
+    grid-area: text;
+}
+
+.counts-slider {
+    grid-area: slider;
+}
+
+.counts-button {
+    grid-area: button;
+}
+
+.left-to-right-area {
+    grid-area: left-right;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas: 
+    "title title title"
+    "top top top"
+    "mid-left mid-left mid-right"
+    "bottom bottom bottom";
+}
+
+.left-to-right-top {
+    grid-area: top;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+.left-to-right-mid-left {
+    grid-area: mid-left;
+    margin-right: 0.75rem; // Give space between range inputs
+}
+
+.left-to-right-mid-right {
+    grid-area: mid-right;
+}
+
+.left-to-right-bottom {
+    grid-area: bottom;
+}
+
+.front-to-back-area {
+    grid-area: front-back;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas: 
+    "title"
+    "top"
+    "mid"
+    "bottom";
+}
+
+.front-to-back-top {
+    grid-area: top;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+.front-to-back-mid {
+    grid-area: mid;
+}
+
+.front-to-back-bottom {
+    grid-area: bottom;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
 }

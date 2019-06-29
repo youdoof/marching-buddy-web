@@ -6,7 +6,7 @@ $button-text-color: #FFFFFF;
 
 $button-font-size: 1rem;
 $button-border-size: 1px;
-$button-padding-top-bottom: 0.375rem;
+$button-padding-top-bottom: 0.475rem;
 $button-padding-left-right: 0.675rem;
 $button-border-radius: 0.25rem;
 
@@ -41,14 +41,16 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
         @include button-base();
         display: inline-block;
         vertical-align: middle;
-        margin-left: $radio-margin-left;
 
         &:hover {
             background-color: $button-hover;
             border-color: $button-hover;
         }
 
-        & + input + label { // Neighbor label gets left border flattened, but not the 1st label.
+        & + input + label {
+            // Neighbor labels gets left border flattened and moved over
+            // to overlap previous label
+            margin-left: $radio-margin-left;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
@@ -60,7 +62,12 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
     display: block;
     width: 100%;
 
-    &:focus { // Do not want anything to happen after clicked for now.
+    &:focus {
         outline: none;
+    }
+
+    &:hover {
+        background-color: $button-hover;
+        border-color: $button-base-color;
     }
 }
