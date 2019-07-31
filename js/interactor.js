@@ -49,9 +49,9 @@ function resetInputSliders(LRSteps, YardLine, FBSteps) {
     var rangeYardLine = document.querySelectorAll(YardLine);
     var rangeFBSteps = document.querySelectorAll(FBSteps);
 
-    setInnerHTMLAndValue(rangeLRSteps, RANGE_STEPS_DEFAULT_VALUE);
-    setInnerHTMLAndValue(rangeYardLine, RANGE_YARDLINE_DEFAULT_VALUE);
-    setInnerHTMLAndValue(rangeFBSteps, RANGE_STEPS_DEFAULT_VALUE);
+    setRangeFamilyInnerHTMLAndValue(rangeLRSteps, RANGE_STEPS_DEFAULT_VALUE);
+    setRangeFamilyInnerHTMLAndValue(rangeYardLine, RANGE_YARDLINE_DEFAULT_VALUE);
+    setRangeFamilyInnerHTMLAndValue(rangeFBSteps, RANGE_STEPS_DEFAULT_VALUE);
 }
 
 /**
@@ -73,20 +73,20 @@ function resetEndSliders() {
 /**
  * Resets the Count slider to its default value of RANGE_COUNTS_DEFAULT_VALUE
  * @function resetCountSlider
- * @see setInnerHTMLAndValue
+ * @see setRangeFamilyInnerHTMLAndValue
  */
 function resetCountSlider() {
     var rangeCounts = document.querySelectorAll(RANGE_COUNTS_SLIDER);
-    setInnerHTMLAndValue(rangeCounts, RANGE_COUNTS_DEFAULT_VALUE);
+    setRangeFamilyInnerHTMLAndValue(rangeCounts, RANGE_COUNTS_DEFAULT_VALUE);
 }
 
 /**
  * Sets the innerHTML and Value of a range family to a specified value
- * @function setInnerHTMLAndValue
+ * @function setRangeFamilyInnerHTMLAndValue
  * @param {Array} targetRangeFamily querySelectorAll array of the range family whose value needs to be set
  * @param {Number} number value to set the range and span to display
  */
-function setInnerHTMLAndValue(targetRangeFamily, number) {
+function setRangeFamilyInnerHTMLAndValue(targetRangeFamily, number) {
     targetRangeFamily[0].innerHTML = number;
     targetRangeFamily[1].value = number;
 }

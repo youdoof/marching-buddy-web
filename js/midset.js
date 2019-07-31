@@ -269,3 +269,20 @@ function printYardLineCrossInfo(start, end, counts, field) {
         return crossString;
     }
 }
+
+/**
+ * Calculates the angle from the start point to the end point
+ * @function getAngleReference
+ * @param {Coordinate} start Starting point
+ * @param {Coordinate} end   Ending point
+ * @return {Number} Angle between the start and end points
+ */
+function getAngleReference(start, end) {
+    return rounder(Math.atan(getSlopeBetweenCoordinates(start, end)));
+}
+
+function printAngleReference(start, end) {
+    var angle = getAngleReference(start, end);
+    var outputString = `Direction of move: ${angle}`;
+    return outputString;
+}
