@@ -1,11 +1,5 @@
 'use strict';
 
-/**
- * Coordinate for marching band
- * @typedef {Object} Coordinate
- * @property {Number} leftToRight - Left to Right, or X coordinate
- * @property {Number} frontToBack - Front to Back, or Y coordinate
- */
 class Coordinate {
     /**
      * New Coordinate for use in the calculation of midsets, step sizes, and cross counts
@@ -16,9 +10,19 @@ class Coordinate {
         this.leftToRight = leftToRight;
         this.frontToBack = frontToBack;
     }
+    /**
+     * Getter for Left to Right
+     * @function getLeftToRight
+     * @return {Number} Left to Right of the Coordinate
+     */
     getLeftToRight() {
         return this.leftToRight;
     }
+    /**
+     * Getter for Front to Back
+     * @function getFrontToBack
+     * @return {type} Front to Back of the Coordinate
+     */
     getFrontToBack() {
         return this.frontToBack;
     }

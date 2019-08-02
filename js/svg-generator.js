@@ -1,3 +1,5 @@
+'use strict';
+
 const BACK_SIDE_LINE_SVG = coordinateFBToSVGY(42); // 256
 const FRONT_SIDE_LINE_SVG = coordinateFBToSVGY(-42); // 1600
 const SIDE_ONE_YARD_LINE_SVG = coordinateLRToSVGX(-80); // 64
@@ -28,6 +30,7 @@ function createCanvas(width, height, container) {
     var canvas = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
+    canvas.setAttribute('style', 'background: white;');
     container.appendChild(canvas);
     return canvas;
 }
@@ -79,14 +82,6 @@ function createCircle(x, y) {
     circle.setAttribute('cy', y);
     circle.setAttribute('r', '4');
     return circle;
-}
-
-function init() {
-    drawField(0);
-    // drawField(1);
-    // -13.75, 20.25
-    drawMovement(-13.75, 20.25, 11, 12.5);
-    // 11, 12.5
 }
 
 /**
@@ -201,17 +196,39 @@ function drawField(hashType) {
     drawSidelines(sidelinesgroup);
 }
 
+/**
+ * Takes the start and end points of coordinates and 
+ * @function drawMovement
+ * @param {Number} x1 Start x coordinate (Left to Right)
+ * @param {Number} y1 Start y coordinate (Front to Back)
+ * @param {Number} x2 End x coordinate (Left to Right)
+ * @param {Number} y2 End y coordinate (Front to Back)
+ */
 function drawMovement(x1, y1, x2, y2) {
     var midsettarget = document.querySelector('.midset-target');
+    var newGroup = createGroup('movement');
     var startx = coordinateLRToSVGX(x1);
     var starty = coordinateFBToSVGY(y1);
     var endx = coordinateLRToSVGX(x2);
     var endy = coordinateFBToSVGY(y2);
     // Circles
-    midsettarget.appendChild(createCircle(startx, starty));
-    midsettarget.appendChild(createCircle(endx, endy));
+    newGroup.appendChild(createCircle(startx, starty));
+    newGroup.appendChild(createCircle(endx, endy));
     // Line
-    midsettarget.appendChild(createLine(startx, starty, endx, endy, 1));
+    newGroup.appendChild(createLine(startx, starty, endx, endy, 1));
+    midsettarget.appendChild(newGroup);
 }
 
-init();
+function drawRandom(x) {
+    var coords = generateRandomCoordinates(x);
+    for (var i = 0; i < coords.length - 1; i++) {
+        drawMovement(coords[i].getLeftToRight(), coords[i].getFrontToBack(), coords[i + 1].getLeftToRight(), coords[i + 1].getFrontToBack());
+    }
+}
+
+function draw() {
+    drawField(0);
+    drawRandom(30);
+}
+
+draw();

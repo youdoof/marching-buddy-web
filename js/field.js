@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * Field definitions for marching band
- * @typedef {Object} Field
- * @property {Number} fieldType - Type of Field, High School or NCAA
- * @property {Number} sideType - Side Terminology selector
- * @property {Number} hashType - Hash Terminology selector
- */
 class Field {
     constructor() {
         this.fieldType = setFieldType();

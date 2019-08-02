@@ -1,3 +1,5 @@
+'use strict';
+
 const GRID_MULTIPLIER = 16; // Multiplier for going from internal coordinate system to the SVG coordinate system
 const X_OFFSET = 84; // Maximum x value for internal coordinate system
 const Y_OFFSET = -58; // Maximum y value for internal coordiante system

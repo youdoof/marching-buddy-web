@@ -1,17 +1,5 @@
 'use strict';
 
-/**
- * Input object for processing user information on one coordinate
- * @typedef {Object} Input
- * @property {Number} stepsLR - Steps Left to Right from yard line
- * @property {Number} onInOut - 0, 1, or 2, representing On, Inside, or Outside the yard line
- * @property {Number} side - 0 or 1, representing Side 1 or Side 2 (and other common names)
- * @property {Number} yardLine - The yard line to be referenced for left to right information
- * @property {Number} stepsFB - Steps Front to Back from nearest front to back reference point (hash or sideline)
- * @property {Number} onInFrontBehind - 0, 1, or 2, representing On, In Front, or Behind the front to back reference point
- * @property {Number} frontBack - 0 or 1, representing either the Front or Back front to back reference point
- * @property {Number} hashSideline - 0 or 1, representing either the Hash or Sideline being the front to back reference point
- */
 class Input {
     /**
      * Builds object of information gathered from the input form for one coordinate based on the string passed in
