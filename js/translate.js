@@ -8,9 +8,9 @@ const INCH = 25.6 / 36;
 /**
  * Takes Coordinate and converts to svg coordinates
  * @function translateCoordinateToSVG
- * @param {type} leftToRight {description}
- * @param {type} frontToBack {description}
- * @return {type} {description}
+ * @param {Number} leftToRight Left to Right (x coordinate) of a marching band Coordinate
+ * @param {Number} frontToBack Front to Back (y coordinate) of a marching band Coordinate
+ * @return {Array<Number>} Temporary solution as a proof of concept. 
  */
 function translateCoordinateToSVG(leftToRight, frontToBack) {
     // (0,0) in SVG = (-84, 58) in Marching Buddy Coordinate System.
