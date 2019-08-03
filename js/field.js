@@ -2,26 +2,35 @@
 
 class Field {
     constructor() {
-        this.fieldType = setFieldType();
-        this.sideType = setSideType();
-        this.hashType = setHashType();
+        this._fieldType = findFieldTypeFromDOM();
+        this._sideType = findSideTypeFromDOM();
+        this._hashType = findHashTypeFromDOM();
     }
-    getFieldType() {
-        return this.fieldType;
+    get fieldType() {
+        return this._fieldType;
     }
-    getSideType() {
-        return this.sideType;
+    set fieldType(value) {
+        this._fieldType = value;
     }
-    getHashType() {
-        return this.hashType;
+    get sideType() {
+        return this._sideType;
+    }
+    set sideType(value) {
+        this._sideType = value;
+    }
+    get hashType() {
+        return this._hashType;
+    }
+    set hashType(value) {
+        this._hashType = value;
     }
 }
-function setFieldType() {
+function findFieldTypeFromDOM() {
     return parseInt(document.querySelector('input[name=fieldTypeRadio]:checked').value);
 }
-function setSideType() {
+function findSideTypeFromDOM() {
     return parseInt(document.querySelector('input[name=sideNameRadio]:checked').value);
 }
-function setHashType() {
+function findHashTypeFromDOM() {
     return parseInt(document.querySelector('input[name=hashNameRadio]:checked').value);
 }

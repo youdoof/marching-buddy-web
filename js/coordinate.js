@@ -7,24 +7,20 @@ class Coordinate {
      * @param {Number} frontToBack Front to Back, or Y coordinate
      */
     constructor(leftToRight, frontToBack) {
-        this.leftToRight = leftToRight;
+        this._leftToRight = leftToRight;
         this.frontToBack = frontToBack;
     }
-    /**
-     * Getter for Left to Right
-     * @function getLeftToRight
-     * @return {Number} Left to Right of the Coordinate
-     */
-    getLeftToRight() {
-        return this.leftToRight;
+    get leftToRight() {
+        return this._leftToRight;
     }
-    /**
-     * Getter for Front to Back
-     * @function getFrontToBack
-     * @return {type} Front to Back of the Coordinate
-     */
-    getFrontToBack() {
-        return this.frontToBack;
+    set leftToRight(value) {
+        this._leftToRight = value;
+    }
+    get frontToBack() {
+        return this._frontToBack;
+    }
+    set frontToBack(value) {
+        this._frontToBack = value;
     }
     /**
      * Prints the Coordinate in marching band terms that the user will understand,
@@ -34,8 +30,8 @@ class Coordinate {
      * @return {String} Formatted string detailing the location of the Coordinate in marching band terms
      */
     printCoordinate(field) {
-        return outputLeftToRight(this.getLeftToRight(), field) + "<br>" +
-            outputFrontToBack(this.getFrontToBack(), field);
+        return outputLeftToRight(this.leftToRight, field) + "<br>" +
+            outputFrontToBack(this.frontToBack, field);
     }
 }
 

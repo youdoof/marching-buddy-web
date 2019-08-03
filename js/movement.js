@@ -7,26 +7,26 @@ class Movement {
      * @param  {Number} counts {description}
      */
     constructor(start, end, counts) {
-        this.start = start;
-        this.end = end;
-        this.counts = counts;
+        this._start = start;
+        this._end = end;
+        this._counts = counts;
     }
     get start() {
-        return this.start;
+        return this._start;
     }
     set start(value) {
-        this.start = value;
+        this._start = value;
     }
     get end() {
-        return this.end;
+        return this._end;
     }
     set end(value) {
-        this.end = value;
+        this._end = value;
     }
     get counts() {
-        return this.counts;
+        return this._counts;
     }
     set counts(value) {
-        this.counts = value;
+        this._counts = value;
     }
 }

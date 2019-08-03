@@ -222,7 +222,7 @@ function drawMovement(x1, y1, x2, y2) {
 function drawRandom(x) {
     var coords = generateRandomCoordinates(x);
     for (var i = 0; i < coords.length - 1; i++) {
-        drawMovement(coords[i].getLeftToRight(), coords[i].getFrontToBack(), coords[i + 1].getLeftToRight(), coords[i + 1].getFrontToBack());
+        drawMovement(coords[i].leftToRight, coords[i].frontToBack, coords[i + 1].leftToRight, coords[i + 1].frontToBack);
     }
 }
 

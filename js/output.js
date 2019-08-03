@@ -32,7 +32,7 @@ function outputFrontToBack(frontToBack, field) {
     var frontHashName;
     var backHashName;
     // Set Field Type from Settings
-    if (field.getFieldType() === 0) {
+    if (field.fieldType === 0) {
         frontHash = HS_FRONT_HASH;
         backHash = HS_BACK_HASH;
     }
@@ -41,7 +41,7 @@ function outputFrontToBack(frontToBack, field) {
         backHash = NCAA_BACK_HASH;
     }
     // Set Hash Type from Settings
-    if (field.getHashType() === 0) {
+    if (field.hashType === 0) {
         frontHashName = OUTPUT_STRING_FRONT_HASH;
         backHashName = OUTPUT_STRING_BACK_HASH;
     }
@@ -114,7 +114,7 @@ function outputLeftToRight(leftToRight, field) {
     var step = leftToRight % 8;
 
     // Set Side Type from Settings
-    if (field.getSideType() === 0) {
+    if (field.sideType === 0) {
         leftSideName = OUTPUT_STRING_SIDE_ONE;
         rightSideName = OUTPUT_STRING_SIDE_TWO;
     } else {

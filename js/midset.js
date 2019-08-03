@@ -28,10 +28,10 @@ const NO_INTERSECTIONS = "No Yard Line Intersections Found";
  * @returns {Number} distance between the two given Coordinates
  */
 function getDistanceBetweenCoordinates(start, end) {
-    var startX = start.getLeftToRight();
-    var startY = start.getFrontToBack();
-    var endX = end.getLeftToRight();
-    var endY = end.getFrontToBack();
+    var startX = start.leftToRight;
+    var startY = start.frontToBack;
+    var endX = end.leftToRight;
+    var endY = end.frontToBack;
     return Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
 }
 
@@ -80,8 +80,8 @@ function getStepSize(start, end, counts) {
  * @returns {Coordinate} Mid point between the two given Coordinates
  */
 function getMidSetCoordinate(start, end) {
-    var leftToRightMiddle = (start.getLeftToRight() + end.getLeftToRight()) / 2;
-    var frontToBackMiddle = (start.getFrontToBack() + end.getFrontToBack()) / 2;
+    var leftToRightMiddle = (start.leftToRight + end.leftToRight) / 2;
+    var frontToBackMiddle = (start.frontToBack + end.frontToBack) / 2;
     return new Coordinate(leftToRightMiddle, frontToBackMiddle);
 }
 
@@ -112,16 +112,16 @@ function cleanUp(x) {
  */
 function findYardLineIntersections(start, end) {
     var intersectArray = [];
-    var sLR = cleanUp(start.getLeftToRight());
-    var eLR = cleanUp(end.getLeftToRight());
+    var sLR = cleanUp(start.leftToRight);
+    var eLR = cleanUp(end.leftToRight);
 
-    if (start.getLeftToRight() == end.getLeftToRight()) {
+    if (start.leftToRight == end.leftToRight) {
         intersectArray.push(NO_INTERSECTIONS);
     } else if (sLR < eLR) {
         // Left to Right
         for (var i = sLR; i <= eLR; i++) {
             // Skip starting position (won't cross yard line if you start on it)
-            if (i == start.getLeftToRight()) {
+            if (i == start.leftToRight) {
                 continue;
             }
             if (i % YARD_LINE_DISTANCE == 0) {
@@ -132,7 +132,7 @@ function findYardLineIntersections(start, end) {
         // Right to Left
         for (var i = eLR; i <= sLR; i++) {
             // Skip starting position (won't cross yard line if you start on it)
-            if (i == start.getLeftToRight()) {
+            if (i == start.leftToRight) {
                 continue;
             }
             if (i % YARD_LINE_DISTANCE == 0) {
@@ -158,8 +158,8 @@ function findYardLineIntersections(start, end) {
  * @return {Number}           The slope of the line intersecting the start and end points
  */
 function getSlopeBetweenCoordinates(start, end) {
-    var rise = end.getFrontToBack() - start.getFrontToBack();
-    var run = end.getLeftToRight() - start.getLeftToRight();
+    var rise = end.frontToBack - start.frontToBack;
+    var run = end.leftToRight - start.leftToRight;
     return rise / run;
 }
 
@@ -171,7 +171,7 @@ function getSlopeBetweenCoordinates(start, end) {
  * @return {Number}           The Number B to complete slope intercept form y = mx + b
  */
 function findB(start, end) {
-    return start.getFrontToBack() - (getSlopeBetweenCoordinates(start, end) * start.getLeftToRight());
+    return start.frontToBack - (getSlopeBetweenCoordinates(start, end) * start.leftToRight);
 }
 
 // yardLine is the internal coord system format, not marching band format
@@ -220,7 +220,7 @@ function printSide(point, field) {
     if (point == 0) {
         // The 50 Yard line
         return "";
-    } else if (field.getSideType() == 0) {
+    } else if (field.sideType == 0) {
         // Side Term 0, Side 1 Side 2
         if (point < 0) {
             // Side 1
@@ -229,7 +229,7 @@ function printSide(point, field) {
             // Side 2
             return SIDE_TERM_0_SIDE_1_SIDE_2[1];
         }
-    } else if (field.getSideType() == 1) {
+    } else if (field.sideType == 1) {
         // Side Term 1, Left Right
         if (point < 0) {
             // Left

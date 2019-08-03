@@ -163,7 +163,7 @@ function inputFrontToBack(input, field) {
     var backHashReference;
     var processedReferencePoint = getProcessedFrontBackReferencePoint(input);
 
-    if (field.getFieldType() == 0) {
+    if (field.fieldType == 0) {
         frontHashReference = HS_FRONT_HASH;
         backHashReference = HS_BACK_HASH;
     } else {
