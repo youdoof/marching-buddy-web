@@ -8,7 +8,7 @@ class Coordinate {
      */
     constructor(leftToRight, frontToBack) {
         this._leftToRight = leftToRight;
-        this.frontToBack = frontToBack;
+        this._frontToBack = frontToBack;
     }
     get leftToRight() {
         return this._leftToRight;

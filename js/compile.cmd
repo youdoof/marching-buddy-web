@@ -15,5 +15,6 @@ SET outputname=marchingbuddy.js
 SET compilationlevel=%simple%
 :: Name of the .jar for the closure compiler.
 SET jarname=closure-compiler-v20190528.jar
+:: Need to add on names of javascript files as the project becomes larger. Order matters when files reference other files.
 java -jar .\%jarname% --compilation_level %compilationlevel% --js_output_file %outputname% --js .\coordinate.js .\field.js .\input.js .\movement.js .\midset.js .\output.js .\interactor.js .\translate.js .\svg-generator.js .\random-coordinate-generator.js
 PAUSE

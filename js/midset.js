@@ -271,6 +271,22 @@ function printYardLineCrossInfo(start, end, counts, field) {
 }
 
 /**
+ * @function movementYardLineCross
+ * @param  {Movement} m {description}
+ */
+function movementYardLineCross(m) {
+    var intersections = findYardLineIntersections(m.start, m.end);
+    if (intersections[0] == NO_INTERSECTIONS) {
+        // return true;
+        continue;
+    } else {
+        for (var i = 0; i < intersections.length; i++) {
+            m.intermediary(findYardLineIntersectionCoordinate(m.start, m.end, intersections[i] * YARD_LINE_DISTANCE));
+        }
+    }
+}
+
+/**
  * Calculates the angle from the start point to the end point
  * @function getAngleReference
  * @param {Coordinate} start Starting point
