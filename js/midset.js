@@ -20,6 +20,13 @@ const YARD_LINE_DISTANCE = 8;
 const NO_INTERSECTIONS = "No Yard Line Intersections Found";
 
 /**
+ * Precision to round to in the roundToPrecision function
+ * @see roundToPrecision
+ * @constant {Number}
+ */
+const PRECISION_GRANULARITY = 0.125;
+
+/**
  * Calculates the distance between two given Coordinates, used to calculate the step size of a movement
  * @function getDistanceBetweenCoordinates
  * @see getStepSize
@@ -33,23 +40,6 @@ function getDistanceBetweenCoordinates(start, end) {
     var endX = end.leftToRight;
     var endY = end.frontToBack;
     return Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
-}
-
-/**
- * Decimal places to round to in the rounder function
- * @see rounder
- * @constant {Number}
- */
-const ROUNDER_GRANULARITY = 3;
-
-/**
- * Round a given Number to ROUNDER_GRANULARITY decimal places
- * @function rounder
- * @param {Number} x Number to be rounded
- * @returns {Number} Number rounded to constant decimal places
- */
-function rounder(x) {
-    return Number.parseFloat(x).toFixed(ROUNDER_GRANULARITY);
 }
 
 /**
@@ -68,7 +58,7 @@ function getStepSize(start, end, counts) {
         return "Hold";
     } else {
         computedStepSize = STEP_SIZE_REFERENCE / stepSizeMultiplier;
-        return rounder(computedStepSize) + " to 5";
+        return roundToPrecision(computedStepSize, PRECISION_GRANULARITY) + " to 5";
     }
 }
 
@@ -90,63 +80,79 @@ function getMidSetCoordinate(start, end) {
 ------------------------------------------*/
 
 /**
- * Cleans up a given Number by finding the ceiling (if negative) or the floor (if positive).
- * @function cleanUp
- * @param  {Number} x Number to be fixed up
+ * Rounds a given Number down (nearest to 0) by finding the ceiling (if negative) or the floor (if positive).
+ * This is used in checking which yard lines are crossed.
+ * Ex: 1.9 rounds to 1
+ * @function prepareYardLineStepper
+ * @see findYardLineIntersections
+ * @param  {Number} x Number to be rounded
  * @return {Number} Floor or ceiling of given Number
  */
-function cleanUp(x) {
+function prepareYardLineStepper(x) {
+    // Rounding on outside of a yard line requires special check
+    // to see if within 1 step of a yard line, then subtract 1
+    // or add 1 to get on the right track.
     if (x < 0) {
+        if (x % YARD_LINE_DISTANCE > -1) {
+            x -= 1;
+        }
         return Math.ceil(x);
     } else {
+        if (x % YARD_LINE_DISTANCE < 1) {
+            x += 1;
+        }
         return Math.floor(x);
     }
 }
 
 /**
- * Searches between the given points to see if any yard lines were intersected and returns the lines which were crossed
+ * Walks through start and end points and returns an array of intersection points
+ * @function yardLineStepper
+ * @param  {Coordinate} start Coordinate containing original left to right
+ * @param  {Number} a         Starting point to search through
+ * @param  {Number} b         Ending point to search through
+ * @return {Array<String>} Array of strings containing intersection points
+ */
+function yardLineStepper(start, a, b) {
+    var intersectArray = [];
+    for (var i = a; i <= b; i++) {
+        // Skip starting position (not crossing yard line if you start on it)
+        if (i == start.leftToRight) {
+            continue;
+        }
+        if (i % YARD_LINE_DISTANCE == 0) {
+            intersectArray.push(i / YARD_LINE_DISTANCE);
+        }
+    }
+    return intersectArray;
+}
+
+/**
+ * Searches between the given points to see if any yard lines were intersected
+ * and returns the lines which were crossed
  * @function findYardLineIntersections
  * @param  {Coordinate} start Starting point
  * @param  {Coordinate} end Ending point
- * @return {Array<String>} Array of strings containing possible intersection points
+ * @return {Array<String>} Array of strings containing intersection points
  */
 function findYardLineIntersections(start, end) {
     var intersectArray = [];
-    var sLR = cleanUp(start.leftToRight);
-    var eLR = cleanUp(end.leftToRight);
-
+    var sLR = prepareYardLineStepper(start.leftToRight);
+    var eLR = prepareYardLineStepper(end.leftToRight);
     if (start.leftToRight == end.leftToRight) {
         intersectArray.push(NO_INTERSECTIONS);
     } else if (sLR < eLR) {
         // Left to Right
-        for (var i = sLR; i <= eLR; i++) {
-            // Skip starting position (won't cross yard line if you start on it)
-            if (i == start.leftToRight) {
-                continue;
-            }
-            if (i % YARD_LINE_DISTANCE == 0) {
-                intersectArray.push(i / YARD_LINE_DISTANCE);
-            }
-        }
+        intersectArray = yardLineStepper(start, sLR, eLR);
     } else {
         // Right to Left
-        for (var i = eLR; i <= sLR; i++) {
-            // Skip starting position (won't cross yard line if you start on it)
-            if (i == start.leftToRight) {
-                continue;
-            }
-            if (i % YARD_LINE_DISTANCE == 0) {
-                intersectArray.push(i / YARD_LINE_DISTANCE);
-            }
-        }
+        intersectArray = yardLineStepper(start, eLR, sLR);
         intersectArray.reverse();
     }
-
     // If no intersections were found and the start left to right were different.
     if (intersectArray.length == 0) {
         intersectArray.push(NO_INTERSECTIONS);
     }
-
     return intersectArray;
 }
 
@@ -173,9 +179,6 @@ function getSlopeBetweenCoordinates(start, end) {
 function findB(start, end) {
     return start.frontToBack - (getSlopeBetweenCoordinates(start, end) * start.leftToRight);
 }
-
-// yardLine is the internal coord system format, not marching band format
-// ex: -16, not S1 40.
 
 /**
  * Finds and returns the Coordinate along the line between the start and end point
@@ -264,41 +267,8 @@ function printYardLineCrossInfo(start, end, counts, field) {
         for (var i = 0; i < intersections.length; i++) {
             var tempCoord = findYardLineIntersectionCoordinate(start, end, intersections[i] * YARD_LINE_DISTANCE);
             var tempCrossCount = findCrossCount(start, end, tempCoord, counts);
-            crossString += (`Cross the ${printSide(intersections[i], field)} ${YARDLINES[Math.abs(intersections[i])]} Yard Line on count ${rounder(tempCrossCount)}<br>`);
+            crossString += (`Cross the ${printSide(intersections[i], field)} ${YARDLINES[Math.abs(intersections[i])]} Yard Line on count ${roundToPrecision(tempCrossCount, PRECISION_GRANULARITY)}<br>`);
         }
         return crossString;
     }
-}
-
-/**
- * @function movementYardLineCross
- * @param  {Movement} m {description}
- */
-function movementYardLineCross(m) {
-    var intersections = findYardLineIntersections(m.start, m.end);
-    if (intersections[0] == NO_INTERSECTIONS) {
-        // return true;
-        continue;
-    } else {
-        for (var i = 0; i < intersections.length; i++) {
-            m.intermediary(findYardLineIntersectionCoordinate(m.start, m.end, intersections[i] * YARD_LINE_DISTANCE));
-        }
-    }
-}
-
-/**
- * Calculates the angle from the start point to the end point
- * @function getAngleReference
- * @param {Coordinate} start Starting point
- * @param {Coordinate} end   Ending point
- * @return {Number} Angle between the start and end points
- */
-function getAngleReference(start, end) {
-    return rounder(Math.atan(getSlopeBetweenCoordinates(start, end)));
-}
-
-function printAngleReference(start, end) {
-    var angle = getAngleReference(start, end);
-    var outputString = `Direction of move: ${angle}`;
-    return outputString;
 }

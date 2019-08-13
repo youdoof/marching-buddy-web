@@ -231,4 +231,4 @@ function draw() {
     drawRandom(30);
 }
 
-draw();
+// draw();
