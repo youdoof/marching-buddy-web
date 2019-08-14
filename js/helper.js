@@ -21,3 +21,17 @@ function roundToPrecision(x, precision) {
 function angleInDegrees(radians) {
     return radians * (180 / Math.PI);
 }
+
+function testPlease() {
+    var f = new Field();
+    var sI = new Input(START);
+    var eI = new Input(END);
+    var sC = createCoordinateFromInput(sI, f);
+    var eC = createCoordinateFromInput(eI, f);
+    var m = new Movement(sC, eC, getCounts());
+    console.log(m.printCoordinates(f));
+    console.log(m.printMidSet(f));
+    console.log(m.printStepSize());
+    console.log(m.printYardLineCrossInfo(f));
+    console.log(m.printAngle());
+}

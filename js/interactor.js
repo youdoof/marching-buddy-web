@@ -223,12 +223,13 @@ function calculateMidsetInformation() {
     // Create start, end, and middle coordinates
     var startCoordinate = createCoordinateFromInput(startInput, f);
     var endCoordinate = createCoordinateFromInput(endInput, f);
-    var midCoordinate = getMidSetCoordinate(startCoordinate, endCoordinate);
+    // Setup Movement
+    var movement = new Movement(startCoordinate, endCoordinate, getCounts());
 
     // Dispaly calculated information throughout the page
-    midsetTextDisplay.innerHTML = midCoordinate.printCoordinate(f);
-    stepSizeDisplay.innerHTML = getStepSize(startCoordinate, endCoordinate, getCounts());
-    crossCountDisplay.innerHTML = printYardLineCrossInfo(startCoordinate, endCoordinate, getCounts(), f);
+    midsetTextDisplay.innerHTML = movement.printMidSet(f);
+    stepSizeDisplay.innerHTML = movement.printStepSize();
+    crossCountDisplay.innerHTML = movement.printYardLineCrossInfo(f);
 }
 
 /**
