@@ -1,5 +1,19 @@
 $header-margin: 0.75rem;
 
+// Transitions
+$transition-target: all;
+$transition-duration: 0.25s;
+$transition-type: ease;
+
+// Can pass in a specific target if not wanting to target all
+@mixin transition-base($target: $transition-target) {
+    -webkit-transition: $target $transition-duration $transition-type;
+    -moz-transition: $target $transition-duration $transition-type;
+    -o-transition: $target $transition-duration $transition-type;
+    transition: $target $transition-duration $transition-type;
+}
+
+// General CSS for site
 body {
     margin: 10px;
     text-align: center;
@@ -35,12 +49,18 @@ h5 {
     font-size: 1.25rem;
 }
 
+// Night mode color scheme
 .night {
+    @include transition-base();
+    // @include transition-base(color);
     background-color: $night-theme-background-color;
     color: $night-theme-color;
 }
 
+// Day mode color scheme
 .day {
+    @include transition-base();
+    // @include transition-base(color);
     background-color: $day-theme-background-color;
     color: $day-theme-color;
 }

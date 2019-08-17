@@ -39,11 +39,19 @@ h5 {
 }
 
 .night {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   background-color: #000000;
   color: #999999;
 }
 
 .day {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   background-color: #FFFFFF;
   color: #000000;
 }
@@ -178,6 +186,10 @@ h5 {
   border-color: #003399;
 }
 .radio-button-group label {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   font-size: 1rem;
   text-align: center;
   white-space: nowrap;
@@ -201,7 +213,11 @@ h5 {
   border-bottom-left-radius: 0;
 }
 
-.custom-button {
+.custom-block-button {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   font-size: 1rem;
   text-align: center;
   white-space: nowrap;
@@ -215,10 +231,10 @@ h5 {
   display: block;
   width: 100%;
 }
-.custom-button:focus {
+.custom-block-button:focus {
   outline: none;
 }
-.custom-button:hover {
+.custom-block-button:hover {
   background-color: #003399;
   border-color: #0033FF;
 }

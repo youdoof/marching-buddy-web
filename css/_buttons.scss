@@ -13,6 +13,7 @@ $button-border-radius: 0.25rem;
 $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
 
 @mixin button-base {
+    @include transition-base();
     font-size: $button-font-size;
     text-align: center;
     white-space: nowrap;
@@ -57,7 +58,7 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
     }
 }
 
-.custom-button {
+.custom-block-button {
     @include button-base();
     display: block;
     width: 100%;
