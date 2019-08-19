@@ -32,6 +32,7 @@ function testPlease() {
     console.log(m.printCoordinates(f));
     console.log(m.printMidSet(f));
     console.log(m.printStepSize());
+    console.log(m.printStepCoordinates(f));
     console.log(m.printYardLineCrossInfo(f));
     console.log(m.printAngle());
 }

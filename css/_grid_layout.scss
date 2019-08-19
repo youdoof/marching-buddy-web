@@ -32,15 +32,19 @@
 }
 
 .settings-area {
+    display: grid;
+    align-items: center;
     // 2 x 2 for tablet-landscape
     @include for-tablet-portrait-up {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+        "title title";
     }
     // 4 x 1 desktop
     @include for-desktop-up {
-        display: grid;
         grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+        "title title title title";
     }
 }
 
@@ -48,15 +52,38 @@
     grid-area: title;
 }
 
+.form-area {
+    display: grid;
+    grid-row-gap: 3rem;
+    align-items: center;
+}
+
 .coordinate-input {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "left-right"
+    "front-back"
+    "preview";
+    align-items: center;
     @include for-tablet-landscape-up {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
         grid-template-areas:
         "title ."
         "left-right front-back"
+        "preview preview";
     }
+}
+
+.preview-area {
+    grid-area: preview;
+    display: grid;
+    grid-row-gap: 1rem;
 }
 
 .counts-area {
@@ -66,7 +93,7 @@
     align-items: center;
     grid-template-areas: 
     "title title"
-    "text slider"
+    "text range"
     "button button";
 }
 
@@ -74,8 +101,8 @@
     grid-area: text;
 }
 
-.counts-slider {
-    grid-area: slider;
+.counts-range {
+    grid-area: range;
 }
 
 .counts-button {

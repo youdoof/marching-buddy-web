@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Marching Buddy</title>
     <meta name="Description"
         content="Marching Buddy, a midset calculator. Use this marching band calculator to determine the midpoint between your sets!">
@@ -20,16 +21,16 @@
 
         <form class="form-area">
             <!-- Settings -->
-            <h2>Settings:</h2>
             <div class="settings-area">
+                <h2 class="title">Settings:</h2>
                 <!-- Night or Day Theme -->
                 <div>
                     <h3>Theme</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="themeTypeRadio" id="themeNight" value="0" checked>
-                        <label for="themeNight" class="nightRadio">Night</label>
+                        <label for="themeNight" class="nightRadio themeTypeRadio">Night</label>
                         <input type="radio" name="themeTypeRadio" id="themeDay" value="1">
-                        <label for="themeDay" class="dayRadio">Day</label>
+                        <label for="themeDay" class="dayRadio themeTypeRadio">Day</label>
                     </div>
                 </div>
 
@@ -38,9 +39,9 @@
                     <h3>Field Type</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="fieldTypeRadio" id="fieldHighSchool" value="0" checked>
-                        <label for="fieldHighSchool">High School</label>
+                        <label for="fieldHighSchool" class="fieldTypeRadio">High School</label>
                         <input type="radio" name="fieldTypeRadio" id="fieldCollege" value="1">
-                        <label for="fieldCollege">College / NCAA</label>
+                        <label for="fieldCollege" class="fieldTypeRadio">College / NCAA</label>
                     </div>
                 </div>
 
@@ -49,9 +50,9 @@
                     <h3>Side Name</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="sideNameRadio" id="sideOneTwo" value="0" checked>
-                        <label for="sideOneTwo" class="sideOneTwo">Side 1 / Side 2</label>
+                        <label for="sideOneTwo" class="sideOneTwo sideNameRadio">Side 1 / Side 2</label>
                         <input type="radio" name="sideNameRadio" id="sideLeftRight" value="1">
-                        <label for="sideLeftRight" class="sideLeftRight">Left / Right</label>
+                        <label for="sideLeftRight" class="sideLeftRight sideNameRadio">Left / Right</label>
                     </div>
                 </div>
 
@@ -60,12 +61,14 @@
                     <h3>Hash Name</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked>
-                        <label for="hashFrontBack" class="hashFrontBack">Front / Back</label>
+                        <label for="hashFrontBack" class="hashFrontBack hashNameRadio">Front / Back</label>
                         <input type="radio" name="hashNameRadio" id="hashHomeVisitor" value="1">
-                        <label for="hashHomeVisitor" class="hashHomeVisitor">Home / Visitor</label>
+                        <label for="hashHomeVisitor" class="hashHomeVisitor hashNameRadio">Home / Visitor</label>
                     </div>
                 </div>
             </div>
+
+            <!-- <hr> -->
 
             <!-- Starting Coordinate -->
             <div class="coordinate-input">
@@ -153,7 +156,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="preview-area">
+                    <p>
+                        <span class="startPreview">Such &amp; Such <br> Such &amp; Such</span>
+                    </p>
+                    <button type="button" class="custom-block-button" onclick="resetStartInput()">Reset</button>
+                </div>
             </div>
+
+            <!-- <hr> -->
 
             <!-- Ending Coordinate -->
             <div class="coordinate-input">
@@ -241,19 +252,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="preview-area">
+                    <p>
+                        <span class="endPreview">Such &amp; Such <br> Such &amp; Such</span>
+                    </p>
+                    <button type="button" class="custom-block-button" onclick="resetEndInput()">Reset</button>
+                </div>
             </div>
+
+            <!-- <hr> -->
 
             <div class="counts-area">
                 <!-- Counts -->
                 <h2 class="title">Counts:</h2>
-                <p class="text"><span class="countsSlider"></span> Counts</p>
-                <label class="slider">
-                    <input type="range" min="1" max="64" step="1" class="custom-range countsSlider" id="counts">
+                <p class="counts-text"><span class="countsRange"></span> Counts</p>
+                <label class="counts-range">
+                    <input type="range" min="1" max="64" step="1" class="custom-range countsRange" id="counts">
                 </label>
-                <button type="button" class="custom-block-button counts-button" onclick="calculateMidsetInformation()">Get
+                <button type="button" class="custom-block-button counts-button"
+                    onclick="calculateMidsetInformation()">Get
                     Midset</button>
             </div>
         </form>
+
+        <hr>
+
         <div class="results-area">
             <!-- Results -->
             <h2>Results:</h2>

@@ -32,12 +32,10 @@ h1 {
 h2 {
     font-size: 2rem;
     text-align: left;
-    padding-top: 0.5rem;
 }
 
 h3 {
     font-size: 1.75rem;
-    padding-top: 0.5rem;
 }
 
 h4 {
@@ -49,10 +47,17 @@ h5 {
     font-size: 1.25rem;
 }
 
+hr {
+    margin: 3rem 0;
+}
+
+p {
+    font-size: 1rem;
+}
+
 // Night mode color scheme
 .night {
     @include transition-base();
-    // @include transition-base(color);
     background-color: $night-theme-background-color;
     color: $night-theme-color;
 }
@@ -60,7 +65,6 @@ h5 {
 // Day mode color scheme
 .day {
     @include transition-base();
-    // @include transition-base(color);
     background-color: $day-theme-background-color;
     color: $day-theme-color;
 }

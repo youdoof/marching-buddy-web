@@ -20,6 +20,7 @@ class Movement {
         this._counts = counts;
         this._mid = findMidSetCoordinate(this._start, this._end);
         this._stepSize = findStepSize(this._start, this._end, this._counts);
+        this._stepCoordinates = findStepCoordinates(this._start, this._end, this._counts);
         this._yardLineCrossCoordinates = findYardLineCrossCoordinates(this._start, this._end, this._counts);
         this._angle = setAngle(this._start, this._end);
     }
@@ -64,6 +65,17 @@ class Movement {
     printStepSize() {
         return this._stepSize;
     }
+    printStepCoordinates(field) {
+        if (checkIfHold(this._start, this._end)) {
+            return HOLD;
+        } else {
+            var stepString = "";
+            for (var i = 0; i < this._stepCoordinates.length; i++) {
+                stepString += `Count ${i+1}: ${this._stepCoordinates[i].printCoordinate(field)}\n`;
+            }
+            return stepString;
+        }
+    }
     printYardLineCrossInfo(field) {
         var crossString = "";
         // Check if there were no intersections. If so, print the no intersections message.
@@ -80,8 +92,8 @@ class Movement {
         }
     }
     printAngle() {
-        if (this._stepSize == "Hold") {
-            return "Hold";
+        if (checkIfHold(this._start, this._end)) {
+            return HOLD;
         } else {
             return `Direction of move: ${this._angle}°`;
         }
@@ -109,18 +121,37 @@ const NO_INTERSECTIONS = "No Yard Line Intersections Found";
 
 /**
  * Precision to round to in the roundToPrecision function
+ * Current default is to nearest 1/8
  * @see roundToPrecision
  * @constant {Number}
  */
 const PRECISION_GRANULARITY = 0.125;
 
 /**
+ * Message to display if the move is a hold, i.e. the start and end position are the same
+ * @see printAngle
+ * @const {String}
+ */
+const HOLD = "Hold";
+
+/**
+ * Returns true if the start and end coordinates are the same, false if they are not.
+ * @function checkIfHold
+ * @param  {Coordinate} start Start Coordinate
+ * @param  {Coordinate} end   End Coordinate
+ * @return {Boolean} True if start and end are the same (It's a Hold), False otherwise
+ */
+function checkIfHold(start, end) {
+    return (start._leftToRight == end._leftToRight && start._frontToBack == end._frontToBack);
+}
+
+/**
  * Calculates the distance between two given Coordinates, used to calculate the step size of a movement
  * @function findDistanceBetweenCoordinates
  * @see findStepSize
- * @param {Coordinate} start Starting point
- * @param {Coordinate} end Ending point
- * @returns {Number} distance between the two given Coordinates
+ * @param  {Coordinate} start Starting point
+ * @param  {Coordinate} end Ending point
+ * @return {Number} distance between the two given Coordinates
  */
 function findDistanceBetweenCoordinates(start, end) {
     var startX = start.leftToRight;
@@ -133,18 +164,18 @@ function findDistanceBetweenCoordinates(start, end) {
 /**
  * Calculates and returns the step size from a given movement start to end
  * @function findStepSize
- * @param {Coordinate} start Starting point
- * @param {Coordinate} end Ending point
- * @param {Number} counts Counts it takes to traverse the movement
- * @returns {string} Hold if distance was 0, Step Size of the movement
+ * @param  {Coordinate} start Starting point
+ * @param  {Coordinate} end Ending point
+ * @param  {Number} counts Counts it takes to traverse the movement
+ * @return {String} Hold if distance was 0, Step Size of the movement
  */
 function findStepSize(start, end, counts) {
-    var computedStepSize;
-    var distance = findDistanceBetweenCoordinates(start, end);
-    var stepSizeMultiplier = distance / counts;
-    if (stepSizeMultiplier == 0) {
-        return "Hold";
+    if (checkIfHold(start, end)) {
+        return HOLD;
     } else {
+        var computedStepSize;
+        var distance = findDistanceBetweenCoordinates(start, end);
+        var stepSizeMultiplier = distance / counts;
         computedStepSize = STEP_SIZE_REFERENCE / stepSizeMultiplier;
         return roundToPrecision(computedStepSize, PRECISION_GRANULARITY) + " to 5";
     }
@@ -152,6 +183,9 @@ function findStepSize(start, end, counts) {
 
 /**
  * Calculates the angle from the start point to the end point
+ * 
+ * This is not working the way I want it to. Need to think about the perspective of the
+ * performer and what angle reference to which direction will be useful.
  * @function setAngle
  * @param  {Coordinate} start Starting point
  * @param  {Coordinate} end   Ending point
@@ -185,16 +219,17 @@ function findMidSetCoordinate(start, end) {
  */
 function prepareYardLineStepper(x) {
     // Rounding on outside of a yard line requires special check
-    // to see if within 1 step of a yard line, then subtract 1
-    // or add 1 to get on the right track.
+    // to see if within 1 step of a yard line, then round the 
+    // opposite direction. This is to avoid starting the
+    // yardLineStepper on a yard line. 
     if (x < 0) {
         if (x % YARD_LINE_DISTANCE > -1) {
-            x -= 1;
+            return Math.floor(x);
         }
         return Math.ceil(x);
     } else {
         if (x % YARD_LINE_DISTANCE < 1) {
-            x += 1;
+            return Math.ceil(x);
         }
         return Math.floor(x);
     }
@@ -360,5 +395,31 @@ function findYardLineCrossCoordinates(start, end) {
             coordinateHolder.push(tempCoord);
         }
         return coordinateHolder;
+    }
+}
+
+/**
+ * Finds the Coordinates in between the start and end Coordinates at each count of the move
+ * @function findStepCoordinates
+ * @param  {Coordinate} start  Start Coordinate
+ * @param  {Coordinate} end    End Coordinate
+ * @param  {Number} counts Counts of the move
+ * @return {String|Array<Coordinate>} Array of Coordinates at each count of the move, or a string stating the move is a hold
+ */
+function findStepCoordinates(start, end, counts) {
+    if (checkIfHold(start, end)) {
+        return HOLD;
+    } else {
+        var run = end._leftToRight - start._leftToRight; // Left to Right
+        var rise = end._frontToBack - start._frontToBack; // Front to Back
+        var runMultiplier = run / counts;
+        var riseMultiplier = rise / counts;
+        var stepCoordinates = [];
+        for (var i = 1; i < counts + 1; i++) {
+            var tempLR = start._leftToRight + (runMultiplier * i);
+            var tempFB = start._frontToBack + (riseMultiplier * i);
+            stepCoordinates.push(new Coordinate(tempLR, tempFB));
+        }
+        return stepCoordinates;
     }
 }

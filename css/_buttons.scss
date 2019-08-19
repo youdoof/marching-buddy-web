@@ -24,10 +24,14 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
     background-color: $button-base-color;
     cursor: pointer;
     user-select: none;
+    &:hover {
+        background-color: $button-hover;
+        border-color: $button-hover;
+    }
 }
 
 .radio-button-group {
-    white-space: nowrap; // Prevents radio group from wrapping
+    white-space: nowrap; // Keeps radio group on the same line adjacent to one another
 
     & input[type="radio"] {
         display: none;
@@ -43,11 +47,6 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
         display: inline-block;
         vertical-align: middle;
 
-        &:hover {
-            background-color: $button-hover;
-            border-color: $button-hover;
-        }
-
         & + input + label {
             // Neighbor labels gets left border flattened and moved over
             // to overlap previous label
@@ -58,6 +57,14 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
     }
 }
 
+.custom-button {
+    @include button-base();
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .custom-block-button {
     @include button-base();
     display: block;
@@ -65,10 +72,5 @@ $radio-margin-left: -0.5rem; // Align edge of buttons up against one another
 
     &:focus {
         outline: none;
-    }
-
-    &:hover {
-        background-color: $button-hover;
-        border-color: $button-base-color;
     }
 }

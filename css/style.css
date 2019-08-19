@@ -21,12 +21,10 @@ h1 {
 h2 {
   font-size: 2rem;
   text-align: left;
-  padding-top: 0.5rem;
 }
 
 h3 {
   font-size: 1.75rem;
-  padding-top: 0.5rem;
 }
 
 h4 {
@@ -36,6 +34,14 @@ h4 {
 
 h5 {
   font-size: 1.25rem;
+}
+
+hr {
+  margin: 3rem 0;
+}
+
+p {
+  font-size: 1rem;
 }
 
 .night {
@@ -75,16 +81,20 @@ h5 {
   }
 }
 
+.settings-area {
+  display: grid;
+  align-items: center;
+}
 @media (min-width: 600px) {
   .settings-area {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "title title";
   }
 }
 @media (min-width: 1200px) {
   .settings-area {
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "title title title title";
   }
 }
 
@@ -92,13 +102,33 @@ h5 {
   grid-area: title;
 }
 
+.form-area {
+  display: grid;
+  grid-row-gap: 3rem;
+  align-items: center;
+}
+
+.coordinate-input {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  grid-template-areas: "title" "left-right" "front-back" "preview";
+  align-items: center;
+}
 @media (min-width: 900px) {
   .coordinate-input {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 1rem;
-    grid-template-areas: "title ." "left-right front-back";
+    grid-row-gap: 1rem;
+    grid-template-areas: "title ." "left-right front-back" "preview preview";
   }
+}
+
+.preview-area {
+  grid-area: preview;
+  display: grid;
+  grid-row-gap: 1rem;
 }
 
 .counts-area {
@@ -106,15 +136,15 @@ h5 {
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(3, auto);
   align-items: center;
-  grid-template-areas: "title title" "text slider" "button button";
+  grid-template-areas: "title title" "text range" "button button";
 }
 
 .counts-text {
   grid-area: text;
 }
 
-.counts-slider {
-  grid-area: slider;
+.counts-range {
+  grid-area: range;
 }
 
 .counts-button {
@@ -182,8 +212,8 @@ h5 {
   display: none;
 }
 .radio-button-group input[type=radio]:checked + label {
-  background-color: #003399;
-  border-color: #003399;
+  background-color: #000099;
+  border-color: #000099;
 }
 .radio-button-group label {
   -webkit-transition: all 0.25s ease;
@@ -204,13 +234,37 @@ h5 {
   vertical-align: middle;
 }
 .radio-button-group label:hover {
-  background-color: #003399;
-  border-color: #003399;
+  background-color: #000099;
+  border-color: #000099;
 }
 .radio-button-group label + input + label {
   margin-left: -0.5rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.custom-button {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.475rem 0.675rem;
+  color: #FFFFFF;
+  border: 1px solid #0033FF;
+  border-radius: 0.25rem;
+  background-color: #0033FF;
+  cursor: pointer;
+  user-select: none;
+}
+.custom-button:hover {
+  background-color: #000099;
+  border-color: #000099;
+}
+.custom-button:focus {
+  outline: none;
 }
 
 .custom-block-button {
@@ -231,12 +285,12 @@ h5 {
   display: block;
   width: 100%;
 }
+.custom-block-button:hover {
+  background-color: #000099;
+  border-color: #000099;
+}
 .custom-block-button:focus {
   outline: none;
-}
-.custom-block-button:hover {
-  background-color: #003399;
-  border-color: #0033FF;
 }
 
 .custom-range {

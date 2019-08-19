@@ -1,50 +1,75 @@
 'use strict';
 
 function init() {
-    initializeSliderLabelValues();
+    initializeSettings();
+    initializeInputValues();
+    updatePreviews();
     startListening();
     calculateMidsetInformation();
 }
 
 /**
- * Calls methods to set the starting values for sliders on the web page
- * @function initializeSliderLabelValues
- * @see resetStartSliders
- * @see resetEndSliders
- * @see resetCountSlider
+ * Calls methods to set the starting values for radio buttons and range inputs on the web page
+ * @function initializeInputValues
+ * @see resetStartRadios
+ * @see resetStartRanges
+ * @see resetEndRadios
+ * @see resetEndRanges
+ * @see resetCountRange
  */
-function initializeSliderLabelValues() {
-    resetStartSliders();
-    resetEndSliders();
-    resetCountSlider();
+function initializeInputValues() {
+    resetStartRadios();
+    resetStartRanges();
+    resetEndRadios();
+    resetEndRanges();
+    resetCountRange();
+}
+
+// Settings Radio Group Names
+const THEME_TYPE_RADIO = 'themeTypeRadio';
+const FIELD_TYPE_RADIO = 'fieldTypeRadio';
+const SIDE_NAME_RADIO = 'sideNameRadio';
+const HASH_NAME_RADIO = 'hashNameRadio';
+
+/**
+ * Initializes settings values to defaults
+ * @function initializeSettings
+ * @see setRadioValue
+ */
+function initializeSettings() {
+    setRadioValue(THEME_TYPE_RADIO, 0);
+    setRadioValue(FIELD_TYPE_RADIO, 0);
+    setRadioValue(SIDE_NAME_RADIO, 0);
+    setRadioValue(HASH_NAME_RADIO, 0);
 }
 
 /**
- * Default value for Yard Line Range sliders
+ * Default value for Yard Line Range inputs
  * @const {Number}
  */
 const RANGE_YARDLINE_DEFAULT_VALUE = 50;
 
 /**
- * Default value for Steps Range sliders
+ * Default value for Steps Range inputs
  * @const {Number}
  */
 const RANGE_STEPS_DEFAULT_VALUE = 0;
 
 /**
- * Default value for Counts Range slider
+ * Default value for Counts Range input
  * @const {Number}
  */
 const RANGE_COUNTS_DEFAULT_VALUE = 8;
 
 /**
- * Resets sliders to their default values
- * @function resetInputSliders
- * @param {String} LRSteps class name for LRSteps slider
- * @param {String} YardLine class name for YardLine slider
- * @param {String} FBSteps class name for FBSteps slider
+ * Resets rangess to their default values
+ * @function resetInputRanges
+ * @see setRangeFamilyInnerHTMLAndValue
+ * @param {String} LRSteps class name for LRSteps Range input
+ * @param {String} YardLine class name for YardLine Range input
+ * @param {String} FBSteps class name for FBSteps Range input
  */
-function resetInputSliders(LRSteps, YardLine, FBSteps) {
+function resetInputRanges(LRSteps, YardLine, FBSteps) {
     var rangeLRSteps = document.querySelectorAll(LRSteps);
     var rangeYardLine = document.querySelectorAll(YardLine);
     var rangeFBSteps = document.querySelectorAll(FBSteps);
@@ -55,28 +80,28 @@ function resetInputSliders(LRSteps, YardLine, FBSteps) {
 }
 
 /**
- * @function resetStartSliders
- * @see resetInputSliders
+ * @function resetStartRanges
+ * @see resetInputRanges
  */
-function resetStartSliders() {
-    resetInputSliders(RANGE_START_LRSTEPS, RANGE_START_YARDLINE, RANGE_START_FBSTEPS);
+function resetStartRanges() {
+    resetInputRanges(START_LRSTEPS_RANGE, START_YARDLINE_RANGE, START_FBSTEPS_RANGE);
 }
 
 /**
- * @function resetEndSliders
- * @see resetInputSliders
+ * @function resetEndRanges
+ * @see resetInputRanges
  */
-function resetEndSliders() {
-    resetInputSliders(RANGE_END_LRSTEPS, RANGE_END_YARDLINE, RANGE_END_FBSTEPS);
+function resetEndRanges() {
+    resetInputRanges(END_LRSTEPS_RANGE, END_YARDLINE_RANGE, END_FBSTEPS_RANGE);
 }
 
 /**
- * Resets the Count slider to its default value of RANGE_COUNTS_DEFAULT_VALUE
- * @function resetCountSlider
+ * Resets the Count Range to its default value of RANGE_COUNTS_DEFAULT_VALUE
+ * @function resetCountRange
  * @see setRangeFamilyInnerHTMLAndValue
  */
-function resetCountSlider() {
-    var rangeCounts = document.querySelectorAll(RANGE_COUNTS_SLIDER);
+function resetCountRange() {
+    var rangeCounts = document.querySelectorAll(COUNTS_RANGE);
     setRangeFamilyInnerHTMLAndValue(rangeCounts, RANGE_COUNTS_DEFAULT_VALUE);
 }
 
@@ -91,14 +116,14 @@ function setRangeFamilyInnerHTMLAndValue(targetRangeFamily, number) {
     targetRangeFamily[1].value = number;
 }
 
-// Selectors for Range/Slider families, finds the span and custom range input
-const RANGE_START_LRSTEPS = ".startLRSteps";
-const RANGE_START_YARDLINE = ".startYardLine";
-const RANGE_START_FBSTEPS = ".startFBSteps";
-const RANGE_END_LRSTEPS = ".endLRSteps";
-const RANGE_END_YARDLINE = ".endYardLine";
-const RANGE_END_FBSTEPS = ".endFBSteps";
-const RANGE_COUNTS_SLIDER = ".countsSlider";
+// Selectors for Range input families, finds the span and custom range input
+const START_LRSTEPS_RANGE = ".startLRSteps";
+const START_YARDLINE_RANGE = ".startYardLine";
+const START_FBSTEPS_RANGE = ".startFBSteps";
+const END_LRSTEPS_RANGE = ".endLRSteps";
+const END_YARDLINE_RANGE = ".endYardLine";
+const END_FBSTEPS_RANGE = ".endFBSteps";
+const COUNTS_RANGE = ".countsRange";
 
 // Terminology for updating the GUI and output
 const HASH_TERM_0_FRONT_BACK = ["Front", "Back"];
@@ -115,29 +140,36 @@ const SIDE = "side";
  * @function startListening
  */
 function startListening() {
-    // Listen for input events and update the HTML to display the value of each slider on the screen
+    // Listen for input events and update the HTML to display the value of each range on the screen
     document.addEventListener('input', function (event) {
-        if (event.target.matches(RANGE_START_LRSTEPS)) {
-            document.querySelector(RANGE_START_LRSTEPS).innerHTML = event.target.value;
+        if (event.target.matches(START_LRSTEPS_RANGE)) {
+            document.querySelector(START_LRSTEPS_RANGE).innerHTML = event.target.value;
+            // updatePreview(START);
         }
-        if (event.target.matches(RANGE_START_YARDLINE)) {
-            document.querySelector(RANGE_START_YARDLINE).innerHTML = event.target.value;
+        if (event.target.matches(START_YARDLINE_RANGE)) {
+            document.querySelector(START_YARDLINE_RANGE).innerHTML = event.target.value;
+            // updatePreview(START);
         }
-        if (event.target.matches(RANGE_START_FBSTEPS)) {
-            document.querySelector(RANGE_START_FBSTEPS).innerHTML = event.target.value;
+        if (event.target.matches(START_FBSTEPS_RANGE)) {
+            document.querySelector(START_FBSTEPS_RANGE).innerHTML = event.target.value;
+            // updatePreview(START);
         }
-        if (event.target.matches(RANGE_END_LRSTEPS)) {
-            document.querySelector(RANGE_END_LRSTEPS).innerHTML = event.target.value;
+        if (event.target.matches(END_LRSTEPS_RANGE)) {
+            document.querySelector(END_LRSTEPS_RANGE).innerHTML = event.target.value;
+            // updatePreview(END);
         }
-        if (event.target.matches(RANGE_END_YARDLINE)) {
-            document.querySelector(RANGE_END_YARDLINE).innerHTML = event.target.value;
+        if (event.target.matches(END_YARDLINE_RANGE)) {
+            document.querySelector(END_YARDLINE_RANGE).innerHTML = event.target.value;
+            // updatePreview(END);
         }
-        if (event.target.matches(RANGE_END_FBSTEPS)) {
-            document.querySelector(RANGE_END_FBSTEPS).innerHTML = event.target.value;
+        if (event.target.matches(END_FBSTEPS_RANGE)) {
+            document.querySelector(END_FBSTEPS_RANGE).innerHTML = event.target.value;
+            // updatePreview(END);
         }
-        if (event.target.matches(RANGE_COUNTS_SLIDER)) {
-            document.querySelector(RANGE_COUNTS_SLIDER).innerHTML = event.target.value;
+        if (event.target.matches(COUNTS_RANGE)) {
+            document.querySelector(COUNTS_RANGE).innerHTML = event.target.value;
         }
+        updatePreviews();
     }, false);
 
     // Listen for click events matching different radio button families and update GUI elements accordingly
@@ -199,11 +231,43 @@ function lightsOff() {
 function updateTerminology(terms, hashSide) {
     var targetTerms = document.querySelectorAll(`.${hashSide}Term`);
     for (var i = 0; i < targetTerms.length; i++) {
+        // i % 2 Sets the html of the first term and then the second as the loop continues.
         targetTerms[i].innerHTML = terms[i % 2];
     }
 }
 
+/**
+ * Updates the preview text of the input areas, pass in the START or END string to
+ * signify which input area to update.
+ * @function updatePreview
+ * @param {String} startEnd START or END signifying the start or end coordinate preview to update
+ */
+function updatePreview(startEnd) {
+    var f = new Field();
+    if (startEnd == START) {
+        var sI = new Input(START);
+        var sC = createCoordinateFromInput(sI, f);
+        startPreviewTextDisplay.innerHTML = sC.printCoordinate(f);
+    } else {
+        var eI = new Input(END);
+        var eC = createCoordinateFromInput(eI, f);
+        endPreviewTextDisplay.innerHTML = eC.printCoordinate(f);
+    }
+}
+
+/**
+ * Updates both preview texts for input areas
+ * @function updatePreviews
+ * @see updatePreview
+ */
+function updatePreviews() {
+    updatePreview(START);
+    updatePreview(END);
+}
+
 // Spans for displaying the calculated information to the user
+var startPreviewTextDisplay = document.querySelector('.startPreview');
+var endPreviewTextDisplay = document.querySelector('.endPreview');
 var midsetTextDisplay = document.querySelector('.midset');
 var stepSizeDisplay = document.querySelector('.step-size');
 var crossCountDisplay = document.querySelector('.cross-count');
@@ -232,6 +296,18 @@ function calculateMidsetInformation() {
     crossCountDisplay.innerHTML = movement.printYardLineCrossInfo(f);
 }
 
+const START_ON_IN_OUT_RADIO = 'sOnInOutRadio';
+const START_SIDE_RADIO = 'sSideRadio';
+const START_ON_INFRONT_BEHIND_RADIO = 'sOnInFrontBehindRadio';
+const START_FRONT_BACK_RADIO = 'sFrontBackRadio';
+const START_HASH_SIDELINE_RADIO = 'sHashSidelineRadio';
+
+const END_ON_IN_OUT_RADIO = 'eOnInOutRadio';
+const END_SIDE_RADIO = 'eSideRadio';
+const END_ON_INFRONT_BEHIND_RADIO = 'eOnInFrontBehindRadio';
+const END_FRONT_BACK_RADIO = 'eFrontBackRadio';
+const END_HASH_SIDELINE_RADIO = 'eHashSidelineRadio';
+
 /**
  * Copies the values of the Ending Coordinate to the Starting Coordinate
  * @function copyEndToStart
@@ -239,37 +315,38 @@ function calculateMidsetInformation() {
 function copyEndToStart() {
     var end = new Input(END);
     // OnInOutRadio
-    setRadioValue('sOnInOutRadio', end.onInOut);
+    setRadioValue(START_ON_IN_OUT_RADIO, end.onInOut);
     // LRSteps
-    copySliderValue(RANGE_START_LRSTEPS, end.stepsLR);
+    copyRangeValue(START_LRSTEPS_RANGE, end.stepsLR);
     // YardLine
-    copySliderValue(RANGE_START_YARDLINE, end.yardLine);
+    copyRangeValue(START_YARDLINE_RANGE, end.yardLine);
     // SideRadio
-    setRadioValue('sSideRadio', end.side);
+    setRadioValue(START_SIDE_RADIO, end.side);
     // OnInFrontBehindRadio
-    setRadioValue('sOnInFrontBehindRadio', end.onInFrontBehind);
+    setRadioValue(START_ON_INFRONT_BEHIND_RADIO, end.onInFrontBehind);
     // FBSteps
-    copySliderValue(RANGE_START_FBSTEPS, end.stepsFB);
+    copyRangeValue(START_FBSTEPS_RANGE, end.stepsFB);
     // FrontBackRadio
-    setRadioValue('sFrontBackRadio', end.frontBack);
+    setRadioValue(START_FRONT_BACK_RADIO, end.frontBack);
     // HashSidelineRadio
-    setRadioValue('sHashSidelineRadio', end.hashSideline);
+    setRadioValue(START_HASH_SIDELINE_RADIO, end.hashSideline);
 }
 
 /**
- * Sets the given slider family's value to the desired value given
- * @function copySliderValue
- * @param {String} sliderFamily selector name of the family of sliders to be copied
- * @param {Number} desiredValue value to set the slider family to
+ * Sets the given range family's value to the desired value given
+ * @function copyRangeValue
+ * @param {String} rangeFamily selector name of the family of range to be copied
+ * @param {Number} desiredValue value to set the range family to
  */
-function copySliderValue(sliderFamily, desiredValue) {
-    var fam = document.querySelectorAll(sliderFamily);
+function copyRangeValue(rangeFamily, desiredValue) {
+    var fam = document.querySelectorAll(rangeFamily);
     fam[0].innerHTML = desiredValue;
     fam[1].value = desiredValue;
 }
 
 /**
- * Activates the radio button in the given radio button family determined by the desired value given
+ * Activates the label of a radio button in the given radio button family determined by the desired value given.
+ * To use, add the radio family name to the class of the label of the radio button
  * @function setRadioValue
  * @param {String} radioFamily selector name of the family of radio buttons to be copied
  * @param {Number} desiredValue radio button to be activated
@@ -277,6 +354,44 @@ function copySliderValue(sliderFamily, desiredValue) {
 function setRadioValue(radioFamily, desiredValue) {
     var labels = document.querySelectorAll(`.${radioFamily}`);
     labels[desiredValue].click();
+}
+
+function resetStartRadios() {
+    // OnInOutRadio
+    setRadioValue(START_ON_IN_OUT_RADIO, 0);
+    // SideRadio
+    setRadioValue(START_SIDE_RADIO, 0);
+    // OnInFrontBehindRadio
+    setRadioValue(START_ON_INFRONT_BEHIND_RADIO, 0);
+    // FrontBackRadio
+    setRadioValue(START_FRONT_BACK_RADIO, 0);
+    // HashSidelineRadio
+    setRadioValue(START_HASH_SIDELINE_RADIO, 0);
+}
+
+function resetEndRadios() {
+    // OnInOutRadio
+    setRadioValue(END_ON_IN_OUT_RADIO, 0);
+    // SideRadio
+    setRadioValue(END_SIDE_RADIO, 0);
+    // OnInFrontBehindRadio
+    setRadioValue(END_ON_INFRONT_BEHIND_RADIO, 0);
+    // FrontBackRadio
+    setRadioValue(END_FRONT_BACK_RADIO, 0);
+    // HashSidelineRadio
+    setRadioValue(END_HASH_SIDELINE_RADIO, 0);
+}
+
+function resetStartInput() {
+    resetStartRadios();
+    resetStartRanges();
+    updatePreview(START);
+}
+
+function resetEndInput() {
+    resetEndRadios();
+    resetEndRanges();
+    updatePreview(END);
 }
 
 // Run init to get the page initialized with information
