@@ -11,7 +11,6 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-weight: 400;
-  margin: 0.75rem 0;
 }
 
 h1 {
@@ -83,6 +82,7 @@ p {
 
 .settings-area {
   display: grid;
+  grid-row-gap: 1rem;
   align-items: center;
 }
 @media (min-width: 600px) {
@@ -98,13 +98,17 @@ p {
   }
 }
 
+.settings-child-area {
+  display: grid;
+  grid-row-gap: 0.5rem;
+}
+
 .title {
   grid-area: title;
 }
 
 .form-area {
   display: grid;
-  grid-row-gap: 3rem;
   align-items: center;
 }
 
@@ -135,6 +139,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(3, auto);
+  grid-row-gap: 1rem;
   align-items: center;
   grid-template-areas: "title title" "text range" "button button";
 }
@@ -156,6 +161,7 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, auto);
+  grid-row-gap: 0.25rem;
   grid-template-areas: "title title title" "top top top" "mid-left mid-left mid-right" "bottom bottom bottom";
 }
 
@@ -184,6 +190,7 @@ p {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, auto);
+  grid-row-gap: 0.25rem;
   grid-template-areas: "title" "top" "mid" "bottom";
 }
 
@@ -203,6 +210,11 @@ p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
+}
+
+.results-area {
+  display: grid;
+  grid-row-gap: 0.5rem;
 }
 
 .radio-button-group {

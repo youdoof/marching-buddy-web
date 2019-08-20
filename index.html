@@ -24,7 +24,7 @@
             <div class="settings-area">
                 <h2 class="title">Settings:</h2>
                 <!-- Night or Day Theme -->
-                <div>
+                <div class="settings-child-area">
                     <h3>Theme</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="themeTypeRadio" id="themeNight" value="0" checked>
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- High School or College -->
-                <div>
+                <div class="settings-child-area">
                     <h3>Field Type</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="fieldTypeRadio" id="fieldHighSchool" value="0" checked>
@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Side One / Side Two or Left / Right -->
-                <div>
+                <div class="settings-child-area">
                     <h3>Side Name</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="sideNameRadio" id="sideOneTwo" value="0" checked>
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Front / Back Hashes or Home / Visitor Hashes -->
-                <div>
+                <div class="settings-child-area">
                     <h3>Hash Name</h3>
                     <div class="radio-button-group">
                         <input type="radio" name="hashNameRadio" id="hashFrontBack" value="0" checked>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <!-- <hr> -->
+            <hr>
 
             <!-- Starting Coordinate -->
             <div class="coordinate-input">
@@ -93,7 +93,7 @@
                         <p><span class="startYardLine"></span> Yard Line</p>
                     </div>
 
-                    <!-- Sliders Start LRSteps, YardLine -->
+                    <!-- Ranges Start LRSteps, YardLine -->
                     <div class="left-to-right-mid-left">
                         <label for="sLRSteps">
                             <input type="range" min="0" max="4" step="0.25" class="custom-range startLRSteps"
@@ -157,14 +157,12 @@
                     </div>
                 </div>
                 <div class="preview-area">
-                    <p>
-                        <span class="startPreview">Such &amp; Such <br> Such &amp; Such</span>
-                    </p>
+                    <h5><span class="startPreview"></span></h5>
                     <button type="button" class="custom-block-button" onclick="resetStartInput()">Reset</button>
                 </div>
             </div>
 
-            <!-- <hr> -->
+            <hr>
 
             <!-- Ending Coordinate -->
             <div class="coordinate-input">
@@ -189,7 +187,7 @@
                         <p><span class="endYardLine"></span> Yard Line</p>
                     </div>
 
-                    <!-- Sliders End LRSteps, YardLine-->
+                    <!-- Ranges End LRSteps, YardLine-->
                     <div class="left-to-right-mid-left">
                         <label>
                             <input type="range" min="0" max="4" step="0.25" class="custom-range endLRSteps"
@@ -253,14 +251,12 @@
                     </div>
                 </div>
                 <div class="preview-area">
-                    <p>
-                        <span class="endPreview">Such &amp; Such <br> Such &amp; Such</span>
-                    </p>
+                    <h5><span class="endPreview"></span></h5>
                     <button type="button" class="custom-block-button" onclick="resetEndInput()">Reset</button>
                 </div>
             </div>
 
-            <!-- <hr> -->
+            <hr>
 
             <div class="counts-area">
                 <!-- Counts -->
@@ -282,7 +278,7 @@
             <h2>Results:</h2>
             <h4>Midset:</h4>
             <h5><span class="midset"></span></h5>
-            <h4>Stepsize:</h4>
+            <h4>Step Size:</h4>
             <h5><span class="step-size"></span></h5>
             <h4>Cross Counts:</h4>
             <h5><span class="cross-count"></span></h5>
