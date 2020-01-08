@@ -4,7 +4,7 @@
  * [X] Start and End Coordinates
  * [X] Counts for the move
  * [X] Calc & store Yard Line Crosses
- * [ ] Each Step of the Move
+ * [X] Each Step of the Move
  * [X] Angle of reference from start to end
  */
 
