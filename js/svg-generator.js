@@ -9,6 +9,9 @@ const HS_FRONT_HASH_SVG = coordinateFBToSVGY(-14); // 1152
 const NCAA_BACK_HASH_SVG = coordinateFBToSVGY(10); // 768
 const NCAA_FRONT_HASH_SVG = coordinateFBToSVGY(-10); // 1088
 
+const CANVAS_WIDTH = coordinateLRToSVGX(88); // 2752
+const CANVAS_HEIGHT = coordinateFBToSVGY(-58); // 1856
+
 const TICK_LENGTH = feetToSVG(2); // Ticks are 2 feet long
 const YARD_LENGTH = YARD;
 const LINE_STROKE_WIDTH = inchesToSVG(4); // Every line on field is 4 inches wide
@@ -85,6 +88,21 @@ function createCircle(x, y) {
 }
 
 /**
+ * @function createText
+ * @param  {Number} x       x coordinate for text to be placed at
+ * @param  {Number} y       y coordinate for text to be placed at
+ * @param  {String} content text to be placed inside the text element
+ * @return {SVGTextElement} SVG text element to be used in a parent svg
+ */
+function createText(x, y, content) {
+    var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', x);
+    text.setAttribute('y', y);
+    text.node.textContent(content);
+    return text;
+}
+
+/**
  * Creates various groups within parent svg to draw parts of the field
  * @function setupGroups
  * @param {SVGElement} parent Main parent svg within which to create seperate groups
@@ -94,6 +112,7 @@ function setupGroups(parent) {
     parent.appendChild(createGroup('hashes'));
     parent.appendChild(createGroup('ticks'));
     parent.appendChild(createGroup('sidelines'));
+    parent.appendChild(createGroup('text'));
     parent.appendChild(createGroup('midset-target'));
 }
 
@@ -175,24 +194,36 @@ function drawSidelines(targetGroup) {
 }
 
 /**
+ * @function drawNumbers
+ * @param  {SVGElement} targetGroup group to add numbers to in the parent svg
+ */
+function drawNumbers(targetGroup) {
+    targetGroup.appendChild(createText(12, 12, "1"));
+}
+
+/**
  * Draws the field using subfunctions to gather individual pieces into one svg
  * @function drawField
  * @param {Number} hashType 0 - High School, 1 - NCAA/College
  */
 function drawField(hashType) {
-    var canvas = createCanvas(2688, 1856, '.svg-target');
+    var canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, '.svg-target');
     setupGroups(canvas);
     var yardlinegroup = document.querySelector('.yardlines');
     var hashesgroup = document.querySelector('.hashes');
     var tickgroup = document.querySelector('.ticks');
+    var textgroup = document.querySelector('.text');
     var sidelinesgroup = document.querySelector('.sidelines');
 
+    // Got some magic numbers in here that need definition
     for (var i = 0; i <= 20; i++) {
         var x = 64 + (i * (8 * 16));
         drawYardLines(yardlinegroup, x);
         drawHashes(hashesgroup, hashType, x);
         drawTicks(tickgroup, hashType, x);
     }
+
+    // drawNumbers(textgroup);
     drawSidelines(sidelinesgroup);
 }
 
@@ -228,7 +259,7 @@ function drawRandom(x) {
 
 function draw() {
     drawField(0);
-    drawRandom(30);
+    // drawRandom(30);
 }
 
 // draw();
