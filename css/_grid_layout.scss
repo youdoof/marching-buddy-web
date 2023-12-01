@@ -37,8 +37,11 @@ $smaller-grid-row-gap: 0.25rem;
 
 .settings-area {
     display: grid;
+    grid-template-columns: 1fr;
     grid-row-gap: $default-grid-row-gap;
     align-items: center;
+    grid-template-areas:
+    "title";
     // 2 x 2 for tablet-landscape
     @include for-tablet-portrait-up {
         grid-template-columns: repeat(2, 1fr);
@@ -55,6 +58,7 @@ $smaller-grid-row-gap: 0.25rem;
 
 .settings-child-area {
     display: grid;
+    // grid-area: child;
     grid-row-gap: $small-grid-row-gap;
 }
 

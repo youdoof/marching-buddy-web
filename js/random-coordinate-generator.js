@@ -63,3 +63,28 @@ function generateRandomCoordinates(x) {
     }
     return container;
 }
+
+/**
+ * Builds an array of random movements
+ * @function buildMovementArray
+ * @see generateRandomCoordinates
+ * @param  {Array<Coordinate>} arr Array of coordinates to be put together into a movement
+ * @return {Array<Movement>} Return array of movements with random counts
+ */
+function buildMovementArray(arr) {
+    var container = [];
+    for (var i = 0; i < arr.length - 1; i++) {
+        container.push(new Movement(arr[i], arr[i+1], getRandomCounts()));
+    }
+    return container;
+}
+
+/**
+ * @function generateRandomMovements
+ * @param  {Number} x Number of movements to generate
+ * @return {type} {description}
+ */
+function generateRandomMovements(x) {
+    // x+1 because buildMovementArray looks at current and the next coordinate as well, reducing total by 1.
+    return buildMovementArray(generateRandomCoordinates(x+1));
+}

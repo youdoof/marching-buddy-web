@@ -62,6 +62,12 @@ const OUTPUT_STRING_SIDE_ONE = "Side 1 ";
 const OUTPUT_STRING_SIDE_TWO = "Side 2 ";
 const OUTPUT_STRING_SIDE_LEFT = "Left ";
 const OUTPUT_STRING_SIDE_RIGHT = "Right ";
+// Field Type Constants
+const OUTPUT_STRING_FIELD_HS = " (HS)";
+const OUTPUT_STRING_FIELD_NCAA = " (NCAA)";
+// Plurality Constants
+const PLURALITY_STEP = "Step";
+const PLURALITY_STEPS = "Steps";
 
 /**
  * Takes the coordinate's front to back property and returns a string representing the front to back location in marching band terms
@@ -74,16 +80,19 @@ function outputFrontToBack(frontToBack, field) {
     var output;
     var frontHash;
     var backHash;
+    var fieldName;
     var frontHashName;
     var backHashName;
     // Set Field Type from Settings
     if (field.fieldType === 0) {
         frontHash = HS_FRONT_HASH;
         backHash = HS_BACK_HASH;
+        fieldName = OUTPUT_STRING_FIELD_HS;
     }
     else {
         frontHash = NCAA_FRONT_HASH;
         backHash = NCAA_BACK_HASH;
+        fieldName = OUTPUT_STRING_FIELD_NCAA;
     }
     // Set Hash Type from Settings
     if (field.hashType === 0) {
@@ -97,19 +106,19 @@ function outputFrontToBack(frontToBack, field) {
     // Building Output String
     // Middle of the field
     if (frontToBack == 0) {
-        output = -frontHash + " behind " + frontHashName + " Hash";
+        output = -frontHash + " behind " + frontHashName + " Hash " + fieldName;
         // return output;
     }
     // Front half of the field
     else if (frontToBack < 0) {
         if (frontToBack > frontHash) {
-            output = (-frontHash + frontToBack) + " behind " + frontHashName + " Hash";
+            output = (-frontHash + frontToBack) + " behind " + frontHashName + " Hash " + fieldName;
         }
         else if (frontToBack == frontHash) {
-            output = "On " + frontHashName + " Hash";
+            output = "On " + frontHashName + " Hash " + fieldName;
         }
         else if (frontToBack < frontHash && frontToBack > ((FRONT_SIDELINE + frontHash) / 2)) {
-            output = (frontHash + -frontToBack) + " in front of " + frontHashName + " Hash";
+            output = (frontHash + -frontToBack) + " in front of " + frontHashName + " Hash " + fieldName;
         }
         else if (frontToBack > FRONT_SIDELINE) {
             output = (-FRONT_SIDELINE + frontToBack) + " behind " + frontHashName + " Sideline";
@@ -124,13 +133,13 @@ function outputFrontToBack(frontToBack, field) {
     // Back half of the field
     else {
         if (frontToBack < backHash) {
-            output = (backHash - frontToBack) + " in front of " + backHashName + " Hash";
+            output = (backHash - frontToBack) + " in front of " + backHashName + " Hash " + fieldName;
         }
         else if (frontToBack == backHash) {
-            output = "On " + backHashName + " Hash";
+            output = "On " + backHashName + " Hash " + fieldName;
         }
         else if (frontToBack > backHash && frontToBack < ((BACK_SIDELINE + backHash) / 2)) {
-            output = (frontToBack - backHash) + " behind " + backHashName + " Hash";
+            output = (frontToBack - backHash) + " behind " + backHashName + " Hash " + fieldName;
         }
         else if (frontToBack < BACK_SIDELINE) {
             output = (BACK_SIDELINE - frontToBack) + " in front of " + backHashName + " Sideline";
@@ -171,31 +180,47 @@ function outputLeftToRight(leftToRight, field) {
     if (leftToRight === 0) {
         output = "On 50";
     }
-    // Side 2, Right Side of Field (Director Perspective)
+    // Side 2, Right Side of Field (Director Perspective) -->
     else if (leftToRight > 0) {
         var yardLine = Math.floor(leftToRight / 8);
-        // var step = leftToRight % 8;
         if (step === 0) {
             output = "On " + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine];
         } else if (step <= 4) {
-            output = step + " steps Outside " + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine];
+            var stepGrammar = pluralityChecker(step);
+            output = step + ` ${stepGrammar} Outside ` + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine];
         } else {
             step = 8 - step;
-            output = step + " steps Inside " + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine + 1];
+            var stepGrammar = pluralityChecker(step);
+            output = step + ` ${stepGrammar} Inside ` + rightSideName + OUTPUT_STRING_YARD_LINE_NAMES[yardLine + 1];
         }
     }
-    // Side 1, Left Side of Field (Director Perspective)
+    // Side 1, Left Side of Field (Director Perspective) <--
     else {
         var yardLine = Math.ceil(leftToRight / 8);
-        // var step = leftToRight % 8;
         if (step === 0) {
             output = "On " + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine];
         } else if (step >= -4) {
-            output = -step + " steps Outside " + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine];
+            var stepGrammar = pluralityChecker(step);
+            output = -step + ` ${stepGrammar} Outside ` + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine];
         } else {
             step = 8 + step;
-            output = step + " steps Inside " + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine + 1];
+            var stepGrammar = pluralityChecker(step);
+            output = step + ` ${stepGrammar} Inside ` + leftSideName + OUTPUT_STRING_YARD_LINE_NAMES[-yardLine + 1];
         }
     }
     return output;
+}
+
+/**
+ * Takes a number representing the steps from a 
+ * @function pluralityChecker
+ * @param  {Number} s Number representing the step(s) away from the reference yard line
+ * @return {String} String containing the correct form of step or steps
+ */
+function pluralityChecker(s) {
+    if (Math.abs(s) == 1) {
+        return PLURALITY_STEP;
+    } else {
+        return PLURALITY_STEPS;
+    }
 }

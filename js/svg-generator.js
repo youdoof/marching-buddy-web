@@ -9,6 +9,9 @@ const HS_FRONT_HASH_SVG = coordinateFBToSVGY(-14); // 1152
 const NCAA_BACK_HASH_SVG = coordinateFBToSVGY(10); // 768
 const NCAA_FRONT_HASH_SVG = coordinateFBToSVGY(-10); // 1088
 
+const CANVAS_WIDTH = coordinateLRToSVGX(88); // 2752
+const CANVAS_HEIGHT = coordinateFBToSVGY(-58); // 1856
+
 const TICK_LENGTH = feetToSVG(2); // Ticks are 2 feet long
 const YARD_LENGTH = YARD;
 const LINE_STROKE_WIDTH = inchesToSVG(4); // Every line on field is 4 inches wide
@@ -180,37 +183,44 @@ function drawSidelines(targetGroup) {
  * @param {Number} hashType 0 - High School, 1 - NCAA/College
  */
 function drawField(hashType) {
-    var canvas = createCanvas(2688, 1856, '.svg-target');
+    var canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, '.svg-target');
     setupGroups(canvas);
     var yardlinegroup = document.querySelector('.yardlines');
     var hashesgroup = document.querySelector('.hashes');
     var tickgroup = document.querySelector('.ticks');
+    var textgroup = document.querySelector('.text');
     var sidelinesgroup = document.querySelector('.sidelines');
 
+    // Got some magic numbers in here that need definition
     for (var i = 0; i <= 20; i++) {
         var x = 64 + (i * (8 * 16));
         drawYardLines(yardlinegroup, x);
         drawHashes(hashesgroup, hashType, x);
         drawTicks(tickgroup, hashType, x);
     }
+
     drawSidelines(sidelinesgroup);
 }
 
 /**
- * Takes the start and end points of coordinates and 
+ * Draws a movement
  * @function drawMovement
  * @param {Number} x1 Start x coordinate (Left to Right)
  * @param {Number} y1 Start y coordinate (Front to Back)
  * @param {Number} x2 End x coordinate (Left to Right)
  * @param {Number} y2 End y coordinate (Front to Back)
+ * @param {Movement} m Movement object to be drawn
  */
-function drawMovement(x1, y1, x2, y2) {
+function drawMovement(m) {
+    // Get the target group for movements in the parent svg
     var midsettarget = document.querySelector('.midset-target');
+    // Create a group for the movement to be drawn in
     var newGroup = createGroup('movement');
-    var startx = coordinateLRToSVGX(x1);
-    var starty = coordinateFBToSVGY(y1);
-    var endx = coordinateLRToSVGX(x2);
-    var endy = coordinateFBToSVGY(y2);
+
+    var startx = coordinateLRToSVGX(m.start.leftToRight);
+    var starty = coordinateFBToSVGY(m.start.frontToBack);
+    var endx = coordinateLRToSVGX(m.end.leftToRight);
+    var endy = coordinateFBToSVGY(m.end.frontToBack);
     // Circles
     newGroup.appendChild(createCircle(startx, starty));
     newGroup.appendChild(createCircle(endx, endy));
@@ -219,16 +229,28 @@ function drawMovement(x1, y1, x2, y2) {
     midsettarget.appendChild(newGroup);
 }
 
+/**
+ * Removes all child nodes from the midset target group in the svg
+ * @function clearMovementDrawings
+ */
+function clearMovementDrawings() {
+    var midsettarget = document.querySelector('.midset-target');
+    while (midsettarget.hasChildNodes()) {
+        var m = document.querySelector('.movement');
+        midsettarget.removeChild(m);
+    }
+}
+
 function drawRandom(x) {
-    var coords = generateRandomCoordinates(x);
-    for (var i = 0; i < coords.length - 1; i++) {
-        drawMovement(coords[i].leftToRight, coords[i].frontToBack, coords[i + 1].leftToRight, coords[i + 1].frontToBack);
+    var coords = generateRandomMovements(x);
+    for (var i = 0; i < coords.length; i++) {
+        drawMovement(coords[i]);
     }
 }
 
 function draw() {
     drawField(0);
-    drawRandom(30);
+    //drawRandom(2);
 }
 
 // draw();
