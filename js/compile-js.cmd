@@ -17,4 +17,4 @@ SET compilationlevel=%simple%
 SET jarname=closure-compiler-v20190618.jar
 :: Need to add on names of javascript files as the project becomes larger. Order matters when files reference other files.
 java -jar .\%jarname% --compilation_level %compilationlevel% --js_output_file %outputname% --js .\helper.js .\coordinate.js .\field.js .\input.js .\movement.js .\interactor.js
-PAUSE
+EXIT

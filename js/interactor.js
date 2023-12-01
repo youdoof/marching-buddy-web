@@ -118,11 +118,17 @@ function setRangeFamilyInnerHTMLAndValue(targetRangeFamily, number) {
 
 // Selectors for Range input families, finds the span and custom range input
 const START_LRSTEPS_RANGE = ".startLRSteps";
+const START_LRSTEPS_PLURAL = ".startLRStepsPlural";
 const START_YARDLINE_RANGE = ".startYardLine";
 const START_FBSTEPS_RANGE = ".startFBSteps";
+const START_FBSTEPS_PLURAL = ".startFBStepsPlural";
+
 const END_LRSTEPS_RANGE = ".endLRSteps";
+const END_LRSTEPS_PLURAL = ".endLRStepsPlural";
 const END_YARDLINE_RANGE = ".endYardLine";
 const END_FBSTEPS_RANGE = ".endFBSteps";
+const END_FBSTEPS_PLURAL = ".endFBStepsPlural";
+
 const COUNTS_RANGE = ".countsRange";
 
 // Terminology for updating the GUI and output
@@ -144,27 +150,45 @@ function startListening() {
     document.addEventListener('input', function (event) {
         if (event.target.matches(START_LRSTEPS_RANGE)) {
             document.querySelector(START_LRSTEPS_RANGE).innerHTML = event.target.value;
-            // updatePreview(START);
+            // Check and update the noun accuracy, steps or step
+            if (document.querySelector(START_LRSTEPS_RANGE).innerHTML == "1") {
+                document.querySelector(START_LRSTEPS_PLURAL).innerHTML = PLURALITY_STEP;
+            } else {
+                document.querySelector(START_LRSTEPS_PLURAL).innerHTML = PLURALITY_STEPS;
+            }
         }
         if (event.target.matches(START_YARDLINE_RANGE)) {
             document.querySelector(START_YARDLINE_RANGE).innerHTML = event.target.value;
-            // updatePreview(START);
         }
         if (event.target.matches(START_FBSTEPS_RANGE)) {
             document.querySelector(START_FBSTEPS_RANGE).innerHTML = event.target.value;
-            // updatePreview(START);
+            // Check and update the noun accuracy, steps or step
+            if (document.querySelector(START_FBSTEPS_RANGE).innerHTML == "1") {
+                document.querySelector(START_FBSTEPS_PLURAL).innerHTML = PLURALITY_STEP;
+            } else {
+                document.querySelector(START_FBSTEPS_PLURAL).innerHTML = PLURALITY_STEPS;
+            }
         }
         if (event.target.matches(END_LRSTEPS_RANGE)) {
             document.querySelector(END_LRSTEPS_RANGE).innerHTML = event.target.value;
-            // updatePreview(END);
+            // Check and update the noun accuracy, steps or step
+            if (document.querySelector(END_LRSTEPS_RANGE).innerHTML == "1") {
+                document.querySelector(END_LRSTEPS_PLURAL).innerHTML = PLURALITY_STEP;
+            } else {
+                document.querySelector(END_LRSTEPS_PLURAL).innerHTML = PLURALITY_STEPS;
+            }
         }
         if (event.target.matches(END_YARDLINE_RANGE)) {
             document.querySelector(END_YARDLINE_RANGE).innerHTML = event.target.value;
-            // updatePreview(END);
         }
         if (event.target.matches(END_FBSTEPS_RANGE)) {
             document.querySelector(END_FBSTEPS_RANGE).innerHTML = event.target.value;
-            // updatePreview(END);
+            // Check and update the noun accuracy, steps or step
+            if (document.querySelector(END_FBSTEPS_RANGE).innerHTML == "1") {
+                document.querySelector(END_FBSTEPS_PLURAL).innerHTML = PLURALITY_STEP;
+            } else {
+                document.querySelector(END_FBSTEPS_PLURAL).innerHTML = PLURALITY_STEPS;
+            }
         }
         if (event.target.matches(COUNTS_RANGE)) {
             document.querySelector(COUNTS_RANGE).innerHTML = event.target.value;
